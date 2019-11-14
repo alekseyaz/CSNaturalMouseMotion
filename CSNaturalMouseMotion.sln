@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29920.165
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSNaturalMouseMotion", "CSNaturalMouseMotion\CSNaturalMouseMotion.csproj", "{C5D20D50-D15D-4AFB-B682-2DEF380D86CD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C5D20D50-D15D-4AFB-B682-2DEF380D86CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5D20D50-D15D-4AFB-B682-2DEF380D86CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5D20D50-D15D-4AFB-B682-2DEF380D86CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5D20D50-D15D-4AFB-B682-2DEF380D86CD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4D1F4CC2-DF2B-4CCA-8D7A-341F9576362F}
+	EndGlobalSection
+EndGlobal
