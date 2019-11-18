@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
     <Compile Include="Interface\IDeviationProvider.cs" />
+    <Compile Include="Interface\IMouseInfoAccessor.cs" />
     <Compile Include="Interface\IMouseMotionObserver.cs" />
     <Compile Include="Interface\ISystemCalls.cs" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
