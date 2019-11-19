@@ -47,6 +47,7 @@
     <Compile Include="Interface\IMouseInfoAccessor.cs" />
     <Compile Include="Interface\IMouseMotionObserver.cs" />
     <Compile Include="Interface\INoiseProvider.cs" />
+    <Compile Include="Interface\IOvershootManager.cs" />
     <Compile Include="Interface\ISystemCalls.cs" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
