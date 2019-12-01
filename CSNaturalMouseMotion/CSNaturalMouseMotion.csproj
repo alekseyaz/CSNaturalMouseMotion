@@ -137,6 +137,7 @@
     <Compile Include="Interface\ISystemCalls.cs" />
     <Compile Include="MouseMotion.cs" />
     <Compile Include="Support\DoublePoint.cs" />
+    <Compile Include="Util\Pair.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
