@@ -136,6 +136,7 @@
     <Compile Include="Interface\ISpeedManager.cs" />
     <Compile Include="Interface\ISystemCalls.cs" />
     <Compile Include="MouseMotion.cs" />
+    <Compile Include="Support\DoublePoint.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
