@@ -128,6 +128,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="JavaTypes.cs" />
     <Compile Include="Interface\IDeviationProvider.cs" />
     <Compile Include="Interface\IMouseInfoAccessor.cs" />
     <Compile Include="Interface\IMouseMotionObserver.cs" />
