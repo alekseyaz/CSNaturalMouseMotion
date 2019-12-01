@@ -127,6 +127,7 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
   </ItemGroup>
+  <ItemGroup>
     <Compile Include="Interface\IDeviationProvider.cs" />
     <Compile Include="Interface\IMouseInfoAccessor.cs" />
     <Compile Include="Interface\IMouseMotionObserver.cs" />
@@ -134,5 +135,10 @@
     <Compile Include="Interface\IOvershootManager.cs" />
     <Compile Include="Interface\ISpeedManager.cs" />
     <Compile Include="Interface\ISystemCalls.cs" />
+    <Compile Include="MouseMotion.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
