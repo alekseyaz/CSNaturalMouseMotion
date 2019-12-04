@@ -138,6 +138,9 @@
     <Compile Include="Interface\ISystemCalls.cs" />
     <Compile Include="MouseMotion.cs" />
     <Compile Include="Support\DoublePoint.cs" />
+    <Compile Include="Util\FlowTemplates.cs" />
+    <Compile Include="Util\FlowUtil.cs" />
+    <Compile Include="Util\MathUtil.cs" />
     <Compile Include="Util\Pair.cs" />
   </ItemGroup>
   <ItemGroup>
