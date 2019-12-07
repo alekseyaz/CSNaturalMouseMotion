@@ -138,6 +138,8 @@
     <Compile Include="Interface\ISystemCalls.cs" />
     <Compile Include="MouseMotion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Support\DefaultMouseInfoAccessor.cs" />
+    <Compile Include="Support\DefaultMouseMotionNature.cs" />
     <Compile Include="Support\DoublePoint.cs" />
     <Compile Include="Support\Flow.cs" />
     <Compile Include="Util\FlowTemplates.cs" />
