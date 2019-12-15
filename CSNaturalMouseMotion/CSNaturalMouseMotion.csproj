@@ -141,6 +141,7 @@
     <Compile Include="Support\DefaultMouseInfoAccessor.cs" />
     <Compile Include="Support\DefaultMouseMotionNature.cs" />
     <Compile Include="Support\DefaultNoiseProvider.cs" />
+    <Compile Include="Support\DefaultOvershootManager.cs" />
     <Compile Include="Support\DoublePoint.cs" />
     <Compile Include="Support\Flow.cs" />
     <Compile Include="Util\FlowTemplates.cs" />
