@@ -137,6 +137,7 @@
     <Compile Include="Interface\ISpeedManager.cs" />
     <Compile Include="Interface\ISystemCalls.cs" />
     <Compile Include="MouseMotion.cs" />
+    <Compile Include="MouseMotionFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Support\DefaultMouseInfoAccessor.cs" />
     <Compile Include="Support\DefaultMouseMotionNature.cs" />
