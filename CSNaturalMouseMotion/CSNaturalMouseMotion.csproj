@@ -147,6 +147,7 @@
     <Compile Include="Support\DefaultSystemCalls.cs" />
     <Compile Include="Support\DoublePoint.cs" />
     <Compile Include="Support\Flow.cs" />
+    <Compile Include="Util\FactoryTemplates.cs" />
     <Compile Include="Util\FlowTemplates.cs" />
     <Compile Include="Util\FlowUtil.cs" />
     <Compile Include="Util\MathUtil.cs" />
