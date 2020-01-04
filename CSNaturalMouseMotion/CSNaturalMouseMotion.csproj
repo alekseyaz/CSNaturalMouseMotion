@@ -153,6 +153,7 @@
     <Compile Include="Support\NativeCallMouseInfoAccessor.cs" />
     <Compile Include="Support\ScreenAdjustedNature.cs" />
     <Compile Include="Support\SinusoidalDeviationProvider.cs" />
+    <Compile Include="Tools\SystemDiagnosis.cs" />
     <Compile Include="Util\FactoryTemplates.cs" />
     <Compile Include="Util\FlowTemplates.cs" />
     <Compile Include="Util\FlowUtil.cs" />
