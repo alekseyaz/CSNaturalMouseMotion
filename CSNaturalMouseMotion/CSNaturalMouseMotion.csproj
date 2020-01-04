@@ -148,6 +148,11 @@
     <Compile Include="Support\DoublePoint.cs" />
     <Compile Include="Support\Flow.cs" />
     <Compile Include="Support\MouseMotionNature.cs" />
+    <Compile Include="Support\Mousemotion\Movement.cs" />
+    <Compile Include="Support\Mousemotion\MovementFactory.cs" />
+    <Compile Include="Support\NativeCallMouseInfoAccessor.cs" />
+    <Compile Include="Support\ScreenAdjustedNature.cs" />
+    <Compile Include="Support\SinusoidalDeviationProvider.cs" />
     <Compile Include="Util\FactoryTemplates.cs" />
     <Compile Include="Util\FlowTemplates.cs" />
     <Compile Include="Util\FlowUtil.cs" />
