@@ -5,6 +5,11 @@ VisualStudioVersion = 16.0.29920.165
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSNaturalMouseMotion", "CSNaturalMouseMotion\CSNaturalMouseMotion.csproj", "{C5D20D50-D15D-4AFB-B682-2DEF380D86CD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NaturalMouseMotion.Tests", "NaturalMouseMotion.Tests\NaturalMouseMotion.Tests.csproj", "{6A119D44-2E48-4575-AC31-C221F3C5C59E}"
+	ProjectSection(ProjectDependencies) = postProject
+		{C5D20D50-D15D-4AFB-B682-2DEF380D86CD} = {C5D20D50-D15D-4AFB-B682-2DEF380D86CD}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +20,10 @@ Global
 		{C5D20D50-D15D-4AFB-B682-2DEF380D86CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C5D20D50-D15D-4AFB-B682-2DEF380D86CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C5D20D50-D15D-4AFB-B682-2DEF380D86CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A119D44-2E48-4575-AC31-C221F3C5C59E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A119D44-2E48-4575-AC31-C221F3C5C59E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A119D44-2E48-4575-AC31-C221F3C5C59E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A119D44-2E48-4575-AC31-C221F3C5C59E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
