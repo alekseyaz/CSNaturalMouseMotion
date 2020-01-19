@@ -18,7 +18,7 @@ namespace CSNaturalMouseMotion.Util
         {
             if ((targetLength < flow.Length))
             {
-                throw new IllegalArgumentException(("Target bucket length smaller than flow. " + (""
+                throw new ArgumentException(("Target bucket length smaller than flow. " + (""
                                 + (targetLength + (" vs " + flow.Length)))));
             }
 
@@ -70,7 +70,7 @@ namespace CSNaturalMouseMotion.Util
         {
             if ((flow.Length <= targetLength))
             {
-                throw new IllegalArgumentException(("Bad arguments ["
+                throw new ArgumentException(("Bad arguments ["
                                 + (flow.Length + (", "
                                 + (targetLength + "]")))));
             }

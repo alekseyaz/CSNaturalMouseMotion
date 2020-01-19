@@ -20,7 +20,7 @@ namespace NaturalMouseMotion.Support
             if (((y2 <= y)
                         || (x2 <= x)))
             {
-                throw new IllegalArgumentException(("Invalid range "
+                throw new ArgumentException(("Invalid range "
                                 + (x + (" "
                                 + (y + (" "
                                 + (x2 + (" " + y2))))))));

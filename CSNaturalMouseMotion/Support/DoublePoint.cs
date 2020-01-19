@@ -15,8 +15,8 @@ namespace NaturalMouseMotion.Support
 
         public DoublePoint(double x, double y)
         {
-            this.x = this.x;
-            this.y = this.y;
+            this.x = x;
+            this.y = y;
         }
 
         public double getX()

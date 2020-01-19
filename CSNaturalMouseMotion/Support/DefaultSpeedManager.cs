@@ -4,6 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+//using Java;
+using CSNaturalMouseMotion;
 
 namespace NaturalMouseMotion.Support
 {
@@ -12,13 +14,13 @@ namespace NaturalMouseMotion.Support
 
         private static double SMALL_DELTA = 1E-05;
 
-        private List<Flow> flows = new ArrayList();
+        private List<Flow> flows = new List<Flow>();
 
         private long mouseMovementTimeMs = 500;
 
         public DefaultSpeedManager(Collection<Flow> flows)
         {
-            this.flows.addAll(this.flows);
+            this.flows.AddAll(flows);
         }
 
         public DefaultSpeedManager() :
@@ -30,7 +32,7 @@ namespace NaturalMouseMotion.Support
         public Pair<Flow, long> getFlowWithTime(double distance)
         {
             double time = (this.mouseMovementTimeMs + ((long)((Java.Math.random() * this.mouseMovementTimeMs))));
-            Flow flow = this.flows.get(((int)((Java.Math.random() * this.flows.Count))));
+            Flow flow = this.flows[((int)((Java.Math.random() * this.flows.Count)))];
             //  Let's ignore waiting time, e.g 0's in flow, by increasing the total time
             //  by the amount of 0's there are in the flow multiplied by the time each bucket represents.
             double timePerBucket = (time / ((double)(flow.getFlowCharacteristics().Length)));

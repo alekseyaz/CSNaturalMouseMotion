@@ -17,21 +17,21 @@ namespace NaturalMouseMotion.Support
             MouseInfoPeer mp;
             try
             {
-               Method method = SunToolkit.class.getDeclaredMethod("getMouseInfoPeer");
-                method.setAccessible(true);
+                Method method = SunToolkit.class.getDeclaredMethod("getMouseInfoPeer");
+        method.setAccessible(true);
                 mp = (MouseInfoPeer) method.invoke(toolkit);
-            } 
+    } 
             catch (Exception e) 
             {
                 throw new RuntimeException(e);
-            }
+}
         }
 
         public Point getMousePosition()
-        {
-            peer.fillPointWithCoords(p);
-            return p;
-        }
+{
+    peer.fillPointWithCoords(p);
+    return p;
+}
     }
 
 }

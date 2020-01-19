@@ -16,10 +16,4 @@ namespace Java
 
     }
 
-    public static class Pair<D, Y>
-    {
-        public static D x;
-        public static Y y;
-    }
-
 }

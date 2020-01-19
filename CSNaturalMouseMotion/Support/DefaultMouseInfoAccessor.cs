@@ -10,7 +10,8 @@ namespace NaturalMouseMotion.Support
     {
         public Point getMousePosition()
         {
-            return MouseInfo.getPointerInfo().getLocation();
+            return new Point();
+            //return MouseInfo.getPointerInfo().getLocation();
         }
     }
 }

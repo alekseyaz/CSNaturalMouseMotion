@@ -24,18 +24,18 @@ namespace NaturalMouseMotion.Support
             long sum = 0;
             for (int i = 0; (i < flowCharacteristics.Length); i++)
             {
-                if ((flowCharacteristics[i] < 0))
+                if (flowCharacteristics[i] < 0)
                 {
-                    throw new IllegalArgumentException(("Invalid FlowCharacteristics at ["
+                    throw new ArgumentException(("Invalid FlowCharacteristics at ["
                                     + (i + ("] : " + flowCharacteristics[i]))));
                 }
 
-                sum = (sum + flowCharacteristics[i]);
+                sum += (long)flowCharacteristics[i];
             }
 
             if ((sum == 0))
             {
-                throw new IllegalArgumentException("Invalid FlowCharacteristics. All array elements can\'t be 0.");
+                throw new ArgumentException("Invalid FlowCharacteristics. All array elements can\'t be 0.");
             }
 
             double multiplier = (((double)(AVERAGE_BUCKET_VALUE))
@@ -57,8 +57,7 @@ namespace NaturalMouseMotion.Support
         {
             //  This is essentially how big is a single completion step,
             //  so we can expect next 'completion' is current completion + completionStep
-            double completionStep;
-            steps;
+            double completionStep = 1d / steps;
             //  Define the first bucket we read from
             double bucketFrom = (completion * this.buckets.Length);
             //  Define the last bucket we read from

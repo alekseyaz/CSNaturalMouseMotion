@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using NaturalMouseMotion.Interface;
 
 namespace NaturalMouseMotion.Support
 {
@@ -17,17 +18,17 @@ namespace NaturalMouseMotion.Support
 
         private int reactionTimeVariationMs;
 
-        private DeviationProvider deviationProvider;
+        private IDeviationProvider deviationProvider;
 
-        private NoiseProvider noiseProvider;
+        private INoiseProvider noiseProvider;
 
-        private OvershootManager overshootManager;
+        private IOvershootManager overshootManager;
 
-        private MouseInfoAccessor mouseInfo;
+        private IMouseInfoAccessor mouseInfo;
 
-        private SystemCalls systemCalls;
+        private ISystemCalls systemCalls;
 
-        private SpeedManager speedManager;
+        private ISpeedManager speedManager;
 
         public double getTimeToStepsDivider()
         {
@@ -79,62 +80,62 @@ namespace NaturalMouseMotion.Support
             this.reactionTimeVariationMs = reactionTimeVariationMs;
         }
 
-        public DeviationProvider getDeviationProvider()
+        public IDeviationProvider getDeviationProvider()
         {
             return this.deviationProvider;
         }
 
-        public void setDeviationProvider(DeviationProvider deviationProvider)
+        public void setDeviationProvider(IDeviationProvider deviationProvider)
         {
             this.deviationProvider = deviationProvider;
         }
 
-        public NoiseProvider getNoiseProvider()
+        public INoiseProvider getNoiseProvider()
         {
             return this.noiseProvider;
         }
 
-        public void setNoiseProvider(NoiseProvider noiseProvider)
+        public void setNoiseProvider(INoiseProvider noiseProvider)
         {
             this.noiseProvider = noiseProvider;
         }
 
-        public MouseInfoAccessor getMouseInfo()
+        public IMouseInfoAccessor getMouseInfo()
         {
             return this.mouseInfo;
         }
 
-        public void setMouseInfo(MouseInfoAccessor mouseInfo)
+        public void setMouseInfo(IMouseInfoAccessor mouseInfo)
         {
             this.mouseInfo = mouseInfo;
         }
 
-        public SystemCalls getSystemCalls()
+        public ISystemCalls getSystemCalls()
         {
             return this.systemCalls;
         }
 
-        public void setSystemCalls(SystemCalls systemCalls)
+        public void setSystemCalls(ISystemCalls systemCalls)
         {
             this.systemCalls = systemCalls;
         }
 
-        public SpeedManager getSpeedManager()
+        public ISpeedManager getSpeedManager()
         {
             return this.speedManager;
         }
 
-        public void setSpeedManager(SpeedManager speedManager)
+        public void setSpeedManager(ISpeedManager speedManager)
         {
             this.speedManager = speedManager;
         }
 
-        public OvershootManager getOvershootManager()
+        public IOvershootManager getOvershootManager()
         {
             return this.overshootManager;
         }
 
-        public void setOvershootManager(OvershootManager overshootManager)
+        public void setOvershootManager(IOvershootManager overshootManager)
         {
             this.overshootManager = overshootManager;
         }

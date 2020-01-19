@@ -2,7 +2,7 @@
 
 namespace NaturalMouseMotion.Interface
 {
-    interface IMouseInfoAccessor
+    public interface IMouseInfoAccessor
     {
         Point getMousePosition();
     }
