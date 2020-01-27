@@ -51,10 +51,9 @@ namespace NaturalMouseMotion.Support
             double distanceToRealTarget = Java.Math.hypot(distanceToRealTargetX, distanceToRealTargetY);
             double randomModifier = (distanceToRealTarget / this.overshootRandomModifierDivider);
             // double speedPixelsPerSecond = distanceToRealTarget / mouseMovementMs * 1000; // TODO utilize speed
-            int x;
-            overshootsRemaining;
-            int y;
-            overshootsRemaining;
+            int x = (int)(new Random().NextDouble() * randomModifier - randomModifier / 2d) * overshootsRemaining;
+            int y = (int)(new Random().NextDouble() * randomModifier - randomModifier / 2d) * overshootsRemaining;
+            
             return new Point(x, y);
         }
 

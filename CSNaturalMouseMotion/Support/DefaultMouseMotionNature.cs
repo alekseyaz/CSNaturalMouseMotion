@@ -28,8 +28,8 @@ namespace NaturalMouseMotion.Support
                 throw new RuntimeException(e);
             }
 
-            setDeviationProvider(new SinusoidalDeviationProvider(DEFAULT_SLOPE_DIVIDER));
-            setNoiseProvider(new DefaultNoiseProvider(DEFAULT_NOISINESS_DIVIDER));
+            setDeviationProvider(new SinusoidalDeviationProvider(SinusoidalDeviationProvider.DEFAULT_SLOPE_DIVIDER));
+            setNoiseProvider(new DefaultNoiseProvider(DefaultNoiseProvider.DEFAULT_NOISINESS_DIVIDER));
             setSpeedManager(new DefaultSpeedManager());
             setOvershootManager(new DefaultOvershootManager(new Random()));
             setEffectFadeSteps(EFFECT_FADE_STEPS);

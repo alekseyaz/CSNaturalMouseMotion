@@ -1,4 +1,6 @@
-﻿using System;
+﻿using NaturalMouseMotion.Interface;
+using NaturalMouseMotion.Support;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -15,7 +17,7 @@ namespace NaturalMouseMotion
 
         public MouseMotionFactory(MouseMotionNature nature)
         {
-            this.nature = this.nature;
+            this.nature = nature;
         }
 
         public MouseMotionFactory() :
@@ -39,32 +41,32 @@ namespace NaturalMouseMotion
             return defaultFactory;
         }
 
-        public SystemCalls getSystemCalls()
+        public ISystemCalls getSystemCalls()
         {
             return this.nature.getSystemCalls();
         }
 
-        public void setSystemCalls(SystemCalls systemCalls)
+        public void setSystemCalls(ISystemCalls systemCalls)
         {
             this.nature.setSystemCalls(systemCalls);
         }
 
-        public DeviationProvider getDeviationProvider()
+        public IDeviationProvider getDeviationProvider()
         {
             return this.nature.getDeviationProvider();
         }
 
-        public void setDeviationProvider(DeviationProvider deviationProvider)
+        public void setDeviationProvider(IDeviationProvider deviationProvider)
         {
             this.nature.setDeviationProvider(deviationProvider);
         }
 
-        public NoiseProvider getNoiseProvider()
+        public INoiseProvider getNoiseProvider()
         {
             return this.nature.getNoiseProvider();
         }
 
-        public void setNoiseProvider(NoiseProvider noiseProvider)
+        public void setNoiseProvider(INoiseProvider noiseProvider)
         {
             this.nature.setNoiseProvider(noiseProvider);
         }
@@ -76,25 +78,25 @@ namespace NaturalMouseMotion
 
         public void setRandom(Random random)
         {
-            this.random = this.random;
+            this.random = random;
         }
 
-        public MouseInfoAccessor getMouseInfo()
+        public IMouseInfoAccessor getMouseInfo()
         {
             return this.nature.getMouseInfo();
         }
 
-        public void setMouseInfo(MouseInfoAccessor mouseInfo)
+        public void setMouseInfo(IMouseInfoAccessor mouseInfo)
         {
             this.nature.setMouseInfo(mouseInfo);
         }
 
-        public SpeedManager getSpeedManager()
+        public ISpeedManager getSpeedManager()
         {
             return this.nature.getSpeedManager();
         }
 
-        public void setSpeedManager(SpeedManager speedManager)
+        public void setSpeedManager(ISpeedManager speedManager)
         {
             this.nature.setSpeedManager(speedManager);
         }
@@ -106,15 +108,15 @@ namespace NaturalMouseMotion
 
         public void setNature(MouseMotionNature nature)
         {
-            this.nature = this.nature;
+            this.nature = nature;
         }
 
-        public void setOvershootManager(OvershootManager manager)
+        public void setOvershootManager(IOvershootManager manager)
         {
             this.nature.setOvershootManager(manager);
         }
 
-        public OvershootManager getOvershootManager()
+        public IOvershootManager getOvershootManager()
         {
             return this.nature.getOvershootManager();
         }

@@ -1,8 +1,12 @@
-﻿using System;
+﻿using NaturalMouseMotion;
+using NaturalMouseMotion.Interface;
+using NaturalMouseMotion.Support;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 
 namespace CSNaturalMouseMotion.Util
 {
@@ -43,9 +47,8 @@ namespace CSNaturalMouseMotion.Util
         {
             MouseMotionFactory factory = new MouseMotionFactory(nature);
             Flow flow = new Flow(FlowTemplates.constantSpeed());
-            double timePerPixel;
-            SpeedManager manager;
-            new Pair(flow, ((long)((timePerPixel * distance))));
+            double timePerPixel = motionTimeMsPer100Pixels / 100d;
+            ISpeedManager manager = distance => new Pair(flow, ((long)((timePerPixel * distance))));
             DoublePoint.ZERO;
             DoublePoint.ZERO;
             DefaultOvershootManager overshootManager = ((DefaultOvershootManager)(factory.getOvershootManager()));

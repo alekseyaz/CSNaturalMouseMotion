@@ -11,7 +11,7 @@ namespace CSNaturalMouseMotion.Util
 
         public static double[] stretchFlow(double[] flow, int targetLength)
         {
-            return FlowUtil.stretchFlow(flow, targetLength, a -> a);
+            return FlowUtil.stretchFlow(flow, targetLength, a => a);
         }
 
         public static double[] stretchFlow(double[] flow, int targetLength, Func<Double, Double> modifier)
@@ -43,12 +43,9 @@ namespace CSNaturalMouseMotion.Util
             for (int i = 0; (i < tempLength); i++)
             {
                 double fillValueBottom = flow[fillValueIndex];
-                double fillValueTop = (fillValueIndex + (1 < flow.Length));
-                // TODO: Warning!!!, inline IF is not supported ?
-                double completion = ((stepLength - countToNextStep)
-                            / ((double)(stepLength)));
-                result[i] = ((fillValueBottom * (1 - completion))
-                            + (fillValueTop * completion));
+                double fillValueTop = fillValueIndex + ((1 < flow.Length) ? flow[fillValueIndex + 1] : flow[fillValueIndex]);
+                double completion = ((stepLength - countToNextStep) / ((double)(stepLength)));
+                result[i] = ((fillValueBottom * (1 - completion)) + (fillValueTop * completion));
                 countToNextStep--;
                 if ((countToNextStep == 0))
                 {

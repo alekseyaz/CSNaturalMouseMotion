@@ -8,7 +8,6 @@ namespace CSNaturalMouseMotion.Util
 {
     public class MathUtil
     {
-
         public static int roundTowards(double value, int target)
         {
             if ((target > value))
@@ -19,7 +18,6 @@ namespace CSNaturalMouseMotion.Util
             {
                 return ((int)(Math.Floor(value)));
             }
-
         }
     }
 }

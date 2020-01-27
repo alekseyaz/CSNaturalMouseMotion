@@ -14,7 +14,7 @@ namespace NaturalMouseMotion.Support
 
         public SinusoidalDeviationProvider(double slopeDivider)
         {
-            this.slopeDivider = this.slopeDivider;
+            this.slopeDivider = slopeDivider;
         }
 
         public DoublePoint getDeviation(double totalDistanceInPixels, double completionFraction)

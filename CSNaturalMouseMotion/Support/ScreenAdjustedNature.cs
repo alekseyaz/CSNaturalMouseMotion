@@ -30,30 +30,30 @@ namespace NaturalMouseMotion.Support
 
         public ScreenAdjustedNature(Dimension screenSize, Point mouseOffset)
         {
-            this.screenSize = this.screenSize;
+            this.screenSize = screenSize;
             this.offset = mouseOffset;
         }
 
 
-        public void setMouseInfo(MouseInfoAccessor mouseInfo)
+        public void setMouseInfo(IMouseInfoAccessor mouseInfo)
         {
             base.setMouseInfo(new ProxyMouseInfo(mouseInfo));
         }
 
 
-        public void setSystemCalls(SystemCalls systemCalls)
+        public void setSystemCalls(ISystemCalls systemCalls)
         {
             base.setSystemCalls(new ProxySystemCalls(systemCalls));
         }
 
-        private class ProxyMouseInfo : MouseInfoAccessor
+        private class ProxyMouseInfo : IMouseInfoAccessor
         {
 
-            private MouseInfoAccessor underlying;
+            private IMouseInfoAccessor underlying;
 
-            public ProxyMouseInfo(MouseInfoAccessor underlying)
+            public ProxyMouseInfo(IMouseInfoAccessor underlying)
             {
-                this.underlying = this.underlying;
+                this.underlying = underlying;
             }
 
             //  This implementation reuses the point.
@@ -71,11 +71,11 @@ namespace NaturalMouseMotion.Support
         private class ProxySystemCalls : ISystemCalls
         {
 
-            private SystemCalls underlying;
+            private ISystemCalls underlying;
 
-            public ProxySystemCalls(SystemCalls underlying)
+            public ProxySystemCalls(ISystemCalls underlying)
             {
-                this.underlying = this.underlying;
+                this.underlying = underlying;
             }
 
  

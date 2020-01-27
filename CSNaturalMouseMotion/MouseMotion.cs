@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Text;
-using CSNaturalMouseMotion.Support;
+using CSNaturalMouseMotion.Util;
+using NaturalMouseMotion.Interface;
+using NaturalMouseMotion.Support;
+using NaturalMouseMotion.Support.Mousemotion;
 
 namespace NaturalMouseMotion
 {
@@ -17,15 +20,15 @@ namespace NaturalMouseMotion
         private int reactionTimeVariationMs;
         private double timeToStepsDivider;
         private Dimension screenSize;
-        private SystemCalls systemCalls;
-        private DeviationProvider deviationProvider;
-        private NoiseProvider noiseProvider;
-        private SpeedManager speedManager;
-        private OvershootManager overshootManager;
+        private ISystemCalls systemCalls;
+        private IDeviationProvider deviationProvider;
+        private INoiseProvider noiseProvider;
+        private ISpeedManager speedManager;
+        private IOvershootManager overshootManager;
         private int xDest;
         private int yDest;
         private Random random;
-        private MouseInfoAccessor mouseInfo;
+        private IMouseInfoAccessor mouseInfo;
         private Point mousePosition;
 
         public MouseMotion(MouseMotionNature nature, Random random, int xDest, int yDest)
@@ -36,7 +39,7 @@ namespace NaturalMouseMotion
             this.screenSize = this.systemCalls.getScreenSize();
             this.xDest = this.limitByScreenWidth(this.xDest);
             this.yDest = this.limitByScreenHeight(this.yDest);
-            this.random = this.random;
+            this.random = random;
             this.mouseInfo = nature.getMouseInfo();
             this.speedManager = nature.getSpeedManager();
             this.timeToStepsDivider = nature.getTimeToStepsDivider();
@@ -52,15 +55,15 @@ namespace NaturalMouseMotion
 
         }
 
-        public void move(MouseMotionObserver observer)
+        public void move(IMouseMotionObserver observer)
         {
             this.updateMouseInfo();
-            log.info("Starting to move mouse to ({}, {}), current position: ({}, {})", this.xDest, this.yDest, this.mousePosition.x, this.mousePosition.y);
+            log.info("Starting to move mouse to ({}, {}), current position: ({}, {})", this.xDest, this.yDest, this.mousePosition.X, this.mousePosition.Y);
             MovementFactory movementFactory = new MovementFactory(this.xDest, this.yDest, this.speedManager, this.overshootManager, this.screenSize);
             ArrayDeque<Movement> movements = movementFactory.createMovements(this.mousePosition);
             int overshoots = (movements.size() - 1);
-            while (((this.mousePosition.x != this.xDest)
-                        || (this.mousePosition.y != this.yDest)))
+            while (((this.mousePosition.X != this.xDest)
+                        || (this.mousePosition.Y != this.yDest)))
             {
                 if (movements.isEmpty())
                 {

@@ -1,4 +1,5 @@
 ﻿using CSNaturalMouseMotion.Util;
+using NaturalMouseMotion.Interface;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -15,19 +16,19 @@ namespace NaturalMouseMotion.Support.Mousemotion
 
         private int yDest;
 
-        private SpeedManager speedManager;
+        private ISpeedManager speedManager;
 
-        private OvershootManager overshootManager;
+        private IOvershootManager overshootManager;
 
         private Dimension screenSize;
 
-        public MovementFactory(int xDest, int yDest, SpeedManager speedManager, OvershootManager overshootManager, Dimension screenSize)
+        public MovementFactory(int xDest, int yDest, ISpeedManager speedManager, IOvershootManager overshootManager, Dimension screenSize)
         {
-            this.xDest = this.xDest;
-            this.yDest = this.yDest;
-            this.speedManager = this.speedManager;
-            this.overshootManager = this.overshootManager;
-            this.screenSize = this.screenSize;
+            this.xDest = xDest;
+            this.yDest = yDest;
+            this.speedManager = speedManager;
+            this.overshootManager = overshootManager;
+            this.screenSize = screenSize;
         }
 
         public ArrayDeque<Movement> createMovements(Point currentMousePosition)

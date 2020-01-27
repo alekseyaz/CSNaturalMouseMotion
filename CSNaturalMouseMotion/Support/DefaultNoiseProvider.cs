@@ -20,7 +20,6 @@ namespace NaturalMouseMotion.Support
             this.noisinessDivider = noisinessDivider;
         }
 
-        //[Override()]
         public DoublePoint getNoise(Random random, double xStepSize, double yStepSize)
         {
             if (((Math.Abs((xStepSize - 0)) < SMALL_DELTA)
