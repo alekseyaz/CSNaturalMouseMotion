@@ -4,11 +4,14 @@ using System.Text;
 
 namespace NaturalMouseMotion.Interface
 {
-    public interface ISystemCalls
-    {
-        long currentTimeMillis();
-        void sleep(long time);
-        java.awt.Dimension getScreenSize();
-        void setMousePosition(int x, int y);
-    }
+	/// <summary>
+	/// Abstracts ordinary static System calls away
+	/// </summary>
+	public interface ISystemCalls
+	{
+		long currentTimeMillis();
+		void sleep(long time);
+		Dimension ScreenSize { get; }
+		void setMousePosition(int x, int y);
+	}
 }
