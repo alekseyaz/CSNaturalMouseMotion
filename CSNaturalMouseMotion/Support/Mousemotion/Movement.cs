@@ -4,42 +4,37 @@ using System.Text;
 
 namespace NaturalMouseMotion.Support.Mousemotion
 {
-    public class Movement
-    {
 
-        public int destX;
+	public class Movement
+	{
+		public readonly int destX;
+		public readonly int destY;
+		public readonly double distance;
+		public readonly int xDistance;
+		public readonly int yDistance;
+		public readonly long time;
+		public readonly Flow flow;
 
-        public int destY;
+		public Movement(int destX, int destY, double distance, int xDistance, int yDistance, long time, Flow flow)
+		{
+			this.destX = destX;
+			this.destY = destY;
+			this.distance = distance;
+			this.xDistance = xDistance;
+			this.yDistance = yDistance;
+			this.time = time;
+			this.flow = flow;
+		}
 
-        public double distance;
-
-        public int xDistance;
-
-        public int yDistance;
-
-        public long time;
-
-        public Flow flow;
-
-        public Movement(int destX, int destY, double distance, int xDistance, int yDistance, long time, Flow flow)
-        {
-            this.destX = this.destX;
-            this.destY = this.destY;
-            this.distance = this.distance;
-            this.xDistance = this.xDistance;
-            this.yDistance = this.yDistance;
-            this.time = this.time;
-            this.flow = this.flow;
-        }
-
-        public String toString()
-        {
-            return ("Movement{" + ("destX="
-                        + (this.destX + (", destY="
-                        + (this.destY + (", xDistance="
-                        + (this.xDistance + (", yDistance="
-                        + (this.yDistance + (", time="
-                        + (this.time + '}')))))))))));
-        }
-    }
+		public override string ToString()
+		{
+			return "Movement{"
+				+ "destX=" + destX
+				+ ", destY=" + destY
+				+ ", xDistance=" + xDistance
+				+ ", yDistance=" + yDistance
+				+ ", time=" + time + '}';
+		}
+	}
 }
+
