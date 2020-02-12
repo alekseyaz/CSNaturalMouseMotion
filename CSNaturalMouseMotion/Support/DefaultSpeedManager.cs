@@ -4,54 +4,52 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
-//using Java;
 using CSNaturalMouseMotion;
 
 namespace NaturalMouseMotion.Support
 {
-    public class DefaultSpeedManager : ISpeedManager
-    {
+	public class DefaultSpeedManager : ISpeedManager
+	{
+		private const double SMALL_DELTA = 10e-6;
+		private readonly IList<Flow> flows = new List<Flow>();
+		private long mouseMovementTimeMs = 500;
 
-        private static double SMALL_DELTA = 1E-05;
+		public DefaultSpeedManager(ICollection<Flow> flows)
+		{
+			((List<Flow>)this.flows).AddRange(flows);
+		}
 
-        private List<Flow> flows = new List<Flow>();
+		public DefaultSpeedManager()
+		{
+			((List<Flow>)this.flows).AddRange(Arrays.asList(new Flow(FlowTemplates.constantSpeed()), new Flow(FlowTemplates.variatingFlow()), new Flow(FlowTemplates.interruptedFlow()), new Flow(FlowTemplates.interruptedFlow2()), new Flow(FlowTemplates.slowStartupFlow()), new Flow(FlowTemplates.slowStartup2Flow()), new Flow(FlowTemplates.adjustingFlow()), new Flow(FlowTemplates.jaggedFlow()), new Flow(FlowTemplates.stoppingFlow())
+		   ));
+		}
 
-        private long mouseMovementTimeMs = 500;
+		public virtual Pair<Flow, long> getFlowWithTime(double distance)
+		{
+			double time = mouseMovementTimeMs + (long)(GlobalRandom.NextDouble * mouseMovementTimeMs);
+			Flow flow = flows[(int)(GlobalRandom.NextDouble * flows.Count)];
 
-        public DefaultSpeedManager(Collection<Flow> flows)
-        {
-            this.flows.AddAll(flows);
-        }
+			// Let's ignore waiting time, e.g 0's in flow, by increasing the total time
+			// by the amount of 0's there are in the flow multiplied by the time each bucket represents.
+			double timePerBucket = time / (double)flow.FlowCharacteristics.Length;
+			foreach (double bucket in flow.FlowCharacteristics)
+			{
+				if (Math.Abs(bucket - 0) < SMALL_DELTA)
+				{
+					time += timePerBucket;
+				}
+			}
 
-        public DefaultSpeedManager() :
-                this(Arrays.asList(new Flow(FlowTemplates.constantSpeed()), new Flow(FlowTemplates.variatingFlow()), new Flow(FlowTemplates.interruptedFlow()), new Flow(FlowTemplates.interruptedFlow2()), new Flow(FlowTemplates.slowStartupFlow()), new Flow(FlowTemplates.slowStartup2Flow()), new Flow(FlowTemplates.adjustingFlow()), new Flow(FlowTemplates.jaggedFlow()), new Flow(FlowTemplates.stoppingFlow())))
-        {
-            this.(Arrays.asList(new Flow(FlowTemplates.constantSpeed()), new Flow(FlowTemplates.variatingFlow()), new Flow(FlowTemplates.interruptedFlow()), new Flow(FlowTemplates.interruptedFlow2()), new Flow(FlowTemplates.slowStartupFlow()), new Flow(FlowTemplates.slowStartup2Flow()), new Flow(FlowTemplates.adjustingFlow()), new Flow(FlowTemplates.jaggedFlow()), new Flow(FlowTemplates.stoppingFlow())));
-        }
+			return new Pair<Flow, long>(flow, (long)time);
+		}
 
-        public Pair<Flow, long> getFlowWithTime(double distance)
-        {
-            double time = (this.mouseMovementTimeMs + ((long)((Java.Math.random() * this.mouseMovementTimeMs))));
-            Flow flow = this.flows[((int)((Java.Math.random() * this.flows.Count)))];
-            //  Let's ignore waiting time, e.g 0's in flow, by increasing the total time
-            //  by the amount of 0's there are in the flow multiplied by the time each bucket represents.
-            double timePerBucket = (time / ((double)(flow.getFlowCharacteristics().Length)));
-            foreach (double bucket in flow.getFlowCharacteristics())
-            {
-                if ((Math.Abs((bucket - 0)) < SMALL_DELTA))
-                {
-                    time = (time + timePerBucket);
-                }
-
-            }
-
-            return new Pair<Flow, long>(flow, ((long)(time)));
-        }
-
-        public void setMouseMovementBaseTimeMs(long mouseMovementSpeedMs)
-        {
-            this.mouseMovementTimeMs = mouseMovementSpeedMs;
-        }
-
-    }
+		public virtual long MouseMovementBaseTimeMs
+		{
+			set
+			{
+				this.mouseMovementTimeMs = value;
+			}
+		}
+	}
 }

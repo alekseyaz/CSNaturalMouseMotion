@@ -5,139 +5,208 @@ using NaturalMouseMotion.Interface;
 
 namespace NaturalMouseMotion.Support
 {
-    public class MouseMotionNature
-    {
+	public class MouseMotionNature
+	{
+		private double timeToStepsDivider;
+		private int minSteps;
 
-        private double timeToStepsDivider;
+		private int effectFadeSteps;
+		private int reactionTimeBaseMs;
+		private int reactionTimeVariationMs;
+		private IDeviationProvider deviationProvider;
+		private INoiseProvider noiseProvider;
+		private IOvershootManager overshootManager;
+		private IMouseInfoAccessor mouseInfo;
+		private ISystemCalls systemCalls;
+		private ISpeedManager speedManager;
 
-        private int minSteps;
+		/// <summary>
+		/// Time to steps is how NaturalMouseMotion calculates how many locations need to be visited between
+		/// start and end point. More steps means more smooth movement. Thus increasing this divider means less
+		/// steps and decreasing means more steps. </summary>
+		/// <returns> the divider which is used to get amount of steps from the planned movement time </returns>
+		public virtual double TimeToStepsDivider
+		{
+			get
+			{
+				return timeToStepsDivider;
+			}
+			set
+			{
+				this.timeToStepsDivider = value;
+			}
+		}
 
-        private int effectFadeSteps;
 
-        private int reactionTimeBaseMs;
+		/// <summary>
+		/// Minimum amount of steps that is taken to reach the target, this is used when calculation otherwise would
+		/// lead to too few steps for smooth mouse movement, which can happen for very fast movements. </summary>
+		/// <returns> the minimal amount of steps used. </returns>
+		public virtual int MinSteps
+		{
+			get
+			{
+				return minSteps;
+			}
+			set
+			{
+				this.minSteps = value;
+			}
+		}
 
-        private int reactionTimeVariationMs;
 
-        private IDeviationProvider deviationProvider;
+		/// <summary>
+		/// Effect fade decreases the noise and deviation effects linearly to 0 at the end of the mouse movement,
+		/// so mouse would end up in the intended target pixel even when noise or deviation would otherwise
+		/// add offset to mouse position. </summary>
+		/// <returns> the number of steps before last the effect starts to fade </returns>
+		public virtual int EffectFadeSteps
+		{
+			get
+			{
+				return effectFadeSteps;
+			}
+			set
+			{
+				this.effectFadeSteps = value;
+			}
+		}
 
-        private INoiseProvider noiseProvider;
 
-        private IOvershootManager overshootManager;
+		/// <summary>
+		/// Get the minimal sleep time when overshoot or some other feature has caused mouse to miss the original target
+		/// to prepare for next attempt to move the mouse to target. </summary>
+		/// <returns> the sleep time </returns>
+		public virtual int ReactionTimeBaseMs
+		{
+			get
+			{
+				return reactionTimeBaseMs;
+			}
+			set
+			{
+				this.reactionTimeBaseMs = value;
+			}
+		}
 
-        private IMouseInfoAccessor mouseInfo;
 
-        private ISystemCalls systemCalls;
+		/// <summary>
+		/// Get the random sleep time when overshoot or some other feature has caused mouse to miss the original target
+		/// to prepare for next attempt to move the mouse to target. Random part of this is added to the reactionTimeBaseMs. </summary>
+		/// <returns> reactionTimeVariationMs the sleep time </returns>
+		public virtual int ReactionTimeVariationMs
+		{
+			get
+			{
+				return reactionTimeVariationMs;
+			}
+			set
+			{
+				this.reactionTimeVariationMs = value;
+			}
+		}
 
-        private ISpeedManager speedManager;
 
-        public double getTimeToStepsDivider()
-        {
-            return this.timeToStepsDivider;
-        }
+		/// <summary>
+		/// Get the provider which is used to define how the MouseMotion trajectory is being deviated or arced
+		/// </summary>
+		/// <returns> the provider </returns>
+		public virtual IDeviationProvider DeviationProvider
+		{
+			get
+			{
+				return deviationProvider;
+			}
+			set
+			{
+				this.deviationProvider = value;
+			}
+		}
 
-        public void setTimeToStepsDivider(double timeToStepsDivider)
-        {
-            this.timeToStepsDivider = timeToStepsDivider;
-        }
 
-        public int getMinSteps()
-        {
-            return this.minSteps;
-        }
+		/// <summary>
+		/// Get the provider which is used to make random mistakes in the trajectory of the moving mouse
+		/// </summary>
+		/// <returns> the provider </returns>
+		public virtual INoiseProvider NoiseProvider
+		{
+			get
+			{
+				return noiseProvider;
+			}
+			set
+			{
+				this.noiseProvider = value;
+			}
+		}
 
-        public void setMinSteps(int minSteps)
-        {
-            this.minSteps = minSteps;
-        }
 
-        public int getEffectFadeSteps()
-        {
-            return this.effectFadeSteps;
-        }
+		/// <summary>
+		/// Get the accessor object, which MouseMotion uses to detect the position of mouse on screen.
+		/// </summary>
+		/// <returns> the accessor </returns>
+		public virtual IMouseInfoAccessor MouseInfo
+		{
+			get
+			{
+				return mouseInfo;
+			}
+			set
+			{
+				this.mouseInfo = value;
+			}
+		}
 
-        public void setEffectFadeSteps(int effectFadeSteps)
-        {
-            this.effectFadeSteps = effectFadeSteps;
-        }
 
-        public int getReactionTimeBaseMs()
-        {
-            return this.reactionTimeBaseMs;
-        }
+		/// <summary>
+		/// Get a system call interface, which MouseMotion uses internally
+		/// </summary>
+		/// <returns> the interface </returns>
+		public virtual ISystemCalls SystemCalls
+		{
+			get
+			{
+				return systemCalls;
+			}
+			set
+			{
+				this.systemCalls = value;
+			}
+		}
 
-        public void setReactionTimeBaseMs(int reactionTimeBaseMs)
-        {
-            this.reactionTimeBaseMs = reactionTimeBaseMs;
-        }
 
-        public int getReactionTimeVariationMs()
-        {
-            return this.reactionTimeVariationMs;
-        }
+		/// <summary>
+		/// Get the speed manager. SpeedManager controls how long does it take to complete a movement and within that
+		/// time how slow or fast the cursor is moving at a particular moment, the flow of movement. </summary>
+		/// <returns> the SpeedManager </returns>
+		public virtual ISpeedManager SpeedManager
+		{
+			get
+			{
+				return speedManager;
+			}
+			set
+			{
+				this.speedManager = value;
+			}
+		}
 
-        public void setReactionTimeVariationMs(int reactionTimeVariationMs)
-        {
-            this.reactionTimeVariationMs = reactionTimeVariationMs;
-        }
 
-        public IDeviationProvider getDeviationProvider()
-        {
-            return this.deviationProvider;
-        }
+		/// <summary>
+		/// Get the manager that deals with overshoot properties.
+		/// Overshoots provide a realistic way to simulate user trying to reach the destination with mouse, but miss. </summary>
+		/// <returns> the manager </returns>
+		public virtual IOvershootManager OvershootManager
+		{
+			get
+			{
+				return overshootManager;
+			}
+			set
+			{
+				this.overshootManager = value;
+			}
+		}
 
-        public void setDeviationProvider(IDeviationProvider deviationProvider)
-        {
-            this.deviationProvider = deviationProvider;
-        }
-
-        public INoiseProvider getNoiseProvider()
-        {
-            return this.noiseProvider;
-        }
-
-        public void setNoiseProvider(INoiseProvider noiseProvider)
-        {
-            this.noiseProvider = noiseProvider;
-        }
-
-        public IMouseInfoAccessor getMouseInfo()
-        {
-            return this.mouseInfo;
-        }
-
-        public void setMouseInfo(IMouseInfoAccessor mouseInfo)
-        {
-            this.mouseInfo = mouseInfo;
-        }
-
-        public ISystemCalls getSystemCalls()
-        {
-            return this.systemCalls;
-        }
-
-        public void setSystemCalls(ISystemCalls systemCalls)
-        {
-            this.systemCalls = systemCalls;
-        }
-
-        public ISpeedManager getSpeedManager()
-        {
-            return this.speedManager;
-        }
-
-        public void setSpeedManager(ISpeedManager speedManager)
-        {
-            this.speedManager = speedManager;
-        }
-
-        public IOvershootManager getOvershootManager()
-        {
-            return this.overshootManager;
-        }
-
-        public void setOvershootManager(IOvershootManager overshootManager)
-        {
-            this.overshootManager = overshootManager;
-        }
-    }
+	}
 }

@@ -6,110 +6,114 @@ using System.Text;
 
 namespace NaturalMouseMotion.Support
 {
-    public class DefaultOvershootManager : IOvershootManager
-    {
+	public class DefaultOvershootManager : IOvershootManager
+	{
+		public const double OVERSHOOT_SPEEDUP_DIVIDER = 1.8;
+		public const int MIN_OVERSHOOT_MOVEMENT_MS = 40;
+		public const int OVERSHOOT_RANDOM_MODIFIER_DIVIDER = 20;
+		public const int MIN_DISTANCE_FOR_OVERSHOOTS = 10;
+		public const int DEFAULT_OVERSHOOT_AMOUNT = 3;
 
-        public static double OVERSHOOT_SPEEDUP_DIVIDER = 1.8;
+		private long minOvershootMovementMs = MIN_OVERSHOOT_MOVEMENT_MS;
+		private long minDistanceForOvershoots = MIN_DISTANCE_FOR_OVERSHOOTS;
+		private double overshootRandomModifierDivider = OVERSHOOT_RANDOM_MODIFIER_DIVIDER;
+		private double overshootSpeedupDivider = OVERSHOOT_SPEEDUP_DIVIDER;
+		private int overshoots = DEFAULT_OVERSHOOT_AMOUNT;
+		private readonly Random random;
 
-        public static int MIN_OVERSHOOT_MOVEMENT_MS = 40;
+		public DefaultOvershootManager(Random random)
+		{
+			this.random = random;
+		}
 
-        public static int OVERSHOOT_RANDOM_MODIFIER_DIVIDER = 20;
+		public virtual int getOvershoots(Flow flow, long mouseMovementMs, double distance)
+		{
+			if (distance < minDistanceForOvershoots)
+			{
+				return 0;
+			}
+			return overshoots;
+		}
 
-        public static int MIN_DISTANCE_FOR_OVERSHOOTS = 10;
+		public virtual Point getOvershootAmount(double distanceToRealTargetX, double distanceToRealTargetY, long mouseMovementMs, int overshootsRemaining)
+		{
+			double distanceToRealTarget = Java.MathHypot.hypot(distanceToRealTargetX, distanceToRealTargetY);
 
-        public static int DEFAULT_OVERSHOOT_AMOUNT = 3;
+			double randomModifier = distanceToRealTarget / overshootRandomModifierDivider;
+			//double speedPixelsPerSecond = distanceToRealTarget / mouseMovementMs * 1000; // TODO utilize speed
+			int x = (int)(random.NextDouble() * randomModifier - randomModifier / 2d) * overshootsRemaining;
+			int y = (int)(random.NextDouble() * randomModifier - randomModifier / 2d) * overshootsRemaining;
+			return new Point(x, y);
+		}
 
-        private long minOvershootMovementMs = MIN_OVERSHOOT_MOVEMENT_MS;
+		public virtual long deriveNextMouseMovementTimeMs(long mouseMovementMs, int overshootsRemaining)
+		{
+			return Math.Max((long)(mouseMovementMs / overshootSpeedupDivider), minOvershootMovementMs);
+		}
 
-        private long minDistanceForOvershoots = MIN_DISTANCE_FOR_OVERSHOOTS;
+		public virtual long MinOvershootMovementMs
+		{
+			get
+			{
+				return minOvershootMovementMs;
+			}
+			set
+			{
+				this.minOvershootMovementMs = value;
+			}
+		}
 
-        private double overshootRandomModifierDivider = OVERSHOOT_RANDOM_MODIFIER_DIVIDER;
 
-        private double overshootSpeedupDivider = OVERSHOOT_SPEEDUP_DIVIDER;
+		public virtual double OvershootRandomModifierDivider
+		{
+			get
+			{
+				return overshootRandomModifierDivider;
+			}
+			set
+			{
+				this.overshootRandomModifierDivider = value;
+			}
+		}
 
-        private int overshoots = DEFAULT_OVERSHOOT_AMOUNT;
 
-        private Random random;
+		public virtual double OvershootSpeedupDivider
+		{
+			get
+			{
+				return overshootSpeedupDivider;
+			}
+			set
+			{
+				this.overshootSpeedupDivider = value;
+			}
+		}
 
-        public DefaultOvershootManager(Random random)
-        {
-            this.random = random;
-        }
 
-        public int getOvershoots(Flow flow, long mouseMovementMs, double distance)
-        {
-            if ((distance < this.minDistanceForOvershoots))
-            {
-                return 0;
-            }
+		public virtual int Overshoots
+		{
+			get
+			{
+				return overshoots;
+			}
+			set
+			{
+				this.overshoots = value;
+			}
+		}
 
-            return this.overshoots;
-        }
 
-        public Point getOvershootAmount(double distanceToRealTargetX, double distanceToRealTargetY, long mouseMovementMs, int overshootsRemaining)
-        {
-            double distanceToRealTarget = Java.Math.hypot(distanceToRealTargetX, distanceToRealTargetY);
-            double randomModifier = (distanceToRealTarget / this.overshootRandomModifierDivider);
-            // double speedPixelsPerSecond = distanceToRealTarget / mouseMovementMs * 1000; // TODO utilize speed
-            int x = (int)(new Random().NextDouble() * randomModifier - randomModifier / 2d) * overshootsRemaining;
-            int y = (int)(new Random().NextDouble() * randomModifier - randomModifier / 2d) * overshootsRemaining;
-            
-            return new Point(x, y);
-        }
+		public virtual long MinDistanceForOvershoots
+		{
+			get
+			{
+				return minDistanceForOvershoots;
+			}
+			set
+			{
+				this.minDistanceForOvershoots = value;
+			}
+		}
 
-        public long deriveNextMouseMovementTimeMs(long mouseMovementMs, int overshootsRemaining)
-        {
-            return Math.Max(((long)((mouseMovementMs / this.overshootSpeedupDivider))), this.minOvershootMovementMs);
-        }
-
-        public long getMinOvershootMovementMs()
-        {
-            return this.minOvershootMovementMs;
-        }
-
-        public void setMinOvershootMovementMs(long minOvershootMovementMs)
-        {
-            this.minOvershootMovementMs = minOvershootMovementMs;
-        }
-
-        public double getOvershootRandomModifierDivider()
-        {
-            return this.overshootRandomModifierDivider;
-        }
-
-        public void setOvershootRandomModifierDivider(double overshootRandomModifierDivider)
-        {
-            this.overshootRandomModifierDivider = overshootRandomModifierDivider;
-        }
-
-        public double getOvershootSpeedupDivider()
-        {
-            return this.overshootSpeedupDivider;
-        }
-
-        public void setOvershootSpeedupDivider(double overshootSpeedupDivider)
-        {
-            this.overshootSpeedupDivider = overshootSpeedupDivider;
-        }
-
-        public int getOvershoots()
-        {
-            return this.overshoots;
-        }
-
-        public void setOvershoots(int overshoots)
-        {
-            this.overshoots = overshoots;
-        }
-
-        public long getMinDistanceForOvershoots()
-        {
-            return this.minDistanceForOvershoots;
-        }
-
-        public void setMinDistanceForOvershoots(long minDistanceForOvershoots)
-        {
-            this.minDistanceForOvershoots = minDistanceForOvershoots;
-        }
-    }
+	}
 }

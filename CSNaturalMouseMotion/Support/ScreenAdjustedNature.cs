@@ -6,101 +6,102 @@ using System.Text;
 
 namespace NaturalMouseMotion.Support
 {
-    public class ScreenAdjustedNature : DefaultMouseMotionNature
-    {
+	/// <summary>
+	/// This nature translates mouse coordinates to specified offset and screen dimension.
+	/// Internally it wraps the SystemCalls and MouseInfoAccessor in proxies which handle the translations.
+	/// </summary>
+	public class ScreenAdjustedNature : DefaultMouseMotionNature
+	{
+		private readonly Point offset;
+		public virtual Dimension ScreenSize { get; }
+	}
 
-        private Point offset;
+	public ScreenAdjustedNature(int x, int y, int x2, int y2) : this(new Dimension(x2 - x, y2 - y), new Point(x, y))
+	{
+		if (y2 <= y || x2 <= x)
+		{
+			throw new System.ArgumentException("Invalid range " + x
+				+ " " + y
+				+ " " + x2
+				+ " " + y2);
+		}
+	}
 
-        private java.awt.Dimension screenSize;
+	public ScreenAdjustedNature(Dimension screenSize, Point mouseOffset)
+	{
+		this.ScreenSize = screenSize;
+		this.offset = mouseOffset;
+	}
 
-        public ScreenAdjustedNature(int x, int y, int x2, int y2) :
-                this(new Dimension((x2 - x), (y2 - y)), new Point(x, y))
-        {
-            this.(new Dimension((x2 - x), (y2 - y)), new Point(x, y));
-            if (((y2 <= y)
-                        || (x2 <= x)))
-            {
-                throw new ArgumentException(("Invalid range "
-                                + (x + (" "
-                                + (y + (" "
-                                + (x2 + (" " + y2))))))));
-            }
+	public override IMouseInfoAccessor MouseInfo
+	{
+		set
+		{
+			base.MouseInfo = new ProxyMouseInfo(this, value);
+		}
+	}
 
-        }
+	public override ISystemCalls SystemCalls
+	{
+		set
+		{
+			base.SystemCalls = new ProxySystemCalls(this, value);
+		}
+	}
 
-        public ScreenAdjustedNature(Dimension screenSize, Point mouseOffset)
-        {
-            this.screenSize = screenSize;
-            this.offset = mouseOffset;
-        }
+	private class ProxyMouseInfo : MouseInfoAccessor
+	{
+		private readonly ScreenAdjustedNature outerInstance;
 
+		internal readonly MouseInfoAccessor underlying;
 
-        public void setMouseInfo(IMouseInfoAccessor mouseInfo)
-        {
-            base.setMouseInfo(new ProxyMouseInfo(mouseInfo));
-        }
+		public ProxyMouseInfo(ScreenAdjustedNature outerInstance, MouseInfoAccessor underlying)
+		{
+			this.outerInstance = outerInstance;
+			this.underlying = underlying;
+		}
 
+		// This implementation reuses the point.
+		internal readonly Point p = new Point();
 
-        public void setSystemCalls(ISystemCalls systemCalls)
-        {
-            base.setSystemCalls(new ProxySystemCalls(systemCalls));
-        }
+		public virtual Point MousePosition
+		{
+			get
+			{
+				Point realPointer = underlying.MousePosition;
+				p.setLocation(realPointer.X - outerInstance.offset.X, realPointer.Y - outerInstance.offset.Y);
+				return p;
+			}
+		}
+	}
 
-        private class ProxyMouseInfo : IMouseInfoAccessor
-        {
+	private class ProxySystemCalls : ISystemCalls
+	{
+		private readonly ScreenAdjustedNature outerInstance;
 
-            private IMouseInfoAccessor underlying;
+		internal readonly ISystemCalls underlying;
 
-            public ProxyMouseInfo(IMouseInfoAccessor underlying)
-            {
-                this.underlying = underlying;
-            }
+		public ProxySystemCalls(ScreenAdjustedNature outerInstance, ISystemCalls underlying)
+		{
+			this.outerInstance = outerInstance;
+			this.underlying = underlying;
+		}
 
-            //  This implementation reuses the point.
-            private Point p = new Point();
+		public virtual long currentTimeMillis()
+		{
+			return underlying.currentTimeMillis();
+		}
 
-
-            public Point getMousePosition()
-            {
-                Point realPointer = this.underlying.getMousePosition();
-                this.p.setLocation((realPointer.X - offset.X), (realPointer.Y - offset.Y));
-                return this.p;
-            }
-        }
-
-        private class ProxySystemCalls : ISystemCalls
-        {
-
-            private ISystemCalls underlying;
-
-            public ProxySystemCalls(ISystemCalls underlying)
-            {
-                this.underlying = underlying;
-            }
-
- 
-            public long currentTimeMillis()
-            {
-                return this.underlying.currentTimeMillis();
-            }
-
-
-            public void sleep(long time)
-            {
-                this.underlying.sleep(time);
-            }
-
-
-            public Dimension getScreenSize()
-            {
-                return screenSize;
-            }
+		public virtual void sleep(long time)
+		{
+			underlying.sleep(time);
+		}
 
 
-            public void setMousePosition(int x, int y)
-            {
-                this.underlying.setMousePosition((x + offset.X), (y + offset.Y));
-            }
-        }
-    }
+		public virtual void setMousePosition(int x, int y)
+		{
+			underlying.setMousePosition(x + outerInstance.offset.x, y + outerInstance.offset.y);
+		}
+	}
+
 }

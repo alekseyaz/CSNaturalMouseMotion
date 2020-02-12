@@ -6,12 +6,15 @@ using System.Text;
 
 namespace NaturalMouseMotion.Support
 {
-    public class DefaultMouseInfoAccessor : IMouseInfoAccessor
-    {
-        public Point getMousePosition()
-        {
-            return new Point();
-            //return MouseInfo.getPointerInfo().getLocation();
-        }
-    }
+	public class DefaultMouseInfoAccessor : IMouseInfoAccessor
+	{
+
+		public virtual Point MousePosition
+		{
+			get
+			{
+				return MouseInfo.PointerInfo.Location;
+			}
+		}
+	}
 }

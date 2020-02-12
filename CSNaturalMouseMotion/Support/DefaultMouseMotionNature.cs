@@ -4,40 +4,41 @@ using System.Text;
 
 namespace NaturalMouseMotion.Support
 {
-    public class DefaultMouseMotionNature : MouseMotionNature
-    {
+	//JAVA TO C# CONVERTER TODO TASK: This Java 'import static' statement cannot be converted to C#:
+	//	import static com.github.joonasvali.naturalmouse.support.DefaultNoiseProvider.DEFAULT_NOISINESS_DIVIDER;
+	//JAVA TO C# CONVERTER TODO TASK: This Java 'import static' statement cannot be converted to C#:
+	//	import static com.github.joonasvali.naturalmouse.support.SinusoidalDeviationProvider.DEFAULT_SLOPE_DIVIDER;
 
-        public static int TIME_TO_STEPS_DIVIDER = 8;
+	public class DefaultMouseMotionNature : MouseMotionNature
+	{
 
-        public static int MIN_STEPS = 10;
+		public const int TIME_TO_STEPS_DIVIDER = 8;
+		public const int MIN_STEPS = 10;
+		public const int EFFECT_FADE_STEPS = 15;
+		public const int REACTION_TIME_BASE_MS = 20;
+		public const int REACTION_TIME_VARIATION_MS = 120;
 
-        public static int EFFECT_FADE_STEPS = 15;
+		public DefaultMouseMotionNature()
+		{
+			try
+			{
+				SystemCalls = new DefaultSystemCalls(new Robot());
+			}
+			catch (AWTException e)
+			{
+				throw new Exception(e);
+			}
 
-        public static int REACTION_TIME_BASE_MS = 20;
-
-        public static int REACTION_TIME_VARIATION_MS = 120;
-
-        public DefaultMouseMotionNature()
-        {
-            try
-            {
-                setSystemCalls(new DefaultSystemCalls(new Robot()));
-            }
-            catch (AWTException e)
-            {
-                throw new RuntimeException(e);
-            }
-
-            setDeviationProvider(new SinusoidalDeviationProvider(SinusoidalDeviationProvider.DEFAULT_SLOPE_DIVIDER));
-            setNoiseProvider(new DefaultNoiseProvider(DefaultNoiseProvider.DEFAULT_NOISINESS_DIVIDER));
-            setSpeedManager(new DefaultSpeedManager());
-            setOvershootManager(new DefaultOvershootManager(new Random()));
-            setEffectFadeSteps(EFFECT_FADE_STEPS);
-            setMinSteps(MIN_STEPS);
-            setMouseInfo(new DefaultMouseInfoAccessor());
-            setReactionTimeBaseMs(REACTION_TIME_BASE_MS);
-            setReactionTimeVariationMs(REACTION_TIME_VARIATION_MS);
-            setTimeToStepsDivider(TIME_TO_STEPS_DIVIDER);
-        }
-    }
+			DeviationProvider = new SinusoidalDeviationProvider(SinusoidalDeviationProvider.DEFAULT_SLOPE_DIVIDER);
+			NoiseProvider = new DefaultNoiseProvider(DefaultNoiseProvider.DEFAULT_NOISINESS_DIVIDER);
+			SpeedManager = new DefaultSpeedManager();
+			OvershootManager = new DefaultOvershootManager(new Random());
+			EffectFadeSteps = EFFECT_FADE_STEPS;
+			MinSteps = MIN_STEPS;
+			MouseInfo = new DefaultMouseInfoAccessor();
+			ReactionTimeBaseMs = REACTION_TIME_BASE_MS;
+			ReactionTimeVariationMs = REACTION_TIME_VARIATION_MS;
+			TimeToStepsDivider = TIME_TO_STEPS_DIVIDER;
+		}
+	}
 }
