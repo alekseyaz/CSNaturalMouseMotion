@@ -1,5 +1,7 @@
-﻿using CSNaturalMouseMotion.Util;
+﻿using CSNaturalMouseMotion;
+using CSNaturalMouseMotion.Util;
 using NaturalMouseMotion.Interface;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -8,15 +10,19 @@ namespace NaturalMouseMotion.Support.Mousemotion
 {
 	public class MovementFactory
 	{
-		private static readonly Logger log = LoggerFactory.getLogger(typeof(MovementFactory));
+
+
+
+		private static readonly Logger log = LogManager.GetLogger(typeof(MovementFactory).ToString());
 		private readonly int xDest;
 		private readonly int yDest;
 		private readonly ISpeedManager speedManager;
 		private readonly IOvershootManager overshootManager;
-		private readonly Dimension screenSize;
+		private readonly Size screenSize;
 
-		public MovementFactory(int xDest, int yDest, ISpeedManager speedManager, IOvershootManager overshootManager, Dimension screenSize)
+		public MovementFactory(int xDest, int yDest, ISpeedManager speedManager, IOvershootManager overshootManager, Size screenSize)
 		{
+			LogСonfiguration.SetupConfig();
 			this.xDest = xDest;
 			this.yDest = yDest;
 			this.speedManager = speedManager;
@@ -40,7 +46,7 @@ namespace NaturalMouseMotion.Support.Mousemotion
 
 			if (overshoots == 0)
 			{
-				log.debug("No overshoots for movement from ({}, {}) -> ({}, {})", currentMousePosition.x, currentMousePosition.y, xDest, yDest);
+				log.Debug("No overshoots for movement from ({}, {}) -> ({}, {})", currentMousePosition.x, currentMousePosition.y, xDest, yDest);
 				movements.AddLast(new Movement(xDest, yDest, initialDistance, xDistance, yDistance, mouseMovementMs, flow));
 				return movements;
 			}
@@ -73,7 +79,7 @@ namespace NaturalMouseMotion.Support.Mousemotion
 				{
 					lastMousePositionX = movement.destX - movement.xDistance;
 					lastMousePositionY = movement.destY - movement.yDistance;
-					log.trace("Pruning 0-overshoot movement (Movement to target) from the end. " + movement);
+					log.Trace("Pruning 0-overshoot movement (Movement to target) from the end. " + movement);
 					//JAVA TO C# CONVERTER TODO TASK: .NET enumerators are read-only:
 					it.remove();
 				}
@@ -91,20 +97,20 @@ namespace NaturalMouseMotion.Support.Mousemotion
 			Movement finalMove = new Movement(xDest, yDest, distance, xDistance, yDistance, finalMovementTime, movementToTargetFlowTime.x);
 			movements.AddLast(finalMove);
 
-			log.debug("{} movements returned for move ({}, {}) -> ({}, {})", movements.Count, currentMousePosition.X, currentMousePosition.Y, xDest, yDest);
-			log.trace("Movements are: {} ", movements);
+			log.Debug("{} movements returned for move ({}, {}) -> ({}, {})", movements.Count, currentMousePosition.X, currentMousePosition.Y, xDest, yDest);
+			log.Trace("Movements are: {} ", movements);
 
 			return movements;
 		}
 
 		private int limitByScreenWidth(int value)
 		{
-			return Math.Max(0, Math.Min(screenSize.width - 1, value));
+			return Math.Max(0, Math.Min(screenSize.Width - 1, value));
 		}
 
 		private int limitByScreenHeight(int value)
 		{
-			return Math.Max(0, Math.Min(screenSize.height - 1, value));
+			return Math.Max(0, Math.Min(screenSize.Height - 1, value));
 		}
 
 
