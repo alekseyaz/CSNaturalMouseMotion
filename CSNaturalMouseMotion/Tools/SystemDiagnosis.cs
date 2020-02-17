@@ -39,10 +39,10 @@ namespace NaturalMouseMotion.Tools
 		/// <param name="accessor"> a MouseInfoAccessor which is used for querying mouse position </param>
 		public static void validateMouseMovement(ISystemCalls system, IMouseInfoAccessor accessor)
 		{
-			Dimension dimension = system.ScreenSize;
-			for (int y = 0; y < dimension.height; y += 50)
+			Size dimension = system.ScreenSize;
+			for (int y = 0; y < dimension.Height; y += 50)
 			{
-				for (int x = 0; x < dimension.width; x += 50)
+				for (int x = 0; x < dimension.Width; x += 50)
 				{
 					system.setMousePosition(x, y);
 
