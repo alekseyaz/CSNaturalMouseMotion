@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Java
 {
-    public static class Math
+    public static class MathHypot
     {
         public static double hypot(double x, double y)
         {

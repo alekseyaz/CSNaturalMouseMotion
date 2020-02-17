@@ -1,124 +1,193 @@
 ﻿using NaturalMouseMotion.Interface;
 using NaturalMouseMotion.Support;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace NaturalMouseMotion
 {
-    public class MouseMotionFactory
-    {
+	/// <summary>
+	/// This class should be used for creating new MouseMotion-s
+	/// The default instance is available via getDefault(), but can create new instance via constructor.
+	/// </summary>
+	public class MouseMotionFactory
+	{
+		public virtual MouseMotionFactory Default { get;} = new MouseMotionFactory();
+		private MouseMotionNature nature;
+		private Random random = new Random();
 
-        private static MouseMotionFactory defaultFactory = new MouseMotionFactory();
+		public MouseMotionFactory(MouseMotionNature nature)
+		{
+			this.nature = nature;
+		}
 
-        private MouseMotionNature nature;
+		public MouseMotionFactory() : this(new DefaultMouseMotionNature())
+		{
+		}
 
-        private Random random = new Random();
+		/// <summary>
+		/// Builds the MouseMotion, which can be executed instantly or saved for later.
+		/// </summary>
+		/// <param name="xDest"> the end position x-coordinate for the mouse </param>
+		/// <param name="yDest"> the end position y-coordinate for the mouse </param>
+		/// <returns> the MouseMotion which can be executed instantly or saved for later. (Mouse will be moved from its
+		/// current position, not from the position where mouse was during building.) </returns>
+		public virtual MouseMotion build(int xDest, int yDest)
+		{
+			return new MouseMotion(nature, random, xDest, yDest);
+		}
 
-        public MouseMotionFactory(MouseMotionNature nature)
-        {
-            this.nature = nature;
-        }
+		/// <summary>
+		/// Start moving the mouse to specified location. Blocks until done.
+		/// </summary>
+		/// <param name="xDest"> the end position x-coordinate for the mouse </param>
+		/// <param name="yDest"> the end position y-coordinate for the mouse </param>
+		/// <exception cref="InterruptedException"> if something interrupts the thread. </exception>
+		//JAVA TO C# CONVERTER WARNING: Method 'throws' clauses are not available in C#:
+		//ORIGINAL LINE: public void move(int xDest, int yDest) throws InterruptedException
+		public virtual void move(int xDest, int yDest)
+		{
+			build(xDest, yDest).move();
+		}
 
-        public MouseMotionFactory() :
-                this(new DefaultMouseMotionNature())
-        {
-            this.(new DefaultMouseMotionNature());
-        }
+		/// <summary>
+		/// Get the default factory implementation.
+		/// </summary>
+		/// <returns> the factory </returns>
 
-        public MouseMotion build(int xDest, int yDest)
-        {
-            return new MouseMotion(this.nature, this.random, xDest, yDest);
-        }
+		/// <summary>
+		/// see <seealso cref="MouseMotionNature.getSystemCalls()"/>
+		/// </summary>
+		/// <returns> the systemcalls </returns>
+		public virtual ISystemCalls SystemCalls
+		{
+			get
+			{
+				return nature.SystemCalls;
+			}
+			set
+			{
+				nature.SystemCalls = value;
+			}
+		}
 
-        public void move(int xDest, int yDest)
-        {
-            this.build(xDest, yDest).move();
-        }
 
-        public static MouseMotionFactory getDefault()
-        {
-            return defaultFactory;
-        }
+		/// <summary>
+		/// see <seealso cref="MouseMotionNature.getDeviationProvider()"/>
+		/// </summary>
+		/// <returns> the deviation provider </returns>
+		public virtual IDeviationProvider DeviationProvider
+		{
+			get
+			{
+				return nature.DeviationProvider;
+			}
+			set
+			{
+				nature.DeviationProvider = value;
+			}
+		}
 
-        public ISystemCalls getSystemCalls()
-        {
-            return this.nature.getSystemCalls();
-        }
 
-        public void setSystemCalls(ISystemCalls systemCalls)
-        {
-            this.nature.setSystemCalls(systemCalls);
-        }
+		/// <summary>
+		/// see <seealso cref="MouseMotionNature.getNoiseProvider()"/>
+		/// </summary>
+		/// <returns> the noise provider </returns>
+		public virtual INoiseProvider NoiseProvider
+		{
+			get
+			{
+				return nature.NoiseProvider;
+			}
+			set
+			{
+				nature.NoiseProvider = value;
+			}
+		}
 
-        public IDeviationProvider getDeviationProvider()
-        {
-            return this.nature.getDeviationProvider();
-        }
 
-        public void setDeviationProvider(IDeviationProvider deviationProvider)
-        {
-            this.nature.setDeviationProvider(deviationProvider);
-        }
+		/// <summary>
+		/// Get the random used whenever randomized behavior is needed in MouseMotion
+		/// </summary>
+		/// <returns> the random </returns>
+		public virtual Random Random
+		{
+			get
+			{
+				return random;
+			}
+			set
+			{
+				this.random = value;
+			}
+		}
 
-        public INoiseProvider getNoiseProvider()
-        {
-            return this.nature.getNoiseProvider();
-        }
 
-        public void setNoiseProvider(INoiseProvider noiseProvider)
-        {
-            this.nature.setNoiseProvider(noiseProvider);
-        }
+		/// <summary>
+		/// see <seealso cref="MouseMotionNature.getMouseInfo()"/>
+		/// </summary>
+		/// <returns> the mouseInfo </returns>
+		public virtual IMouseInfoAccessor MouseInfo
+		{
+			get
+			{
+				return nature.MouseInfo;
+			}
+			set
+			{
+				nature.MouseInfo = value;
+			}
+		}
 
-        public Random getRandom()
-        {
-            return this.random;
-        }
 
-        public void setRandom(Random random)
-        {
-            this.random = random;
-        }
+		/// <summary>
+		/// see <seealso cref="MouseMotionNature.getSpeedManager()"/>
+		/// </summary>
+		/// <returns> the manager </returns>
+		public virtual ISpeedManager SpeedManager
+		{
+			get
+			{
+				return nature.SpeedManager;
+			}
+			set
+			{
+				nature.SpeedManager = value;
+			}
+		}
 
-        public IMouseInfoAccessor getMouseInfo()
-        {
-            return this.nature.getMouseInfo();
-        }
 
-        public void setMouseInfo(IMouseInfoAccessor mouseInfo)
-        {
-            this.nature.setMouseInfo(mouseInfo);
-        }
+		/// <summary>
+		/// The Nature of mousemotion covers all aspects how the mouse is moved.
+		/// </summary>
+		/// <returns> the nature </returns>
+		public virtual MouseMotionNature Nature
+		{
+			get
+			{
+				return nature;
+			}
+			set
+			{
+				this.nature = value;
+			}
+		}
 
-        public ISpeedManager getSpeedManager()
-        {
-            return this.nature.getSpeedManager();
-        }
 
-        public void setSpeedManager(ISpeedManager speedManager)
-        {
-            this.nature.setSpeedManager(speedManager);
-        }
-
-        public MouseMotionNature getNature()
-        {
-            return this.nature;
-        }
-
-        public void setNature(MouseMotionNature nature)
-        {
-            this.nature = nature;
-        }
-
-        public void setOvershootManager(IOvershootManager manager)
-        {
-            this.nature.setOvershootManager(manager);
-        }
-
-        public IOvershootManager getOvershootManager()
-        {
-            return this.nature.getOvershootManager();
-        }
-    }
+		/// <summary>
+		/// see <seealso cref="MouseMotionNature.setOvershootManager(OvershootManager)"/>
+		/// </summary>
+		/// <param name="manager"> the manager </param>
+		public virtual IOvershootManager OvershootManager
+		{
+			set
+			{
+				nature.OvershootManager = value;
+			}
+			get
+			{
+				return nature.OvershootManager;
+			}
+		}
 }
+
+}
+

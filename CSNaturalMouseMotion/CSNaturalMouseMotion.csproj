@@ -128,7 +128,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DateTimeHelper.cs" />
     <Compile Include="Exception.cs" />
+    <Compile Include="GlobalRandom.cs" />
     <Compile Include="JavaTypes.cs" />
     <Compile Include="Interface\IDeviationProvider.cs" />
     <Compile Include="Interface\IMouseInfoAccessor.cs" />
