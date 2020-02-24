@@ -1,6 +1,7 @@
 ﻿using NaturalMouseMotion.Interface;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Text;
 using System.Threading;
 
@@ -27,7 +28,7 @@ namespace NaturalMouseMotion.Support
 			Thread.Sleep(time);
 		}
 
-		public virtual Dimension ScreenSize
+		public virtual Size ScreenSize
 		{
 			get
 			{

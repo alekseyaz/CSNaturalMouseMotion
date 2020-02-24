@@ -13,10 +13,10 @@ namespace NaturalMouseMotion.Support
 	public class ScreenAdjustedNature : DefaultMouseMotionNature
 	{
 		private readonly Point offset;
-		public virtual Dimension ScreenSize { get; }
+		public virtual Size ScreenSize { get; }
 	}
 
-	public ScreenAdjustedNature(int x, int y, int x2, int y2) : this(new Dimension(x2 - x, y2 - y), new Point(x, y))
+	public ScreenAdjustedNature(int x, int y, int x2, int y2) : this(new Size(x2 - x, y2 - y), new Point(x, y))
 	{
 		if (y2 <= y || x2 <= x)
 		{
@@ -27,7 +27,7 @@ namespace NaturalMouseMotion.Support
 		}
 	}
 
-	public ScreenAdjustedNature(Dimension screenSize, Point mouseOffset)
+	public ScreenAdjustedNature(Size screenSize, Point mouseOffset)
 	{
 		this.ScreenSize = screenSize;
 		this.offset = mouseOffset;
