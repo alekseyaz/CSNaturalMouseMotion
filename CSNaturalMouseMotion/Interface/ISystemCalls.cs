@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Text;
 
 namespace NaturalMouseMotion.Interface
@@ -11,7 +12,7 @@ namespace NaturalMouseMotion.Interface
 	{
 		long currentTimeMillis();
 		void sleep(long time);
-		Dimension ScreenSize { get; }
+		Size ScreenSize { get; }
 		void setMousePosition(int x, int y);
 	}
 }
