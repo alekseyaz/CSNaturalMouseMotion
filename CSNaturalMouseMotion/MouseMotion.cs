@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using CSNaturalMouseMotion;
 using CSNaturalMouseMotion.Util;
 using NaturalMouseMotion.Interface;
 using NaturalMouseMotion.Support;
 using NaturalMouseMotion.Support.Mousemotion;
+using NLog;
 
 namespace NaturalMouseMotion
 {
@@ -15,14 +17,14 @@ namespace NaturalMouseMotion
 	/// </summary>
 	public class MouseMotion
 	{
-		private static readonly Logger log = LoggerFactory.getLogger(typeof(MouseMotion));
+		private static readonly Logger log = LogManager.GetLogger(typeof(MouseMotion).ToString());
 		private const int SLEEP_AFTER_ADJUSTMENT_MS = 2;
 		private readonly int minSteps;
 		private readonly int effectFadeSteps;
 		private readonly int reactionTimeBaseMs;
 		private readonly int reactionTimeVariationMs;
 		private readonly double timeToStepsDivider;
-		private readonly Dimension screenSize;
+		private readonly Size screenSize;
 		private readonly ISystemCalls systemCalls;
 		private readonly IDeviationProvider deviationProvider;
 		private readonly INoiseProvider noiseProvider;
@@ -40,6 +42,7 @@ namespace NaturalMouseMotion
 		/// <param name="random"> the random used for unpredictability </param>
 		public MouseMotion(MouseMotionNature nature, Random random, int xDest, int yDest)
 		{
+			LogСonfiguration.SetupConfig();
 			this.deviationProvider = nature.DeviationProvider;
 			this.noiseProvider = nature.NoiseProvider;
 			this.systemCalls = nature.SystemCalls;
@@ -78,7 +81,7 @@ namespace NaturalMouseMotion
 		public virtual void move(IMouseMotionObserver observer)
 		{
 			updateMouseInfo();
-			log.info("Starting to move mouse to ({}, {}), current position: ({}, {})", xDest, yDest, mousePosition.x, mousePosition.y);
+			log.Info("Starting to move mouse to ({}, {}), current position: ({}, {})", xDest, yDest, mousePosition.x, mousePosition.y);
 
 			MovementFactory movementFactory = new MovementFactory(xDest, yDest, speedManager, overshootManager, screenSize);
 			LinkedList<Movement> movements = movementFactory.createMovements(mousePosition);
@@ -91,14 +94,14 @@ namespace NaturalMouseMotion
 					// Then just re-attempt from mouse new position. (There are known JDK bugs, that can cause sending the cursor
 					// to wrong pixel)
 					updateMouseInfo();
-					log.warn("Re-populating movement array. Did not end up on target pixel.");
+					log.Warn("Re-populating movement array. Did not end up on target pixel.");
 					movements = movementFactory.createMovements(mousePosition);
 				}
 
 				Movement movement = movements.RemoveFirst();
 				if (movements.Count > 0)
 				{
-					log.debug("Using overshoots ({} out of {}), aiming at ({}, {})", overshoots - movements.Count + 1, overshoots, movement.destX, movement.destY);
+					log.Debug("Using overshoots ({} out of {}), aiming at ({}, {})", overshoots - movements.Count + 1, overshoots, movement.destX, movement.destY);
 				}
 
 				double distance = movement.distance;
@@ -106,7 +109,7 @@ namespace NaturalMouseMotion
 				Flow flow = movement.flow;
 				double xDistance = movement.xDistance;
 				double yDistance = movement.yDistance;
-				log.debug("Movement arc length computed to {} and time predicted to {} ms", distance, mouseMovementMs);
+				log.Debug("Movement arc length computed to {} and time predicted to {} ms", distance, mouseMovementMs);
 
 				/* Number of steps is calculated from the movement time and limited by minimal amount of steps
 				   (should have at least MIN_STEPS) and distance (shouldn't have more steps than pixels travelled) */
@@ -144,7 +147,7 @@ namespace NaturalMouseMotion
 					completedYDistance += yStepSize;
 					double completedDistance = Java.MathHypot.hypot(completedXDistance, completedYDistance);
 					double completion = Math.Min(1, completedDistance / distance);
-					log.trace("Step: x: {} y: {} tc: {} c: {}", xStepSize, yStepSize, timeCompletion, completion);
+					log.Trace("Step: x: {} y: {} tc: {} c: {}", xStepSize, yStepSize, timeCompletion, completion);
 
 					DoublePoint noise = noiseProvider.getNoise(random, xStepSize, yStepSize);
 					DoublePoint deviation = deviationProvider.getDeviation(distance, completion);
@@ -154,8 +157,8 @@ namespace NaturalMouseMotion
 					simulatedMouseX += xStepSize;
 					simulatedMouseY += yStepSize;
 
-					log.trace("EffectFadeMultiplier: {}", effectFadeMultiplier);
-					log.trace("SimulatedMouse: [{}, {}]", simulatedMouseX, simulatedMouseY);
+					log.Trace("EffectFadeMultiplier: {}", effectFadeMultiplier);
+					log.Trace("SimulatedMouse: [{}, {}]", simulatedMouseX, simulatedMouseY);
 
 					long endTime = startTime + stepTime * (i + 1);
 					int mousePosX = MathUtil.roundTowards(simulatedMouseX + deviation.X * deviationMultiplierX * effectFadeMultiplier + noiseX * effectFadeMultiplier, movement.destX);
@@ -180,7 +183,7 @@ namespace NaturalMouseMotion
 					// It's possible that mouse is manually moved or for some other reason.
 					// Let's start next step from pre-calculated location to prevent errors from accumulating.
 					// But print warning as this is not expected behavior.
-					log.warn("Mouse off from step endpoint (adjustment was done) "
+					log.Warn("Mouse off from step endpoint (adjustment was done) "
 						+ "x: (" + mousePosition.X
 						+ " -> " + movement.destX
 						+ ") "
@@ -198,29 +201,29 @@ namespace NaturalMouseMotion
 					// We are dealing with overshoot, let's sleep a bit to simulate human reaction time.
 					sleepAround(reactionTimeBaseMs, reactionTimeVariationMs);
 				}
-				log.debug("Steps completed, mouse at " + mousePosition.X
+				log.Debug("Steps completed, mouse at " + mousePosition.X
 					+ " " + mousePosition.Y);
 			}
-			log.info("Mouse movement to ({}, {}) completed", xDest, yDest);
+			log.Info("Mouse movement to ({}, {}) completed", xDest, yDest);
 		}
 
 		private int limitByScreenWidth(int value)
 		{
-			return Math.Max(0, Math.Min(screenSize.width - 1, value));
+			return Math.Max(0, Math.Min(screenSize.Width - 1, value));
 		}
 
 		private int limitByScreenHeight(int value)
 		{
-			return Math.Max(0, Math.Min(screenSize.height - 1, value));
+			return Math.Max(0, Math.Min(screenSize.Height - 1, value));
 		}
 
 		private void sleepAround(long sleepMin, long randomPart)
 		{
 			long sleepTime = (long)(sleepMin + random.NextDouble() * randomPart);
-			if (log.TraceEnabled && sleepTime > 0)
+			if (log.IsTraceEnabled && sleepTime > 0)
 			{
 				updateMouseInfo();
-				log.trace("Sleeping at ({}, {}) for {} ms", mousePosition.X, mousePosition.Y, sleepTime);
+				log.Trace("Sleeping at ({}, {}) for {} ms", mousePosition.X, mousePosition.Y, sleepTime);
 			}
 			systemCalls.sleep(sleepTime);
 		}
