@@ -68,7 +68,8 @@ namespace NaturalMouseMotion
 		//ORIGINAL LINE: public void move() throws InterruptedException
 		public virtual void move()
 		{
-			move((x, y) => {});
+			//move((x, y) => {});
+			move();
 		}
 
 		/// <summary>
@@ -81,7 +82,7 @@ namespace NaturalMouseMotion
 		public virtual void move(IMouseMotionObserver observer)
 		{
 			updateMouseInfo();
-			log.Info("Starting to move mouse to ({}, {}), current position: ({}, {})", xDest, yDest, mousePosition.x, mousePosition.y);
+			log.Info("Starting to move mouse to ({}, {}), current position: ({}, {})", xDest, yDest, mousePosition.X, mousePosition.Y);
 
 			MovementFactory movementFactory = new MovementFactory(xDest, yDest, speedManager, overshootManager, screenSize);
 			LinkedList<Movement> movements = movementFactory.createMovements(mousePosition);
@@ -98,7 +99,9 @@ namespace NaturalMouseMotion
 					movements = movementFactory.createMovements(mousePosition);
 				}
 
-				Movement movement = movements.RemoveFirst();
+				//Movement movement = movements.RemoveFirst(); //Java
+				Movement movement = movements.First.Value;
+				movements.RemoveFirst();
 				if (movements.Count > 0)
 				{
 					log.Debug("Using overshoots ({} out of {}), aiming at ({}, {})", overshoots - movements.Count + 1, overshoots, movement.destX, movement.destY);
@@ -171,7 +174,7 @@ namespace NaturalMouseMotion
 					systemCalls.setMousePosition(mousePosX, mousePosY);
 
 					// Allow other action to take place or just observe, we'll later compensate by sleeping less.
-					observer.observe(mousePosX, mousePosY);
+					//observer.observe(mousePosX, mousePosY);
 
 					long timeLeft = endTime - systemCalls.currentTimeMillis();
 					sleepAround(Math.Max(timeLeft, 0), 0);
