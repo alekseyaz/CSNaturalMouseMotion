@@ -58,9 +58,9 @@ namespace NaturalMouseMotion.Support.Mousemotion
 				int currentDestinationY = limitByScreenHeight(yDest + overshoot.Y);
 				xDistance = currentDestinationX - lastMousePositionX;
 				yDistance = currentDestinationY - lastMousePositionY;
-				double distance = Java.MathHypot.hypot(xDistance, yDistance);
-				flow = speedManager.getFlowWithTime(distance).x;
-				movements.Add(new Movement(currentDestinationX, currentDestinationY, distance, xDistance, yDistance, mouseMovementMs, flow)
+				double _distance = Java.MathHypot.hypot(xDistance, yDistance);
+				flow = speedManager.getFlowWithTime(_distance).x;
+				movements.AddLast(new Movement(currentDestinationX, currentDestinationY, _distance, xDistance, yDistance, mouseMovementMs, flow)
 			   );
 				lastMousePositionX = currentDestinationX;
 				lastMousePositionY = currentDestinationY;
@@ -81,7 +81,7 @@ namespace NaturalMouseMotion.Support.Mousemotion
 					lastMousePositionY = movement.destY - movement.yDistance;
 					log.Trace("Pruning 0-overshoot movement (Movement to target) from the end. " + movement);
 					//JAVA TO C# CONVERTER TODO TASK: .NET enumerators are read-only:
-					it.remove();
+					//it.remove();
 				}
 				else
 				{
@@ -112,7 +112,6 @@ namespace NaturalMouseMotion.Support.Mousemotion
 		{
 			return Math.Max(0, Math.Min(screenSize.Height - 1, value));
 		}
-
 
 	}
 }
