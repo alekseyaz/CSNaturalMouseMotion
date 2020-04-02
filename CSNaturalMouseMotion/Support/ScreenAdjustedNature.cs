@@ -14,93 +14,99 @@ namespace NaturalMouseMotion.Support
 	{
 		private readonly Point offset;
 		public virtual Size ScreenSize { get; }
-	}
 
-	public ScreenAdjustedNature(int x, int y, int x2, int y2) : this(new Size(x2 - x, y2 - y), new Point(x, y))
-	{
-		if (y2 <= y || x2 <= x)
+
+		public ScreenAdjustedNature(int x, int y, int x2, int y2) : this(new Size(x2 - x, y2 - y), new Point(x, y))
 		{
-			throw new System.ArgumentException("Invalid range " + x
-				+ " " + y
-				+ " " + x2
-				+ " " + y2);
-		}
-	}
-
-	public ScreenAdjustedNature(Size screenSize, Point mouseOffset)
-	{
-		this.ScreenSize = screenSize;
-		this.offset = mouseOffset;
-	}
-
-	public override IMouseInfoAccessor MouseInfo
-	{
-		set
-		{
-			base.MouseInfo = new ProxyMouseInfo(this, value);
-		}
-	}
-
-	public override ISystemCalls SystemCalls
-	{
-		set
-		{
-			base.SystemCalls = new ProxySystemCalls(this, value);
-		}
-	}
-
-	private class ProxyMouseInfo : MouseInfoAccessor
-	{
-		private readonly ScreenAdjustedNature outerInstance;
-
-		internal readonly MouseInfoAccessor underlying;
-
-		public ProxyMouseInfo(ScreenAdjustedNature outerInstance, MouseInfoAccessor underlying)
-		{
-			this.outerInstance = outerInstance;
-			this.underlying = underlying;
-		}
-
-		// This implementation reuses the point.
-		internal readonly Point p = new Point();
-
-		public virtual Point MousePosition
-		{
-			get
+			if (y2 <= y || x2 <= x)
 			{
-				Point realPointer = underlying.MousePosition;
-				p.setLocation(realPointer.X - outerInstance.offset.X, realPointer.Y - outerInstance.offset.Y);
-				return p;
+				throw new System.ArgumentException("Invalid range " + x
+					+ " " + y
+					+ " " + x2
+					+ " " + y2);
 			}
 		}
-	}
 
-	private class ProxySystemCalls : ISystemCalls
-	{
-		private readonly ScreenAdjustedNature outerInstance;
-
-		internal readonly ISystemCalls underlying;
-
-		public ProxySystemCalls(ScreenAdjustedNature outerInstance, ISystemCalls underlying)
+		public ScreenAdjustedNature(Size screenSize, Point mouseOffset)
 		{
-			this.outerInstance = outerInstance;
-			this.underlying = underlying;
+			this.ScreenSize = screenSize;
+			this.offset = mouseOffset;
 		}
 
-		public virtual long currentTimeMillis()
+		public override IMouseInfoAccessor MouseInfo
 		{
-			return underlying.currentTimeMillis();
+			set
+			{
+				base.MouseInfo = new ProxyMouseInfo(this, value);
+			}
 		}
 
-		public virtual void sleep(long time)
+		public override ISystemCalls SystemCalls
 		{
-			underlying.sleep(time);
+			set
+			{
+				base.SystemCalls = new ProxySystemCalls(this, value);
+			}
 		}
 
 
-		public virtual void setMousePosition(int x, int y)
+		private class ProxyMouseInfo : IMouseInfoAccessor
 		{
-			underlying.setMousePosition(x + outerInstance.offset.x, y + outerInstance.offset.y);
+			private readonly ScreenAdjustedNature outerInstance;
+
+			internal readonly IMouseInfoAccessor underlying;
+
+			public ProxyMouseInfo(ScreenAdjustedNature outerInstance, IMouseInfoAccessor underlying)
+			{
+				this.outerInstance = outerInstance;
+				this.underlying = underlying;
+			}
+
+			// This implementation reuses the point.
+			internal Point p = new Point();
+
+			public virtual Point MousePosition
+			{
+				get
+				{
+					Point realPointer = underlying.MousePosition;
+					//p.setLocation(realPointer.X - outerInstance.offset.X, realPointer.Y - outerInstance.offset.Y); //Java
+					p.X = realPointer.X - outerInstance.offset.X;
+					p.Y = realPointer.Y - outerInstance.offset.Y;
+					return p;
+				}
+			}
+		}
+
+		private class ProxySystemCalls : ISystemCalls
+		{
+			private readonly ScreenAdjustedNature outerInstance;
+
+			internal readonly ISystemCalls underlying;
+
+			public virtual Size ScreenSize { get; }
+
+			public ProxySystemCalls(ScreenAdjustedNature outerInstance, ISystemCalls underlying)
+			{
+				this.outerInstance = outerInstance;
+				this.underlying = underlying;
+			}
+
+			public virtual long currentTimeMillis() 
+			{
+				return underlying.currentTimeMillis();
+			}
+
+			public virtual void sleep(long time)
+			{
+				underlying.sleep(time);
+			}
+
+			public virtual void setMousePosition(int x, int y)
+			{
+				underlying.setMousePosition(x + outerInstance.offset.X, y + outerInstance.offset.Y);
+			}
+
 		}
 	}
 

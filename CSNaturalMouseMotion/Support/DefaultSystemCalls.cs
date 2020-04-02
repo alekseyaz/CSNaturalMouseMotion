@@ -28,7 +28,7 @@ namespace NaturalMouseMotion.Support
 			Thread.Sleep(time);
 		}
 
-		public virtual Size ScreenSize
+		public virtual SizeА ScreenSize
 		{
 			get
 			{

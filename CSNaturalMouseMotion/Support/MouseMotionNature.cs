@@ -147,14 +147,8 @@ namespace NaturalMouseMotion.Support
 		/// <returns> the accessor </returns>
 		public virtual IMouseInfoAccessor MouseInfo
 		{
-			get
-			{
-				return mouseInfo;
-			}
-			set
-			{
-				this.mouseInfo = value;
-			}
+			get { return mouseInfo; }
+			set { this.mouseInfo = value; }
 		}
 
 
