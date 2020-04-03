@@ -46,7 +46,7 @@ namespace NaturalMouseMotion.Support.Mousemotion
 
 			if (overshoots == 0)
 			{
-				log.Debug("No overshoots for movement from ({}, {}) -> ({}, {})", currentMousePosition.x, currentMousePosition.y, xDest, yDest);
+				log.Debug("No overshoots for movement from ({}, {}) -> ({}, {})", currentMousePosition.X, currentMousePosition.Y, xDest, yDest);
 				movements.AddLast(new Movement(xDest, yDest, initialDistance, xDistance, yDistance, mouseMovementMs, flow));
 				return movements;
 			}
