@@ -15,5 +15,16 @@ namespace CSNaturalMouseMotion
                 result.Add(dict);
             }
         }
+
+        public static IEnumerable<T> GetReverse<T>(this LinkedList<T> list)
+        {
+            var el = list.Last;
+            while (el != null)
+            {
+                yield return el.Value;
+                el = el.Previous;
+            }
+        }
+
     }
 }
