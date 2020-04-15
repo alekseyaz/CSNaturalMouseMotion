@@ -2,19 +2,21 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
+using System.Windows;
 
 namespace NaturalMouseMotion.Support
 {
 	public class DefaultSystemCalls : ISystemCalls
 	{
-		private readonly Robot robot;
+		//private readonly Robot robot;
 
-		public DefaultSystemCalls(Robot robot)
-		{
-			this.robot = robot;
-		}
+		//public DefaultSystemCalls(Robot robot)
+		//{
+		//	this.robot = robot;
+		//}
 
 		public virtual long currentTimeMillis()
 		{
@@ -25,16 +27,24 @@ namespace NaturalMouseMotion.Support
 		//ORIGINAL LINE: @Override public void sleep(long time) throws InterruptedException
 		public virtual void sleep(long time)
 		{
-			Thread.Sleep(time);
+			Thread.Sleep((int)time);
+			//Thread.Sleep(time);
 		}
 
-		public virtual SizeА ScreenSize
+		public virtual Size ScreenSize
 		{
 			get
 			{
-				return Toolkit.DefaultToolkit.ScreenSize;
+				return new Size(Convert.ToInt32(SystemParameters.PrimaryScreenWidth), Convert.ToInt32(SystemParameters.PrimaryScreenHeight));
+				//return Toolkit.DefaultToolkit.ScreenSize; //Java
 			}
 		}
+
+		//Size ISystemCalls.ScreenSize => new Size(Convert.ToInt32(SystemParameters.PrimaryScreenWidth), Convert.ToInt32(SystemParameters.PrimaryScreenHeight));
+
+		[DllImport("user32.dll")]
+		private static extern void SetCursorPos(int x, int y);
+
 
 		/// <summary>
 		/// <para>Moves the mouse to specified pixel using the provided Robot.</para>
@@ -51,7 +61,11 @@ namespace NaturalMouseMotion.Support
 		/// <param name="y"> the y-coordinate </param>
 		public virtual void setMousePosition(int x, int y)
 		{
-			robot.mouseMove(x, y);
+			SetCursorPos(x, y);
+			//robot.mouseMove(x, y); //Java
 		}
+
+
+
 	}
 }

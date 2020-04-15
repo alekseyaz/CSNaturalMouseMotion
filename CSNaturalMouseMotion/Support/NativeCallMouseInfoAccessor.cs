@@ -16,37 +16,37 @@ namespace NaturalMouseMotion.Support
 	/// not guaranteed to work everywhere or all situations. Use with caution.
 	/// Generally DefaultMouseInfoAccessor should be preferred over this, unless faster version is required.
 	/// </summary>
-	public class NativeCallMouseInfoAccessor : IMouseInfoAccessor
-	{
-		private readonly MouseInfoPeer peer;
-		private readonly Point p = new Point(0, 0);
+	//public class NativeCallMouseInfoAccessor : IMouseInfoAccessor
+	//{
+	//	private readonly MouseInfoPeer peer;
+	//	private readonly Point p = new Point(0, 0);
 
-		public NativeCallMouseInfoAccessor()
-		{
-			Toolkit toolkit = Toolkit.DefaultToolkit;
-			MouseInfoPeer mp;
-			try
-			{
-				System.Reflection.MethodInfo method = typeof(SunToolkit).getDeclaredMethod("getMouseInfoPeer");
-				method.Accessible = true;
-				mp = (MouseInfoPeer)method.invoke(toolkit);
-			}
-			catch (Exception e)
-			{
-				throw new Exception(e);
-			}
-			peer = mp;
-		}
+	//	public NativeCallMouseInfoAccessor()
+	//	{
+	//		Toolkit toolkit = Toolkit.DefaultToolkit;
+	//		MouseInfoPeer mp;
+	//		try
+	//		{
+	//			System.Reflection.MethodInfo method = typeof(SunToolkit).getDeclaredMethod("getMouseInfoPeer");
+	//			method.Accessible = true;
+	//			mp = (MouseInfoPeer)method.invoke(toolkit);
+	//		}
+	//		catch (Exception e)
+	//		{
+	//			throw new Exception(e);
+	//		}
+	//		peer = mp;
+	//	}
 
-		public virtual Point MousePosition
-		{
-			get
-			{
-				peer.fillPointWithCoords(p);
-				return p;
-			}
-		}
-	}
+	//	public virtual Point MousePosition
+	//	{
+	//		get
+	//		{
+	//			peer.fillPointWithCoords(p);
+	//			return p;
+	//		}
+	//	}
+	//}
 }
 
 

@@ -11,18 +11,25 @@ namespace NaturalMouseMotion.Support
 	public class DefaultSpeedManager : ISpeedManager
 	{
 		private const double SMALL_DELTA = 10e-6;
-		private readonly IList<Flow> flows = new List<Flow>();
+		private readonly List<Flow> flows = new List<Flow>();
 		private long mouseMovementTimeMs = 500;
 
 		public DefaultSpeedManager(ICollection<Flow> flows)
 		{
-			((List<Flow>)this.flows).AddRange(flows);
+			this.flows.AddRange(flows);
 		}
 
 		public DefaultSpeedManager()
 		{
-			((List<Flow>)this.flows).AddRange(Arrays.asList(new Flow(FlowTemplates.constantSpeed()), new Flow(FlowTemplates.variatingFlow()), new Flow(FlowTemplates.interruptedFlow()), new Flow(FlowTemplates.interruptedFlow2()), new Flow(FlowTemplates.slowStartupFlow()), new Flow(FlowTemplates.slowStartup2Flow()), new Flow(FlowTemplates.adjustingFlow()), new Flow(FlowTemplates.jaggedFlow()), new Flow(FlowTemplates.stoppingFlow())
-		   ));
+			this.flows.Add(new Flow(FlowTemplates.constantSpeed()));
+			this.flows.Add(new Flow(FlowTemplates.variatingFlow()));
+			this.flows.Add(new Flow(FlowTemplates.interruptedFlow()));
+			this.flows.Add(new Flow(FlowTemplates.interruptedFlow2()));
+			this.flows.Add(new Flow(FlowTemplates.slowStartupFlow()));
+			this.flows.Add(new Flow(FlowTemplates.slowStartup2Flow()));
+			this.flows.Add(new Flow(FlowTemplates.adjustingFlow()));
+			this.flows.Add(new Flow(FlowTemplates.jaggedFlow()));
+			this.flows.Add(new Flow(FlowTemplates.stoppingFlow()));
 		}
 
 		public virtual Pair<Flow, long> getFlowWithTime(double distance)

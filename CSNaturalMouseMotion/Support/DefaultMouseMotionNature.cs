@@ -22,11 +22,13 @@ namespace NaturalMouseMotion.Support
 		{
 			try
 			{
-				SystemCalls = new DefaultSystemCalls(new Robot());
+				SystemCalls = new DefaultSystemCalls();
 			}
-			catch (AWTException e)
+			catch (Exception e)
 			{
-				throw new Exception(e);
+				if (e.Source != null)
+					Console.WriteLine("Exception source: {0}", e.Source);
+				throw;
 			}
 
 			DeviationProvider = new SinusoidalDeviationProvider(SinusoidalDeviationProvider.DEFAULT_SLOPE_DIVIDER);
