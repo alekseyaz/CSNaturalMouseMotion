@@ -22,12 +22,13 @@ namespace NaturalMouseMotion.Tools
 		{
 			try
 			{
-				Robot robot = new Robot();
-				validateMouseMovement(new DefaultSystemCalls(robot), new DefaultMouseInfoAccessor());
+				validateMouseMovement(new DefaultSystemCalls(), new DefaultMouseInfoAccessor());
 			}
-			catch (AWTException e)
+			catch (Exception e)
 			{
-				throw new Exception(e);
+				if (e.Source != null)
+					Console.WriteLine("Exception source: {0}", e.Source);
+				throw;
 			}
 		}
 
