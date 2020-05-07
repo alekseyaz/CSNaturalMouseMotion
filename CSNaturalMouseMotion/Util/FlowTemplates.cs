@@ -108,8 +108,9 @@ namespace CSNaturalMouseMotion.Util
 
         public static double[] constantSpeed()
         {
-            double[] flowBuckets = new double[10];
-            Arrays.fill(flowBuckets, 100);
+            //double[] flowBuckets = new double[10];
+            double[] flowBuckets = new double[10] { 100, 100, 100, 100, 100, 100, 100, 100, 100, 100 };
+            //Arrays.fill(flowBuckets, 100);
             return flowBuckets;
         }
     }

@@ -82,7 +82,8 @@ namespace CSNaturalMouseMotion.Util
 				result = reduceFlow(result, targetLength);
 			}
 
-			return java.util.result.Select(modifier.apply).ToArray();
+			return result.ToArray();
+			//return java.util.result.Select(modifier.apply).ToArray(); //TODO...
 		}
 
 		/// <summary>
