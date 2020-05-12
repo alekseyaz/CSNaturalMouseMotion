@@ -66,11 +66,11 @@ namespace NaturalMouseMotion
 		/// <exception cref="InterruptedException"> when interrupted </exception>
 		//JAVA TO C# CONVERTER WARNING: Method 'throws' clauses are not available in C#:
 		//ORIGINAL LINE: public void move() throws InterruptedException
-		public virtual void move()
-		{
-			//move((x, y) => {});
-			move();
-		}
+		//public virtual void move()
+		//{
+		//	//move((x, y) => {});
+		//	move();
+		//}
 
 		/// <summary>
 		/// Blocking call, starts to move the cursor to the specified location from where it currently is.
@@ -79,7 +79,8 @@ namespace NaturalMouseMotion
 		/// <exception cref="InterruptedException"> when interrupted </exception>
 		//JAVA TO C# CONVERTER WARNING: Method 'throws' clauses are not available in C#:
 		//ORIGINAL LINE: public void move(MouseMotionObserver observer) throws InterruptedException
-		public virtual void move(IMouseMotionObserver observer)
+		//public virtual void move(IMouseMotionObserver observer)
+		public virtual void move()
 		{
 			updateMouseInfo();
 			log.Info("Starting to move mouse to ({}, {}), current position: ({}, {})", xDest, yDest, mousePosition.X, mousePosition.Y);

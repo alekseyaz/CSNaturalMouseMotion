@@ -10,7 +10,7 @@ namespace NaturalMouseMotion
 	/// </summary>
 	public class MouseMotionFactory
 	{
-		public virtual MouseMotionFactory Default { get;} = new MouseMotionFactory();
+		//public virtual MouseMotionFactory Default { get;} = new MouseMotionFactory();
 		private MouseMotionNature nature;
 		private Random random = new Random();
 
