@@ -38,7 +38,7 @@ namespace NaturalMouseMotion.Support.Mousemotion
 			int xDistance = xDest - lastMousePositionX;
 			int yDistance = yDest - lastMousePositionY;
 
-			double initialDistance = Java.MathHypot.hypot(xDistance, yDistance);
+			double initialDistance = Math.Sqrt(xDistance * xDistance + yDistance * yDistance);
 			Pair<Flow, long> flowTime = speedManager.getFlowWithTime(initialDistance);
 			Flow flow = flowTime.x;
 			long mouseMovementMs = flowTime.y;
@@ -58,7 +58,7 @@ namespace NaturalMouseMotion.Support.Mousemotion
 				int currentDestinationY = limitByScreenHeight(yDest + overshoot.Y);
 				xDistance = currentDestinationX - lastMousePositionX;
 				yDistance = currentDestinationY - lastMousePositionY;
-				double _distance = Java.MathHypot.hypot(xDistance, yDistance);
+				double _distance = Math.Sqrt(xDistance * xDistance + yDistance * yDistance);
 				flow = speedManager.getFlowWithTime(_distance).x;
 				movements.AddLast(new Movement(currentDestinationX, currentDestinationY, _distance, xDistance, yDistance, mouseMovementMs, flow)
 			   );
@@ -91,7 +91,7 @@ namespace NaturalMouseMotion.Support.Mousemotion
 
 			xDistance = xDest - lastMousePositionX;
 			yDistance = yDest - lastMousePositionY;
-			double distance = Java.MathHypot.hypot(xDistance, yDistance);
+			double distance = Math.Sqrt(xDistance * xDistance + yDistance * yDistance);
 			Pair<Flow, long> movementToTargetFlowTime = speedManager.getFlowWithTime(distance);
 			long finalMovementTime = overshootManager.deriveNextMouseMovementTimeMs(movementToTargetFlowTime.y, 0);
 			Movement finalMove = new Movement(xDest, yDest, distance, xDistance, yDistance, finalMovementTime, movementToTargetFlowTime.x);
