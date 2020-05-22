@@ -26,7 +26,7 @@ namespace NaturalMouseMotion.Support
 			}
 			double noiseX = 0;
 			double noiseY = 0;
-			double stepSize = Java.MathHypot.hypot(xStepSize, yStepSize);
+			double stepSize = Math.Sqrt(xStepSize * xStepSize + yStepSize * yStepSize);
 			double noisiness = Math.Max(0, (8 - stepSize)) / 50;
 			if (random.NextDouble() < noisiness)
 			{

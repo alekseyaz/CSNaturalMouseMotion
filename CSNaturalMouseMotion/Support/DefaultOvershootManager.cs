@@ -37,7 +37,7 @@ namespace NaturalMouseMotion.Support
 
 		public virtual Point getOvershootAmount(double distanceToRealTargetX, double distanceToRealTargetY, long mouseMovementMs, int overshootsRemaining)
 		{
-			double distanceToRealTarget = Java.MathHypot.hypot(distanceToRealTargetX, distanceToRealTargetY);
+			double distanceToRealTarget = Math.Sqrt(distanceToRealTargetX * distanceToRealTargetX + distanceToRealTargetY * distanceToRealTargetY);
 
 			double randomModifier = distanceToRealTarget / overshootRandomModifierDivider;
 			//double speedPixelsPerSecond = distanceToRealTarget / mouseMovementMs * 1000; // TODO utilize speed
