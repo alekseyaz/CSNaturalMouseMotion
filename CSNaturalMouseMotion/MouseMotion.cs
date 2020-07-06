@@ -149,7 +149,7 @@ namespace NaturalMouseMotion
 
 					completedXDistance += xStepSize;
 					completedYDistance += yStepSize;
-					double completedDistance = Java.MathHypot.hypot(completedXDistance, completedYDistance);
+					double completedDistance = Math.Sqrt(completedXDistance * completedXDistance + completedYDistance * completedYDistance);
 					double completion = Math.Min(1, completedDistance / distance);
 					log.Trace("Step: x: {} y: {} tc: {} c: {}", xStepSize, yStepSize, timeCompletion, completion);
 
