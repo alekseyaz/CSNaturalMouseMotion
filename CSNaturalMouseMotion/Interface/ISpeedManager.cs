@@ -20,4 +20,7 @@ namespace NaturalMouseMotion.Interface
 		/// <returns> the SpeedFlow object, which details are a SpeedManager implementation decision. </returns>
 		Pair<Flow, long> getFlowWithTime(double distance);
 	}
+
+	//public delegate Pair<Flow, long> ISpeedManager(double distance);
+
 }
