@@ -11,9 +11,7 @@ namespace NaturalMouseMotion.Support.Mousemotion
 	public class MovementFactory
 	{
 
-
-
-		private static readonly Logger log = LogManager.GetLogger(typeof(MovementFactory).ToString());
+		private static readonly Logger log = LogManager.GetCurrentClassLogger();
 		private readonly int xDest;
 		private readonly int yDest;
 		private readonly ISpeedManager speedManager;
@@ -22,7 +20,6 @@ namespace NaturalMouseMotion.Support.Mousemotion
 
 		public MovementFactory(int xDest, int yDest, ISpeedManager speedManager, IOvershootManager overshootManager, Size screenSize)
 		{
-			LogСonfiguration.SetupConfig();
 			this.xDest = xDest;
 			this.yDest = yDest;
 			this.speedManager = speedManager;
@@ -82,6 +79,7 @@ namespace NaturalMouseMotion.Support.Mousemotion
 					log.Trace("Pruning 0-overshoot movement (Movement to target) from the end. " + movement);
 					//JAVA TO C# CONVERTER TODO TASK: .NET enumerators are read-only:
 					//it.remove();
+					movements.Remove(movement);
 				}
 				else
 				{
