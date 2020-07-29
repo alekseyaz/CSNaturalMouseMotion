@@ -42,8 +42,7 @@ namespace NaturalMouseMotion.Support
 			{
 				if (flowCharacteristics[i] < 0)
 				{
-					throw new System.ArgumentException("Invalid FlowCharacteristics at [" + i
-						+ "] : " + flowCharacteristics[i]);
+					throw new System.ArgumentException("Invalid FlowCharacteristics at [" + i + "] : " + flowCharacteristics[i]);
 				}
 				sum += (long)flowCharacteristics[i];
 			}

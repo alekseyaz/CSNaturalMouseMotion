@@ -18,12 +18,8 @@ namespace NaturalMouseMotion.Support
 		{
 			get
 			{
-
-				//return MouseInfo.PointerInfo.Location;
-
 				GetCursorPos(ref lpPoint);
 				return lpPoint;
-
 			}
 		}
 
