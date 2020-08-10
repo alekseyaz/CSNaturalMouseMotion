@@ -62,7 +62,6 @@
     <Compile Include="Interface\IOvershootManager.cs" />
     <Compile Include="Interface\ISpeedManager.cs" />
     <Compile Include="Interface\ISystemCalls.cs" />
-    <Compile Include="LogСonfiguration.cs" />
     <Compile Include="MouseMotion.cs" />
     <Compile Include="MouseMotionFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -80,6 +79,9 @@
     <Compile Include="Support\NativeCallMouseInfoAccessor.cs" />
     <Compile Include="Support\ScreenAdjustedNature.cs" />
     <Compile Include="Support\SinusoidalDeviationProvider.cs" />
+    <Compile Include="TestUtils\MockDeviationProvider.cs" />
+    <Compile Include="TestUtils\MockNoiseProvider.cs" />
+    <Compile Include="TestUtils\MockSpeedManager.cs" />
     <Compile Include="Tools\SystemDiagnosis.cs" />
     <Compile Include="Util\FactoryTemplates.cs" />
     <Compile Include="Util\FlowTemplates.cs" />

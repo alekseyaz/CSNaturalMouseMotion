@@ -17,7 +17,7 @@ namespace NaturalMouseMotion
 	/// </summary>
 	public class MouseMotion
 	{
-		private static readonly Logger log = LogManager.GetLogger(typeof(MouseMotion).ToString());
+		private static readonly Logger log = LogManager.GetCurrentClassLogger();
 		private const int SLEEP_AFTER_ADJUSTMENT_MS = 2;
 		private readonly int minSteps;
 		private readonly int effectFadeSteps;
@@ -42,7 +42,6 @@ namespace NaturalMouseMotion
 		/// <param name="random"> the random used for unpredictability </param>
 		public MouseMotion(MouseMotionNature nature, Random random, int xDest, int yDest)
 		{
-			LogСonfiguration.SetupConfig();
 			this.deviationProvider = nature.DeviationProvider;
 			this.noiseProvider = nature.NoiseProvider;
 			this.systemCalls = nature.SystemCalls;
@@ -100,7 +99,6 @@ namespace NaturalMouseMotion
 					movements = movementFactory.createMovements(mousePosition);
 				}
 
-				//Movement movement = movements.RemoveFirst(); //Java
 				Movement movement = movements.First.Value;
 				movements.RemoveFirst();
 				if (movements.Count > 0)
