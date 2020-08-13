@@ -12,7 +12,7 @@ namespace NaturalMouseMotion.Interface
 	{
 		long currentTimeMillis();
 		void sleep(long time);
-		Size ScreenSize { get; }
+		Size getScreenSize();
 		void setMousePosition(int x, int y);
 	}
 }

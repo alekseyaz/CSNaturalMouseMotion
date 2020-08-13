@@ -13,23 +13,20 @@ namespace NaturalMouseMotion.Support
 	public class ScreenAdjustedNature : DefaultMouseMotionNature
 	{
 		private readonly Point offset;
-		public virtual Size ScreenSize { get; }
+		private readonly Size screenSize;
 
 
 		public ScreenAdjustedNature(int x, int y, int x2, int y2) : this(new Size(x2 - x, y2 - y), new Point(x, y))
 		{
 			if (y2 <= y || x2 <= x)
 			{
-				throw new System.ArgumentException("Invalid range " + x
-					+ " " + y
-					+ " " + x2
-					+ " " + y2);
+				throw new System.ArgumentException("Invalid range " + x + " " + y + " " + x2 + " " + y2);
 			}
 		}
 
 		public ScreenAdjustedNature(Size screenSize, Point mouseOffset)
 		{
-			this.ScreenSize = screenSize;
+			this.screenSize = screenSize;
 			this.offset = mouseOffset;
 		}
 
@@ -65,16 +62,12 @@ namespace NaturalMouseMotion.Support
 			// This implementation reuses the point.
 			internal Point p = new Point();
 
-			public virtual Point MousePosition
+			public Point getMousePosition()
 			{
-				get
-				{
-					Point realPointer = underlying.MousePosition;
-					//p.setLocation(realPointer.X - outerInstance.offset.X, realPointer.Y - outerInstance.offset.Y); //Java
-					p.X = realPointer.X - outerInstance.offset.X;
-					p.Y = realPointer.Y - outerInstance.offset.Y;
-					return p;
-				}
+				Point realPointer = underlying.getMousePosition();
+				p.X = realPointer.X - outerInstance.offset.X;
+				p.Y = realPointer.Y - outerInstance.offset.Y;
+				return p;
 			}
 		}
 
@@ -83,8 +76,6 @@ namespace NaturalMouseMotion.Support
 			private readonly ScreenAdjustedNature outerInstance;
 
 			internal readonly ISystemCalls underlying;
-
-			public virtual Size ScreenSize { get; }
 
 			public ProxySystemCalls(ScreenAdjustedNature outerInstance, ISystemCalls underlying)
 			{
@@ -100,6 +91,10 @@ namespace NaturalMouseMotion.Support
 			public virtual void sleep(long time)
 			{
 				underlying.sleep(time);
+			}
+			public virtual Size getScreenSize()
+			{
+				return outerInstance.screenSize;
 			}
 
 			public virtual void setMousePosition(int x, int y)

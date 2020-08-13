@@ -10,8 +10,8 @@ namespace NaturalMouseMotion
 	/// </summary>
 	public class MouseMotionFactory
 	{
-		//public virtual MouseMotionFactory Default { get;} = new MouseMotionFactory();
-		private MouseMotionNature nature;
+
+		private MouseMotionNature nature; //instance
 		private Random random = new Random();
 
 		public MouseMotionFactory(MouseMotionNature nature)
@@ -41,8 +41,6 @@ namespace NaturalMouseMotion
 		/// <param name="xDest"> the end position x-coordinate for the mouse </param>
 		/// <param name="yDest"> the end position y-coordinate for the mouse </param>
 		/// <exception cref="InterruptedException"> if something interrupts the thread. </exception>
-		//JAVA TO C# CONVERTER WARNING: Method 'throws' clauses are not available in C#:
-		//ORIGINAL LINE: public void move(int xDest, int yDest) throws InterruptedException
 		public virtual void move(int xDest, int yDest)
 		{
 			build(xDest, yDest).move();

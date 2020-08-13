@@ -77,8 +77,6 @@ namespace NaturalMouseMotion.Support.Mousemotion
 					lastMousePositionX = movement.destX - movement.xDistance;
 					lastMousePositionY = movement.destY - movement.yDistance;
 					log.Trace("Pruning 0-overshoot movement (Movement to target) from the end. " + movement);
-					//JAVA TO C# CONVERTER TODO TASK: .NET enumerators are read-only:
-					//it.remove();
 					movements.Remove(movement);
 				}
 				else

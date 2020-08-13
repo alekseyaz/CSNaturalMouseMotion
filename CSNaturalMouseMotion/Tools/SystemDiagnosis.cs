@@ -14,8 +14,8 @@ namespace NaturalMouseMotion.Tools
 		/// <summary>
 		/// Runs a diagnosis with default configuration, by setting mouse all over your screen and expecting to receive
 		/// correct coordinates back.
-		/// If java.awt.Robot cannot be constructed, then new RuntimeException is thrown.
-		/// If no issues are found, then this method completes without throwing an error, otherwise IllegalStateException is
+		/// If user32.dll cannot be constructed, then new RuntimeException is thrown.
+		/// If no issues are found, then this method completes without throwing an error, otherwise Exception is
 		/// thrown.
 		/// </summary>
 		public static void validateMouseMovement()
@@ -40,7 +40,7 @@ namespace NaturalMouseMotion.Tools
 		/// <param name="accessor"> a MouseInfoAccessor which is used for querying mouse position </param>
 		public static void validateMouseMovement(ISystemCalls system, IMouseInfoAccessor accessor)
 		{
-			Size dimension = system.ScreenSize;
+			Size dimension = system.getScreenSize();
 			for (int y = 0; y < dimension.Height; y += 50)
 			{
 				for (int x = 0; x < dimension.Width; x += 50)
@@ -56,7 +56,7 @@ namespace NaturalMouseMotion.Tools
 						Thread.CurrentThread.Interrupt();
 					}
 
-					Point p = accessor.MousePosition;
+					Point p = accessor.getMousePosition();
 					if (x != p.X || y != p.Y)
 					{
 						throw new System.InvalidOperationException("Tried to move mouse to (" + x

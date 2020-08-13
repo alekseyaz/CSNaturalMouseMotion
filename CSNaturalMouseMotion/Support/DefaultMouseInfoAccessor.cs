@@ -14,13 +14,10 @@ namespace NaturalMouseMotion.Support
 		[DllImport("user32.dll")]
 		static extern bool GetCursorPos(ref Point lpPoint);
 
-		public virtual Point MousePosition
+		public virtual Point getMousePosition()
 		{
-			get
-			{
-				GetCursorPos(ref lpPoint);
-				return lpPoint;
-			}
+			GetCursorPos(ref lpPoint);
+			return lpPoint;
 		}
 
 	}

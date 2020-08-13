@@ -22,12 +22,9 @@ namespace NaturalMouseMotion.Support
             Thread.Sleep((int)time);
         }
 
-        public virtual Size ScreenSize
+        public virtual Size getScreenSize()
         {
-            get
-            {
-                return new Size(Convert.ToInt32(SystemParameters.PrimaryScreenWidth), Convert.ToInt32(SystemParameters.PrimaryScreenHeight));
-            }
+            return new Size(Convert.ToInt32(SystemParameters.PrimaryScreenWidth), Convert.ToInt32(SystemParameters.PrimaryScreenHeight));
         }
 
         [DllImport("user32.dll")]
@@ -51,6 +48,7 @@ namespace NaturalMouseMotion.Support
         {
             SetCursorPos(x, y);
         }
+
 
     }
 }

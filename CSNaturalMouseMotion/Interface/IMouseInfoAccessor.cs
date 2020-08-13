@@ -16,6 +16,6 @@ namespace NaturalMouseMotion.Interface
 		/// It is recommended not to save this Point anywhere as it may or may not change its coordinates. </summary>
 		/// <returns> the current mouse position </returns>
 
-		Point MousePosition { get; }
+		Point getMousePosition();
 	}
 }

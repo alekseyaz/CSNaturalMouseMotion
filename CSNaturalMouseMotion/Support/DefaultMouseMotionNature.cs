@@ -4,11 +4,6 @@ using System.Text;
 
 namespace NaturalMouseMotion.Support
 {
-	//JAVA TO C# CONVERTER TODO TASK: This Java 'import static' statement cannot be converted to C#:
-	//	import static com.github.joonasvali.naturalmouse.support.DefaultNoiseProvider.DEFAULT_NOISINESS_DIVIDER;
-	//JAVA TO C# CONVERTER TODO TASK: This Java 'import static' statement cannot be converted to C#:
-	//	import static com.github.joonasvali.naturalmouse.support.SinusoidalDeviationProvider.DEFAULT_SLOPE_DIVIDER;
-
 	public class DefaultMouseMotionNature : MouseMotionNature
 	{
 

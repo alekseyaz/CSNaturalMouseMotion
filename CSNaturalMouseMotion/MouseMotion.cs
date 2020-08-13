@@ -45,7 +45,7 @@ namespace NaturalMouseMotion
 			this.deviationProvider = nature.DeviationProvider;
 			this.noiseProvider = nature.NoiseProvider;
 			this.systemCalls = nature.SystemCalls;
-			this.screenSize = systemCalls.ScreenSize;
+			this.screenSize = systemCalls.getScreenSize();
 			this.xDest = limitByScreenWidth(xDest);
 			this.yDest = limitByScreenHeight(yDest);
 			this.random = random;
@@ -63,8 +63,6 @@ namespace NaturalMouseMotion
 		/// Blocking call, starts to move the cursor to the specified location from where it currently is.
 		/// </summary>
 		/// <exception cref="InterruptedException"> when interrupted </exception>
-		//JAVA TO C# CONVERTER WARNING: Method 'throws' clauses are not available in C#:
-		//ORIGINAL LINE: public void move() throws InterruptedException
 		//public virtual void move()
 		//{
 		//	//move((x, y) => {});
@@ -76,9 +74,6 @@ namespace NaturalMouseMotion
 		/// </summary>
 		/// <param name="observer"> Provide observer if you are interested receiving the location of mouse on every step </param>
 		/// <exception cref="InterruptedException"> when interrupted </exception>
-		//JAVA TO C# CONVERTER WARNING: Method 'throws' clauses are not available in C#:
-		//ORIGINAL LINE: public void move(MouseMotionObserver observer) throws InterruptedException
-		//public virtual void move(IMouseMotionObserver observer)
 		public virtual void move()
 		{
 			updateMouseInfo();
@@ -232,7 +227,7 @@ namespace NaturalMouseMotion
 
 		private void updateMouseInfo()
 		{
-			mousePosition = mouseInfo.MousePosition;
+			mousePosition = mouseInfo.getMousePosition();
 		}
 
 	}
