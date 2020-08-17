@@ -62,14 +62,14 @@ namespace NaturalMouseMotion.Tests
                 DefaultSpeedManager manager = new DefaultSpeedManager(flows);
                 factory.DeviationProvider = new SinusoidalDeviationProvider(SinusoidalDeviationProvider.DEFAULT_SLOPE_DIVIDER);
                 factory.NoiseProvider = new DefaultNoiseProvider(DefaultNoiseProvider.DEFAULT_NOISINESS_DIVIDER);
-                factory.Nature.ReactionTimeVariationMs = 110;
-                manager.MouseMovementBaseTimeMs = 400;
+                //factory.Nature.ReactionTimeVariationMs = 110;
+                //manager.MouseMovementBaseTimeMs = 400;
 
-                DefaultOvershootManager overshootManager = (DefaultOvershootManager)factory.OvershootManager;
-                overshootManager.Overshoots = 4;
+                //DefaultOvershootManager overshootManager = (DefaultOvershootManager)factory.OvershootManager;
+                //overshootManager.Overshoots = 4;
 
-                factory.Nature.MinSteps = 1;
-                factory.Nature.TimeToStepsDivider = 70;
+                //factory.Nature.MinSteps = 1;
+                //factory.Nature.TimeToStepsDivider = 70;
                 factory.SpeedManager = manager;
                 return factory;
             }
