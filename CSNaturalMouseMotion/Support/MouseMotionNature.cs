@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using NaturalMouseMotion.Interface;
+﻿using NaturalMouseMotion.Interface;
 
 namespace NaturalMouseMotion.Support
 {
@@ -27,14 +24,8 @@ namespace NaturalMouseMotion.Support
         /// <returns> the divider which is used to get amount of steps from the planned movement time </returns>
         public virtual double TimeToStepsDivider
         {
-            get 
-            { 
-                return timeToStepsDivider;
-            }
-            set
-            { 
-                this.timeToStepsDivider = value;
-            }
+            get => timeToStepsDivider;
+            set => timeToStepsDivider = value;
         }
 
 
@@ -44,14 +35,8 @@ namespace NaturalMouseMotion.Support
         /// <returns> the minimal amount of steps used. </returns>
         public virtual int MinSteps
         {
-            get
-            {
-                return minSteps;
-            }
-            set
-            {
-                this.minSteps = value;
-            }
+            get => minSteps;
+            set => minSteps = value;
         }
 
 
@@ -62,14 +47,8 @@ namespace NaturalMouseMotion.Support
         /// <returns> the number of steps before last the effect starts to fade </returns>
         public virtual int EffectFadeSteps
         {
-            get
-            {
-                return effectFadeSteps;
-            }
-            set
-            {
-                this.effectFadeSteps = value;
-            }
+            get => effectFadeSteps;
+            set => effectFadeSteps = value;
         }
 
 
@@ -79,14 +58,8 @@ namespace NaturalMouseMotion.Support
         /// <returns> the sleep time </returns>
         public virtual int ReactionTimeBaseMs
         {
-            get
-            {
-                return reactionTimeBaseMs;
-            }
-            set
-            {
-                this.reactionTimeBaseMs = value;
-            }
+            get => reactionTimeBaseMs;
+            set => reactionTimeBaseMs = value;
         }
 
 
@@ -96,14 +69,8 @@ namespace NaturalMouseMotion.Support
         /// <returns> reactionTimeVariationMs the sleep time </returns>
         public virtual int ReactionTimeVariationMs
         {
-            get
-            {
-                return reactionTimeVariationMs;
-            }
-            set
-            {
-                this.reactionTimeVariationMs = value;
-            }
+            get => reactionTimeVariationMs;
+            set => reactionTimeVariationMs = value;
         }
 
 
@@ -113,14 +80,8 @@ namespace NaturalMouseMotion.Support
         /// <returns> the provider </returns>
         public virtual IDeviationProvider DeviationProvider
         {
-            get
-            {
-                return deviationProvider;
-            }
-            set
-            {
-                this.deviationProvider = value;
-            }
+            get => deviationProvider;
+            set => deviationProvider = value;
         }
 
 
@@ -130,14 +91,8 @@ namespace NaturalMouseMotion.Support
         /// <returns> the provider </returns>
         public virtual INoiseProvider NoiseProvider
         {
-            get
-            {
-                return noiseProvider;
-            }
-            set
-            {
-                this.noiseProvider = value;
-            }
+            get => noiseProvider;
+            set => noiseProvider = value;
         }
 
 
@@ -147,8 +102,8 @@ namespace NaturalMouseMotion.Support
         /// <returns> the accessor </returns>
         public virtual IMouseInfoAccessor MouseInfo
         {
-            get { return mouseInfo; }
-            set { this.mouseInfo = value; }
+            get => mouseInfo;
+            set => this.mouseInfo = value;
         }
 
 
@@ -158,14 +113,8 @@ namespace NaturalMouseMotion.Support
         /// <returns> the interface </returns>
         public virtual ISystemCalls SystemCalls
         {
-            get
-            {
-                return systemCalls;
-            }
-            set
-            {
-                this.systemCalls = value;
-            }
+            get => systemCalls;
+            set => systemCalls = value;
         }
 
 
@@ -175,14 +124,8 @@ namespace NaturalMouseMotion.Support
         /// <returns> the SpeedManager </returns>
         public virtual ISpeedManager SpeedManager
         {
-            get
-            {
-                return speedManager;
-            }
-            set
-            {
-                this.speedManager = value;
-            }
+            get => speedManager;
+            set => speedManager = value;
         }
 
 
@@ -192,14 +135,8 @@ namespace NaturalMouseMotion.Support
         /// <returns> the manager </returns>
         public virtual IOvershootManager OvershootManager
         {
-            get
-            {
-                return overshootManager;
-            }
-            set
-            {
-                this.overshootManager = value;
-            }
+            get => overshootManager;
+            set => overshootManager = value;
         }
 
     }

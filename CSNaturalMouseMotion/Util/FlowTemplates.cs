@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CSNaturalMouseMotion.Util
+﻿namespace CSNaturalMouseMotion.Util
 {
     public class FlowTemplates
     {
-        public static double[] variatingFlow()
+        public static double[] VariatingFlow()
         {
             return new double[]{
             10, 13, 14, 19, 16, 13, 15, 22, 56, 90, 97, 97, 66, 51, 50, 66, 91, 95, 87, 96, 98,
@@ -19,7 +13,7 @@ namespace CSNaturalMouseMotion.Util
             };
         }
 
-        public static double[] interruptedFlow()
+        public static double[] InterruptedFlow()
         {
             return new double[]{
             12, 11, 10, 20, 24, 19, 26, 15, 9, 9, 10, 24, 26, 30, 24, 49, 72, 60, 81, 113, 82,
@@ -30,7 +24,7 @@ namespace CSNaturalMouseMotion.Util
             };
         }
 
-        public static double[] interruptedFlow2()
+        public static double[] InterruptedFlow2()
         {
             return new double[]{
             12, 11, 10, 20, 24, 19, 26, 15, 9, 9, 10, 24, 26, 30, 24, 49, 72, 60, 81, 113, 82,
@@ -42,7 +36,7 @@ namespace CSNaturalMouseMotion.Util
         }
 
 
-        public static double[] slowStartupFlow()
+        public static double[] SlowStartupFlow()
         {
             return new double[]{
             8, 5, 1, 1, 1, 2, 2, 3, 3, 3, 5, 7, 9, 10, 10, 11, 11, 11, 12, 12, 13,
@@ -54,7 +48,7 @@ namespace CSNaturalMouseMotion.Util
         }
 
 
-        public static double[] slowStartup2Flow()
+        public static double[] SlowStartup2Flow()
         {
             return new double[]{
             7, 2, 1, 2, 2, 3, 5, 9, 10, 10, 11, 13, 13, 10, 4, 1, 1, 2, 3, 4, 6,
@@ -65,7 +59,7 @@ namespace CSNaturalMouseMotion.Util
             };
         }
 
-        public static double[] jaggedFlow()
+        public static double[] JaggedFlow()
         {
             return new double[]{
             52, 106, 122, 8, 6, 117, 32, 2, 68, 34, 21, 81, 61, 86, 55, 4, 104, 21, 51, 8, 93,
@@ -76,7 +70,7 @@ namespace CSNaturalMouseMotion.Util
             };
         }
 
-        public static double[] stoppingFlow()
+        public static double[] StoppingFlow()
         {
             return new double[]{
             8, 20, 39, 48, 66, 71, 79, 57, 29, 5, 2, 3, 2, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -87,7 +81,7 @@ namespace CSNaturalMouseMotion.Util
             };
         }
 
-        public static double[] adjustingFlow()
+        public static double[] AdjustingFlow()
         {
             return new double[] {
             1, 1, 1, 3, 8, 7, 2, 2, 4, 8, 6, 3, 7, 13, 18, 19, 24, 35, 26, 14, 31,
@@ -96,7 +90,7 @@ namespace CSNaturalMouseMotion.Util
             };
         }
 
-        public static double[] random()
+        public static double[] Random()
         {
             double[] result = new double[100];
             for (int i = 0; i < result.Length; i++)
@@ -106,11 +100,9 @@ namespace CSNaturalMouseMotion.Util
             return result;
         }
 
-        public static double[] constantSpeed()
+        public static double[] ConstantSpeed()
         {
-            //double[] flowBuckets = new double[10];
             double[] flowBuckets = new double[10] { 100, 100, 100, 100, 100, 100, 100, 100, 100, 100 };
-            //Arrays.fill(flowBuckets, 100);
             return flowBuckets;
         }
     }

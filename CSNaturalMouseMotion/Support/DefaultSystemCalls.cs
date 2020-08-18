@@ -1,9 +1,7 @@
 ﻿using NaturalMouseMotion.Interface;
 using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Runtime.InteropServices;
-using System.Text;
 using System.Threading;
 using System.Windows;
 
@@ -12,20 +10,14 @@ namespace NaturalMouseMotion.Support
     public class DefaultSystemCalls : ISystemCalls
     {
 
-        public virtual long currentTimeMillis()
-        {
-            return DateTimeHelper.CurrentUnixTimeMillis();
-        }
+        public virtual long CurrentTimeMillis => DateTimeHelper.CurrentUnixTimeMillis();
 
-        public virtual void sleep(long time)
+        public virtual void Sleep(long time)
         {
             Thread.Sleep((int)time);
         }
 
-        public virtual Size getScreenSize()
-        {
-            return new Size(Convert.ToInt32(SystemParameters.PrimaryScreenWidth), Convert.ToInt32(SystemParameters.PrimaryScreenHeight));
-        }
+        public virtual Size ScreenSize => new Size(Convert.ToInt32(SystemParameters.PrimaryScreenWidth), Convert.ToInt32(SystemParameters.PrimaryScreenHeight));
 
         [DllImport("user32.dll")]
         private static extern void SetCursorPos(int x, int y);
@@ -44,7 +36,7 @@ namespace NaturalMouseMotion.Support
         /// </summary>
         /// <param name="x"> the x-coordinate </param>
         /// <param name="y"> the y-coordinate </param>
-        public virtual void setMousePosition(int x, int y)
+        public virtual void SetMousePosition(int x, int y)
         {
             SetCursorPos(x, y);
         }

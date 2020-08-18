@@ -1,24 +1,23 @@
 ﻿using NaturalMouseMotion.Interface;
-using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Runtime.InteropServices;
-using System.Text;
 
 namespace NaturalMouseMotion.Support
 {
-	public class DefaultMouseInfoAccessor : IMouseInfoAccessor
-	{
-		private Point lpPoint;
+    public class DefaultMouseInfoAccessor : IMouseInfoAccessor
+    {
+        private Point lpPoint;
 
-		[DllImport("user32.dll")]
-		static extern bool GetCursorPos(ref Point lpPoint);
+        [DllImport("user32.dll")]
+        static extern bool GetCursorPos(ref Point lpPoint);
 
-		public virtual Point getMousePosition()
-		{
-			GetCursorPos(ref lpPoint);
-			return lpPoint;
-		}
-
-	}
+        public virtual Point MousePosition
+        {
+            get
+            {
+                GetCursorPos(ref lpPoint);
+                return lpPoint;
+            }
+        }
+    }
 }

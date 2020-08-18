@@ -3,12 +3,12 @@ using System;
 
 namespace NaturalMouseMotion.Support
 {
-    public class SinusoidalDeviationProvider : IDeviationProvider
+    public class DeviationProvider : IDeviationProvider
     {
         public const int DEFAULT_SLOPE_DIVIDER = 10;
         private readonly double _slopeDivider;
 
-        public SinusoidalDeviationProvider(double slopeDivider)
+        public DeviationProvider(double slopeDivider)
         {
             _slopeDivider = slopeDivider;
         }

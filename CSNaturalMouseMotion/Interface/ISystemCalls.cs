@@ -1,18 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Text;
+﻿using System.Drawing;
 
 namespace NaturalMouseMotion.Interface
 {
-	/// <summary>
-	/// Abstracts ordinary static System calls away
-	/// </summary>
-	public interface ISystemCalls
-	{
-		long currentTimeMillis();
-		void sleep(long time);
-		Size getScreenSize();
-		void setMousePosition(int x, int y);
-	}
+    /// <summary>
+    /// Abstracts ordinary static System calls away
+    /// </summary>
+    public interface ISystemCalls
+    {
+        long CurrentTimeMillis { get; }
+
+        void Sleep(long time);
+        Size ScreenSize { get; }
+
+        void SetMousePosition(int x, int y);
+    }
 }

@@ -1,16 +1,12 @@
 ﻿using CSNaturalMouseMotion.Util;
+using NaturalMouseMotion.Interface;
+using NaturalMouseMotion.Support;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using NaturalMouseMotion.Support;
 using System.Drawing;
-using NaturalMouseMotion.Interface;
-using System.Runtime.InteropServices;
+using System.Threading;
 
-namespace NaturalMouseMotion.Tests
+namespace NaturalMouseMotion.Demo
 {
     class Program
     {
@@ -24,6 +20,8 @@ namespace NaturalMouseMotion.Tests
             Size screenSize = new Size(2560, 1440);
 
             MouseMotionFactory fac = MyMotionFactory.createMyMotionFactory(screenSize, offset);
+            //MouseMotionFactory fac = FactoryTemplates.CreateDemoRobotMotionFactory(100);
+
             Thread.Sleep(2000);
 
             int number = rnd.Next(1, 6);
@@ -31,11 +29,11 @@ namespace NaturalMouseMotion.Tests
             {
                 if (!(i % 2 == 0))
                 {
-                    fac.move(50, 50);
+                    fac.Move(50, 50);
                 }
                 else
                 {
-                    fac.move(1500, 1000);
+                    fac.Move(1500, 1000);
                 }
                 Thread.Sleep(100);
             }
@@ -50,15 +48,15 @@ namespace NaturalMouseMotion.Tests
                 MouseMotionFactory factory = new MouseMotionFactory(new ScreenAdjustedNature(screenSize, offset));
 
                 IList<Flow> flows = new List<Flow> {
-                new Flow(FlowTemplates.variatingFlow()),
-                new Flow(FlowTemplates.interruptedFlow()),
-                new Flow(FlowTemplates.interruptedFlow2()),
-                new Flow(FlowTemplates.slowStartupFlow()),
-                new Flow(FlowTemplates.slowStartup2Flow()),
-                new Flow(FlowTemplates.adjustingFlow()),
-                new Flow(FlowTemplates.jaggedFlow()),
-                new Flow(FlowTemplates.stoppingFlow())
-            };
+                new Flow(FlowTemplates.VariatingFlow()),
+                new Flow(FlowTemplates.InterruptedFlow()),
+                new Flow(FlowTemplates.InterruptedFlow2()),
+                new Flow(FlowTemplates.SlowStartupFlow()),
+                new Flow(FlowTemplates.SlowStartup2Flow()),
+                new Flow(FlowTemplates.AdjustingFlow()),
+                new Flow(FlowTemplates.JaggedFlow()),
+                new Flow(FlowTemplates.StoppingFlow())};
+
                 DefaultSpeedManager manager = new DefaultSpeedManager(flows);
                 factory.DeviationProvider = new SinusoidalDeviationProvider(SinusoidalDeviationProvider.DEFAULT_SLOPE_DIVIDER);
                 factory.NoiseProvider = new DefaultNoiseProvider(DefaultNoiseProvider.DEFAULT_NOISINESS_DIVIDER);
@@ -89,22 +87,16 @@ namespace NaturalMouseMotion.Tests
         public class MySystemCalls : ISystemCalls
         {
 
-            public virtual long currentTimeMillis()
-            {
-                return DateTimeHelper.CurrentUnixTimeMillis();
-            }
+            public virtual long CurrentTimeMillis => DateTimeHelper.CurrentUnixTimeMillis();
 
-            public virtual void sleep(long time)
+            public virtual void Sleep(long time)
             {
                 Thread.Sleep((int)time);
             }
 
-            public virtual Size getScreenSize()
-            {
-                return new Size(1200, 900);
-            }
+            public virtual Size ScreenSize => new Size(1200, 900);
 
-            public virtual void setMousePosition(int x, int y)
+            public virtual void SetMousePosition(int x, int y)
             {
                 Console.WriteLine("x " + x + "  y " + y);
                 Program.currentMousePosition.X = x;
@@ -116,10 +108,7 @@ namespace NaturalMouseMotion.Tests
 
         public class MyMouseInfoAccessor : IMouseInfoAccessor
         {
-            public Point getMousePosition()
-            {
-                return Program.currentMousePosition;
-            }
+            public Point MousePosition => Program.currentMousePosition;
         }
     }
 }

@@ -4,11 +4,11 @@ using System;
 
 namespace CSNaturalMouseMotion.TestUtils
 {
-	public class MockNoiseProvider : INoiseProvider
-	{
-		public DoublePoint getNoise(Random random, double xStepSize, double yStepSize)
-		{
-			return DoublePoint.ZERO;
-		}
-	}
+    public class MockNoiseProvider : INoiseProvider
+    {
+        public DoublePoint GetNoise(Random random, double xStepSize, double yStepSize)
+        {
+            return DoublePoint.ZERO;
+        }
+    }
 }

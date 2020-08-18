@@ -1,13 +1,8 @@
-﻿//using CSNaturalMouseMotion.Support;
-using CSNaturalMouseMotion.TestUtils;
+﻿using CSNaturalMouseMotion.TestUtils;
 using NaturalMouseMotion;
 using NaturalMouseMotion.Interface;
 using NaturalMouseMotion.Support;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 
 namespace CSNaturalMouseMotion.Util
@@ -19,9 +14,9 @@ namespace CSNaturalMouseMotion.Util
         /// Low speed, variating flow, lots of noise in movement.
         /// </summary>
         /// <returns> the factory </returns>
-        public static MouseMotionFactory createGrannyMotionFactory()
+        public static MouseMotionFactory CreateGrannyMotionFactory()
         {
-            return createGrannyMotionFactory(new DefaultMouseMotionNature());
+            return CreateGrannyMotionFactory(new DefaultMouseMotionNature());
         }
 
         /// <summary>
@@ -29,16 +24,16 @@ namespace CSNaturalMouseMotion.Util
         /// Low speed, variating flow, lots of noise in movement. </summary>
         /// <param name="nature"> the nature for the template to be configured on </param>
         /// <returns> the factory </returns>
-        public static MouseMotionFactory createGrannyMotionFactory(MouseMotionNature nature)
+        public static MouseMotionFactory CreateGrannyMotionFactory(MouseMotionNature nature)
         {
             MouseMotionFactory factory = new MouseMotionFactory(nature);
             IList<Flow> flows = new List<Flow> {
-                new Flow(FlowTemplates.jaggedFlow()),
-                new Flow(FlowTemplates.random()),
-                new Flow(FlowTemplates.interruptedFlow()),
-                new Flow(FlowTemplates.interruptedFlow2()),
-                new Flow(FlowTemplates.adjustingFlow()),
-                new Flow(FlowTemplates.stoppingFlow())
+                new Flow(FlowTemplates.JaggedFlow()),
+                new Flow(FlowTemplates.Random()),
+                new Flow(FlowTemplates.InterruptedFlow()),
+                new Flow(FlowTemplates.InterruptedFlow2()),
+                new Flow(FlowTemplates.AdjustingFlow()),
+                new Flow(FlowTemplates.StoppingFlow())
             };
 
             DefaultSpeedManager manager = new DefaultSpeedManager(flows);
@@ -65,11 +60,11 @@ namespace CSNaturalMouseMotion.Util
         /// </summary>
         /// <param name="motionTimeMsPer100Pixels"> approximate time a movement takes per 100 pixels of travelling </param>
         /// <returns> the factory </returns>
-        public static MouseMotionFactory createDemoRobotMotionFactory(long motionTimeMsPer100Pixels)
+        public static MouseMotionFactory CreateDemoRobotMotionFactory(long motionTimeMsPer100Pixels)
         {
-            return createDemoRobotMotionFactory(new DefaultMouseMotionNature(), motionTimeMsPer100Pixels);
+            return CreateDemoRobotMotionFactory(new DefaultMouseMotionNature(), motionTimeMsPer100Pixels);
         }
-        
+
         /// <summary>
         /// <h1>Robotic fluent movement.</h1>
         /// Custom speed, constant movement, no mistakes, no overshoots.
@@ -77,15 +72,14 @@ namespace CSNaturalMouseMotion.Util
         /// <param name="nature"> the nature for the template to be configured on </param>
         /// <param name="motionTimeMsPer100Pixels"> approximate time a movement takes per 100 pixels of travelling </param>
         /// <returns> the factory </returns>
-        public static MouseMotionFactory createDemoRobotMotionFactory(MouseMotionNature nature, long motionTimeMsPer100Pixels)
+        public static MouseMotionFactory CreateDemoRobotMotionFactory(MouseMotionNature nature, long motionTimeMsPer100Pixels)
         {
             MouseMotionFactory factory = new MouseMotionFactory(nature);
-            Flow flow = new Flow(FlowTemplates.constantSpeed());
+            Flow flow = new Flow(FlowTemplates.ConstantSpeed());
             double timePerPixel = motionTimeMsPer100Pixels / 100d;
-            //ISpeedManager manager = distance => new Pair<Flow, long>(flow, (long)(timePerPixel * distance));
-            ISpeedManager manager = new MockSpeedManager(flow, timePerPixel);
-            //factory.DeviationProvider = (totalDistanceInPixels, completionFraction) => DoublePoint.ZERO;
-            //factory.NoiseProvider = ((random, xStepSize, yStepSize) => DoublePoint.ZERO);
+            ISpeedManager manager = new SpeedManager(flow, timePerPixel);
+            factory.DeviationProvider = new MockDeviationProvider();
+            factory.NoiseProvider = new MockNoiseProvider();
 
             DefaultOvershootManager overshootManager = (DefaultOvershootManager)factory.OvershootManager;
             overshootManager.Overshoots = 0;
@@ -99,9 +93,9 @@ namespace CSNaturalMouseMotion.Util
         /// Quick movement, low noise, some deviation, lots of overshoots.
         /// </summary>
         /// <returns> the factory </returns>
-        public static MouseMotionFactory createFastGamerMotionFactory()
+        public static MouseMotionFactory CreateFastGamerMotionFactory()
         {
-            return createFastGamerMotionFactory(new DefaultMouseMotionNature());
+            return CreateFastGamerMotionFactory(new DefaultMouseMotionNature());
         }
 
         /// <summary>
@@ -109,15 +103,15 @@ namespace CSNaturalMouseMotion.Util
         /// Quick movement, low noise, some deviation, lots of overshoots. </summary>
         /// <param name="nature"> the nature for the template to be configured on </param>
         /// <returns> the factory </returns>
-        public static MouseMotionFactory createFastGamerMotionFactory(MouseMotionNature nature)
+        public static MouseMotionFactory CreateFastGamerMotionFactory(MouseMotionNature nature)
         {
             MouseMotionFactory factory = new MouseMotionFactory(nature);
             IList<Flow> flows = new List<Flow> {
-                new Flow(FlowTemplates.variatingFlow()),
-                new Flow(FlowTemplates.slowStartupFlow()),
-                new Flow(FlowTemplates.slowStartup2Flow()),
-                new Flow(FlowTemplates.adjustingFlow()),
-                new Flow(FlowTemplates.jaggedFlow())
+                new Flow(FlowTemplates.VariatingFlow()),
+                new Flow(FlowTemplates.SlowStartupFlow()),
+                new Flow(FlowTemplates.SlowStartup2Flow()),
+                new Flow(FlowTemplates.AdjustingFlow()),
+                new Flow(FlowTemplates.JaggedFlow())
             };
             DefaultSpeedManager manager = new DefaultSpeedManager(flows);
             factory.DeviationProvider = new SinusoidalDeviationProvider(SinusoidalDeviationProvider.DEFAULT_SLOPE_DIVIDER);
@@ -136,9 +130,9 @@ namespace CSNaturalMouseMotion.Util
         /// medium noise, medium speed, medium noise and deviation.
         /// </summary>
         /// <returns> the factory </returns>
-        public static MouseMotionFactory createAverageComputerUserMotionFactory()
+        public static MouseMotionFactory CreateAverageComputerUserMotionFactory()
         {
-            return createAverageComputerUserMotionFactory(new DefaultMouseMotionNature());
+            return CreateAverageComputerUserMotionFactory(new DefaultMouseMotionNature());
         }
         /// <summary>
         /// <h1>Standard computer user with average speed and movement mistakes</h1>
@@ -146,18 +140,18 @@ namespace CSNaturalMouseMotion.Util
         /// </summary>
         /// <param name="nature"> the nature for the template to be configured on </param>
         /// <returns> the factory </returns>
-        public static MouseMotionFactory createAverageComputerUserMotionFactory(MouseMotionNature nature)
+        public static MouseMotionFactory CreateAverageComputerUserMotionFactory(MouseMotionNature nature)
         {
             MouseMotionFactory factory = new MouseMotionFactory(nature);
             IList<Flow> flows = new List<Flow> {
-                new Flow(FlowTemplates.variatingFlow()),
-                new Flow(FlowTemplates.interruptedFlow()),
-                new Flow(FlowTemplates.interruptedFlow2()),
-                new Flow(FlowTemplates.slowStartupFlow()),
-                new Flow(FlowTemplates.slowStartup2Flow()),
-                new Flow(FlowTemplates.adjustingFlow()),
-                new Flow(FlowTemplates.jaggedFlow()),
-                new Flow(FlowTemplates.stoppingFlow())
+                new Flow(FlowTemplates.VariatingFlow()),
+                new Flow(FlowTemplates.InterruptedFlow()),
+                new Flow(FlowTemplates.InterruptedFlow2()),
+                new Flow(FlowTemplates.SlowStartupFlow()),
+                new Flow(FlowTemplates.SlowStartup2Flow()),
+                new Flow(FlowTemplates.AdjustingFlow()),
+                new Flow(FlowTemplates.JaggedFlow()),
+                new Flow(FlowTemplates.StoppingFlow())
             };
             DefaultSpeedManager manager = new DefaultSpeedManager(flows);
             factory.DeviationProvider = new SinusoidalDeviationProvider(SinusoidalDeviationProvider.DEFAULT_SLOPE_DIVIDER);
