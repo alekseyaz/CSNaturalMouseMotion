@@ -1,7 +1,7 @@
 ﻿using NaturalMouseMotion.Interface;
 using NaturalMouseMotion.Support;
 
-namespace CSNaturalMouseMotion.TestUtils
+namespace CSNaturalMouseMotion.Tests.TestUtils
 {
     public class MockDeviationProvider : IDeviationProvider
     {

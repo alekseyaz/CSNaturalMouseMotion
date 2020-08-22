@@ -35,7 +35,7 @@ namespace CSNaturalMouseMotion.Util
         /// <param name="modifier"> modifies the resulting values, you can use this to provide noise or amplify
         ///                 the flow characteristics. </param>
         /// <returns> the resulting flow </returns>
-        public static double[] StretchFlow(double[] flow, int targetLength, System.Func<double, double> modifier)
+        public static double[] StretchFlow(double[] flow, int targetLength, Func<double, double> modifier)
         {
             if (targetLength < flow.Length)
             {
@@ -78,8 +78,7 @@ namespace CSNaturalMouseMotion.Util
                 result = ReduceFlow(result, targetLength);
             }
 
-            return result.ToArray();
-            //return java.util.result.Select(modifier.apply).ToArray(); //TODO...
+            return result.Select(modifier).ToArray();
         }
 
         /// <summary>

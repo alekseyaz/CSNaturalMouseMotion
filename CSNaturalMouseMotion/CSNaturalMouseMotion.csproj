@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>CSNaturalMouseMotion</RootNamespace>
     <AssemblyName>CSNaturalMouseMotion</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
@@ -74,16 +74,12 @@
     <Compile Include="Support\DefaultSystemCalls.cs" />
     <Compile Include="Support\DoublePoint.cs" />
     <Compile Include="Support\Flow.cs" />
-    <Compile Include="Support\DeviationProvider.cs" />
     <Compile Include="Support\SpeedManager.cs" />
     <Compile Include="Support\MouseMotionNature.cs" />
     <Compile Include="Support\Mousemotion\Movement.cs" />
     <Compile Include="Support\Mousemotion\MovementFactory.cs" />
     <Compile Include="Support\ScreenAdjustedNature.cs" />
     <Compile Include="Support\SinusoidalDeviationProvider.cs" />
-    <Compile Include="TestUtils\MockDeviationProvider.cs" />
-    <Compile Include="TestUtils\MockNoiseProvider.cs" />
-    <Compile Include="TestUtils\MockSpeedManager.cs" />
     <Compile Include="Tools\SystemDiagnosis.cs" />
     <Compile Include="Util\FactoryTemplates.cs" />
     <Compile Include="Util\FlowTemplates.cs" />

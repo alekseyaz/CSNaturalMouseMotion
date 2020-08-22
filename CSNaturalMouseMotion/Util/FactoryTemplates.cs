@@ -78,8 +78,8 @@ namespace CSNaturalMouseMotion.Util
             Flow flow = new Flow(FlowTemplates.ConstantSpeed());
             double timePerPixel = motionTimeMsPer100Pixels / 100d;
             ISpeedManager manager = new SpeedManager(flow, timePerPixel);
-            factory.DeviationProvider = new MockDeviationProvider();
-            factory.NoiseProvider = new MockNoiseProvider();
+            //factory.DeviationProvider = new MockDeviationProvider();
+            //factory.NoiseProvider = new MockNoiseProvider();
 
             DefaultOvershootManager overshootManager = (DefaultOvershootManager)factory.OvershootManager;
             overshootManager.Overshoots = 0;

@@ -2,7 +2,7 @@
 using NaturalMouseMotion.Support;
 using System;
 
-namespace CSNaturalMouseMotion.TestUtils
+namespace CSNaturalMouseMotion.Tests.TestUtils
 {
     public class MockNoiseProvider : INoiseProvider
     {
