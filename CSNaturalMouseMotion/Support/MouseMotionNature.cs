@@ -119,10 +119,10 @@ namespace NaturalMouseMotion.Support
 
 
         /// <summary>
-        /// Get the speed manager. SpeedManager controls how long does it take to complete a movement and within that
+        /// Get the speed manager. ISpeedManager controls how long does it take to complete a movement and within that
         /// time how slow or fast the cursor is moving at a particular moment, the flow of movement. </summary>
-        /// <returns> the SpeedManager </returns>
-        public virtual ISpeedManager SpeedManager
+        /// <returns> the ISpeedManager </returns>
+        public virtual ISpeedManager ISpeedManager
         {
             get => speedManager;
             set => speedManager = value;
@@ -133,7 +133,7 @@ namespace NaturalMouseMotion.Support
         /// Get the manager that deals with overshoot properties.
         /// Overshoots provide a realistic way to simulate user trying to reach the destination with mouse, but miss. </summary>
         /// <returns> the manager </returns>
-        public virtual IOvershootManager OvershootManager
+        public virtual IOvershootManager IOvershootManager
         {
             get => overshootManager;
             set => overshootManager = value;

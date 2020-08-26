@@ -26,8 +26,8 @@ namespace NaturalMouseMotion.Support
 
             DeviationProvider = new SinusoidalDeviationProvider(SinusoidalDeviationProvider.DEFAULT_SLOPE_DIVIDER);
             NoiseProvider = new DefaultNoiseProvider(DefaultNoiseProvider.DEFAULT_NOISINESS_DIVIDER);
-            SpeedManager = new DefaultSpeedManager();
-            OvershootManager = new DefaultOvershootManager(new Random());
+            ISpeedManager = new DefaultSpeedManager();
+            IOvershootManager = new DefaultOvershootManager(new Random());
             EffectFadeSteps = EFFECT_FADE_STEPS;
             MinSteps = MIN_STEPS;
             MouseInfo = new DefaultMouseInfoAccessor();

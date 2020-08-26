@@ -41,7 +41,7 @@ namespace CSNaturalMouseMotion.Util
             factory.NoiseProvider = new DefaultNoiseProvider(1.6);
             factory.Nature.ReactionTimeBaseMs = 100;
 
-            DefaultOvershootManager overshootManager = (DefaultOvershootManager)factory.OvershootManager;
+            DefaultOvershootManager overshootManager = (DefaultOvershootManager)factory.IOvershootManager;
             overshootManager.Overshoots = 3;
             overshootManager.MinDistanceForOvershoots = 3;
             overshootManager.MinOvershootMovementMs = 400;
@@ -50,7 +50,7 @@ namespace CSNaturalMouseMotion.Util
 
             factory.Nature.TimeToStepsDivider = DefaultMouseMotionNature.TIME_TO_STEPS_DIVIDER - 2;
             manager.MouseMovementBaseTimeMs = 1000;
-            factory.SpeedManager = manager;
+            factory.ISpeedManager = manager;
             return factory;
         }
 
@@ -81,10 +81,10 @@ namespace CSNaturalMouseMotion.Util
             //factory.DeviationProvider = new MockDeviationProvider();
             //factory.NoiseProvider = new MockNoiseProvider();
 
-            DefaultOvershootManager overshootManager = (DefaultOvershootManager)factory.OvershootManager;
+            DefaultOvershootManager overshootManager = (DefaultOvershootManager)factory.IOvershootManager;
             overshootManager.Overshoots = 0;
 
-            factory.SpeedManager = manager;
+            factory.ISpeedManager = manager;
             return factory;
         }
 
@@ -119,10 +119,10 @@ namespace CSNaturalMouseMotion.Util
             factory.Nature.ReactionTimeVariationMs = 100;
             manager.MouseMovementBaseTimeMs = 250;
 
-            DefaultOvershootManager overshootManager = (DefaultOvershootManager)factory.OvershootManager;
+            DefaultOvershootManager overshootManager = (DefaultOvershootManager)factory.IOvershootManager;
             overshootManager.Overshoots = 4;
 
-            factory.SpeedManager = manager;
+            factory.ISpeedManager = manager;
             return factory;
         }
         /// <summary>
@@ -159,10 +159,10 @@ namespace CSNaturalMouseMotion.Util
             factory.Nature.ReactionTimeVariationMs = 110;
             manager.MouseMovementBaseTimeMs = 400;
 
-            DefaultOvershootManager overshootManager = (DefaultOvershootManager)factory.OvershootManager;
+            DefaultOvershootManager overshootManager = (DefaultOvershootManager)factory.IOvershootManager;
             overshootManager.Overshoots = 4;
 
-            factory.SpeedManager = manager;
+            factory.ISpeedManager = manager;
             return factory;
         }
     }

@@ -110,10 +110,10 @@ namespace NaturalMouseMotion
         /// see <seealso cref="MouseMotionNature.getSpeedManager()"/>
         /// </summary>
         /// <returns> the manager </returns>
-        public virtual ISpeedManager SpeedManager
+        public virtual ISpeedManager ISpeedManager
         {
-            get => _nature.SpeedManager;
-            set => _nature.SpeedManager = value;
+            get => _nature.ISpeedManager;
+            set => _nature.ISpeedManager = value;
         }
 
 
@@ -129,13 +129,13 @@ namespace NaturalMouseMotion
 
 
         /// <summary>
-        /// see <seealso cref="MouseMotionNature.setOvershootManager(OvershootManager)"/>
+        /// see <seealso cref="MouseMotionNature.setOvershootManager(IOvershootManager)"/>
         /// </summary>
         /// <param name="manager"> the manager </param>
-        public virtual IOvershootManager OvershootManager
+        public virtual IOvershootManager IOvershootManager
         {
-            set => _nature.OvershootManager = value;
-            get => _nature.OvershootManager;
+            set => _nature.IOvershootManager = value;
+            get => _nature.IOvershootManager;
         }
     }
 

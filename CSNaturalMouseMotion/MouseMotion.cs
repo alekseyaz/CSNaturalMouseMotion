@@ -49,13 +49,13 @@ namespace NaturalMouseMotion
             _yDest = LimitByScreenHeight(yDest);
             _random = random;
             mouseInfo = nature.MouseInfo;
-            speedManager = nature.SpeedManager;
+            speedManager = nature.ISpeedManager;
             timeToStepsDivider = nature.TimeToStepsDivider;
             minSteps = nature.MinSteps;
             effectFadeSteps = nature.EffectFadeSteps;
             reactionTimeBaseMs = nature.ReactionTimeBaseMs;
             reactionTimeVariationMs = nature.ReactionTimeVariationMs;
-            overshootManager = nature.OvershootManager;
+            overshootManager = nature.IOvershootManager;
         }
 
         /// <summary>

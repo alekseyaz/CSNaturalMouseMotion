@@ -1,101 +1,95 @@
-﻿//using System;
+﻿using CSNaturalMouseMotion.Tests.TestUtils;
+using NaturalMouseMotion.Support;
+using NUnit.Framework;
+using System;
+using System.Drawing;
 
-//namespace com.github.joonavali.naturalmouse.support.mousemotion
-//{
-//	using DefaultOvershootManager = com.github.joonasvali.naturalmouse.support.DefaultOvershootManager;
-//	using Flow = com.github.joonasvali.naturalmouse.support.Flow;
-//	using MockRandom = com.github.joonavali.naturalmouse.testutils.MockRandom;
-//	using Assert = org.junit.Assert;
-//	using Test = org.junit.Test;
+namespace CSNaturalMouseMotion.Tests.Support
+{
+    [TestFixture]
+    public class DefaultOvershootManagerTest
+    {
+        [Test]
+        public virtual void returnsSetOvershootNumber()
+        {
+            Random random = new MockRandom(new double[] { 0.1, 0.2, 0.3, 0.4, 0.5 });
+            DefaultOvershootManager manager = new DefaultOvershootManager(random);
 
+            int overshoots = manager.GetOvershoots(new Flow(new double[] { 100 }), 200, 1000);
+            Assert.AreEqual(3, overshoots);
 
-//	public class DefaultOvershootManagerTest
-//	{
-////JAVA TO C# CONVERTER TODO TASK: Most Java annotations will not have direct .NET equivalent attributes:
-////ORIGINAL LINE: @Test public void returnsSetOvershootNumber()
-//	  public virtual void returnsSetOvershootNumber()
-//	  {
-//		Random random = new MockRandom(new double[]{0.1, 0.2, 0.3, 0.4, 0.5});
-//		DefaultOvershootManager manager = new DefaultOvershootManager(random);
+            manager.Overshoots = 10;
+            overshoots = manager.GetOvershoots(new Flow(new double[] { 100 }), 200, 1000);
+            Assert.AreEqual(10, overshoots);
+        }
 
-//		int overshoots = manager.getOvershoots(new Flow(new double[]{100}), 200, 1000);
-//		Assert.AreEqual(3, overshoots);
+        [Test]
+        public virtual void overshootSizeDecreasesWithOvershootsRemaining()
+        {
+            Point overshoot1;
+            Point overshoot2;
+            Point overshoot3;
 
-//		manager.Overshoots = 10;
-//		overshoots = manager.getOvershoots(new Flow(new double[]{100}), 200, 1000);
-//		Assert.AreEqual(10, overshoots);
-//	  }
+            {
+                Random random = new MockRandom(new double[] { 0.1 });
+                DefaultOvershootManager manager = new DefaultOvershootManager(random);
+                overshoot1 = manager.GetOvershootAmount(1000, 500, 1000, 1);
+            }
 
-////JAVA TO C# CONVERTER TODO TASK: Most Java annotations will not have direct .NET equivalent attributes:
-////ORIGINAL LINE: @Test public void overshootSizeDecreasesWithOvershootsRemaining()
-//	  public virtual void overshootSizeDecreasesWithOvershootsRemaining()
-//	  {
-//		Point overshoot1;
-//		Point overshoot2;
-//		Point overshoot3;
+            {
+                Random random = new MockRandom(new double[] { 0.1 });
+                DefaultOvershootManager manager = new DefaultOvershootManager(random);
+                overshoot2 = manager.GetOvershootAmount(1000, 500, 1000, 2);
+            }
 
-//		{
-//		  Random random = new MockRandom(new double[]{0.1});
-//		  DefaultOvershootManager manager = new DefaultOvershootManager(random);
-//		  overshoot1 = manager.getOvershootAmount(1000, 500, 1000, 1);
-//		}
+            {
+                Random random = new MockRandom(new double[] { 0.1 });
+                DefaultOvershootManager manager = new DefaultOvershootManager(random);
+                overshoot3 = manager.GetOvershootAmount(1000, 500, 1000, 3);
+            }
 
-//		{
-//		  Random random = new MockRandom(new double[]{0.1});
-//		  DefaultOvershootManager manager = new DefaultOvershootManager(random);
-//		  overshoot2 = manager.getOvershootAmount(1000, 500, 1000, 2);
-//		}
+            Assert.AreEqual(overshoot3.X, overshoot1.X * 3);
+            Assert.AreEqual(overshoot2.X, overshoot1.X * 2);
+        }
 
-//		{
-//		  Random random = new MockRandom(new double[]{0.1});
-//		  DefaultOvershootManager manager = new DefaultOvershootManager(random);
-//		  overshoot3 = manager.getOvershootAmount(1000, 500, 1000, 3);
-//		}
+        [Test]
+        public virtual void nextMouseMovementTimeIsBasedOnCurrentMouseMovementMs()
+        {
+            Random random = new MockRandom(new double[] { 0.1, 0.2, 0.3, 0.4, 0.5 });
+            DefaultOvershootManager manager = new DefaultOvershootManager(random);
 
-//		Assert.AreEqual(overshoot3.x, overshoot1.x * 3);
-//		Assert.AreEqual(overshoot2.x, overshoot1.x * 2);
-//	  }
+            {
+                // DEFAULT VALUE
+                long nextTime = manager.DeriveNextMouseMovementTimeMs((long)(DefaultOvershootManager.OVERSHOOT_SPEEDUP_DIVIDER * 500), 3);
+                Assert.AreEqual(500, nextTime);
+            }
 
-////JAVA TO C# CONVERTER TODO TASK: Most Java annotations will not have direct .NET equivalent attributes:
-////ORIGINAL LINE: @Test public void nextMouseMovementTimeIsBasedOnCurrentMouseMovementMs()
-//	  public virtual void nextMouseMovementTimeIsBasedOnCurrentMouseMovementMs()
-//	  {
-//		Random random = new MockRandom(new double[]{0.1, 0.2, 0.3, 0.4, 0.5});
-//		DefaultOvershootManager manager = new DefaultOvershootManager(random);
+            {
+                manager.OvershootSpeedupDivider = 2;
+                long nextTime = manager.DeriveNextMouseMovementTimeMs(1000, 3);
+                Assert.AreEqual(500, nextTime);
+            }
 
-//		{
-//		  // DEFAULT VALUE
-//		  long nextTime = manager.deriveNextMouseMovementTimeMs((long)(DefaultOvershootManager.OVERSHOOT_SPEEDUP_DIVIDER * 500), 3);
-//		  Assert.AreEqual(500, nextTime);
-//		}
+            {
+                manager.OvershootSpeedupDivider = 4;
+                long nextTime = manager.DeriveNextMouseMovementTimeMs(1000, 3);
+                Assert.AreEqual(250, nextTime);
+            }
+        }
 
-//		{
-//		  manager.OvershootSpeedupDivider = 2;
-//		  long nextTime = manager.deriveNextMouseMovementTimeMs(1000, 3);
-//		  Assert.AreEqual(500, nextTime);
-//		}
+        [Test]
+        public virtual void nextMouseMovementTimeHasMinValue()
+        {
+            Random random = new MockRandom(new double[] { 0.1, 0.2, 0.3, 0.4, 0.5 });
+            DefaultOvershootManager manager = new DefaultOvershootManager(random);
 
-//		{
-//		  manager.OvershootSpeedupDivider = 4;
-//		  long nextTime = manager.deriveNextMouseMovementTimeMs(1000, 3);
-//		  Assert.AreEqual(250, nextTime);
-//		}
-//	  }
+            {
+                manager.OvershootSpeedupDivider = 2;
+                manager.MinOvershootMovementMs = 1500;
+                long nextTime = manager.DeriveNextMouseMovementTimeMs(1000, 3);
+                Assert.AreEqual(1500, nextTime);
+            }
+        }
+    }
 
-////JAVA TO C# CONVERTER TODO TASK: Most Java annotations will not have direct .NET equivalent attributes:
-////ORIGINAL LINE: @Test public void nextMouseMovementTimeHasMinValue()
-//	  public virtual void nextMouseMovementTimeHasMinValue()
-//	  {
-//		Random random = new MockRandom(new double[]{0.1, 0.2, 0.3, 0.4, 0.5});
-//		DefaultOvershootManager manager = new DefaultOvershootManager(random);
-
-//		{
-//		  manager.OvershootSpeedupDivider = 2;
-//		  manager.MinOvershootMovementMs = 1500;
-//		  long nextTime = manager.deriveNextMouseMovementTimeMs(1000, 3);
-//		  Assert.AreEqual(1500, nextTime);
-//		}
-//	  }
-//	}
-
-//}
+}

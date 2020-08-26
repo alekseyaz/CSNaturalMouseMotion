@@ -36,7 +36,7 @@ namespace CSNaturalMouseMotion.Tests
             factory.SystemCalls = systemCalls;
             factory.DeviationProvider = deviationProvider;
             factory.NoiseProvider = noiseProvider;
-            factory.SpeedManager = speedManager;
+            factory.ISpeedManager = speedManager;
             factory.Random = random;
 
             factory.MouseInfo = mouse;

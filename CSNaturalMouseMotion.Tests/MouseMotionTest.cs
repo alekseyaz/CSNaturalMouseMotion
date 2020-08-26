@@ -15,7 +15,7 @@ namespace CSNaturalMouseMotion.Tests
         public virtual void linearMotionNoOvershoots()
         {
             assertMousePosition(0, 0);
-            ((DefaultOvershootManager)factory.OvershootManager).Overshoots = 0;
+            ((DefaultOvershootManager)factory.IOvershootManager).Overshoots = 0;
             factory.Move(50, 50);
             assertMousePosition(50, 50);
 
@@ -41,7 +41,7 @@ namespace CSNaturalMouseMotion.Tests
         public virtual void cantMoveOutOfScreenToNegative_noOverShoots()
         {
             assertMousePosition(0, 0);
-            ((DefaultOvershootManager)factory.OvershootManager).Overshoots = 0;
+            ((DefaultOvershootManager)factory.IOvershootManager).Overshoots = 0;
             factory.Move(-50, -50);
 
             List<Point> points = mouse.MouseMovements;
@@ -59,7 +59,7 @@ namespace CSNaturalMouseMotion.Tests
             Assert.AreNotEqual(SCREEN_WIDTH, SCREEN_HEIGHT);
 
             assertMousePosition(0, 0);
-            ((DefaultOvershootManager)factory.OvershootManager).Overshoots = 0;
+            ((DefaultOvershootManager)factory.IOvershootManager).Overshoots = 0;
             factory.Move(SCREEN_WIDTH + 100, SCREEN_HEIGHT - 100);
 
             List<Point> points = mouse.MouseMovements;
@@ -77,7 +77,7 @@ namespace CSNaturalMouseMotion.Tests
             Assert.AreNotEqual(SCREEN_WIDTH, SCREEN_HEIGHT);
 
             assertMousePosition(0, 0);
-            ((DefaultOvershootManager)factory.OvershootManager).Overshoots = 100;
+            ((DefaultOvershootManager)factory.IOvershootManager).Overshoots = 100;
             factory.Move(SCREEN_WIDTH - 1, SCREEN_HEIGHT - 100);
 
             List<Point> points = mouse.MouseMovements;
@@ -95,7 +95,7 @@ namespace CSNaturalMouseMotion.Tests
             Assert.AreNotEqual(SCREEN_WIDTH, SCREEN_HEIGHT);
 
             assertMousePosition(0, 0);
-            ((DefaultOvershootManager)factory.OvershootManager).Overshoots = 0;
+            ((DefaultOvershootManager)factory.IOvershootManager).Overshoots = 0;
             factory.Move(SCREEN_WIDTH - 100, SCREEN_HEIGHT + 100);
 
             List<Point> points = mouse.MouseMovements;
@@ -113,7 +113,7 @@ namespace CSNaturalMouseMotion.Tests
             Assert.AreNotEqual(SCREEN_WIDTH, SCREEN_HEIGHT);
 
             assertMousePosition(0, 0);
-            ((DefaultOvershootManager)factory.OvershootManager).Overshoots = 100;
+            ((DefaultOvershootManager)factory.IOvershootManager).Overshoots = 100;
             factory.Move(SCREEN_WIDTH - 100, SCREEN_HEIGHT - 1);
 
             List<Point> points = mouse.MouseMovements;
@@ -132,7 +132,7 @@ namespace CSNaturalMouseMotion.Tests
             assertMousePosition(50, 50);
 
             // Moving mouse to 0,0 with large amount of overshoots, so it would be likely to hit negative if possible.
-            ((DefaultOvershootManager)factory.OvershootManager).Overshoots = 100;
+            ((DefaultOvershootManager)factory.IOvershootManager).Overshoots = 100;
             factory.Move(0, 0);
 
             List<Point> points = mouse.MouseMovements;

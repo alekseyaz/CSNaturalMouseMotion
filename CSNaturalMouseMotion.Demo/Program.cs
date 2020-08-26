@@ -63,12 +63,12 @@ namespace NaturalMouseMotion.Demo
                 //factory.Nature.ReactionTimeVariationMs = 110;
                 //manager.MouseMovementBaseTimeMs = 400;
 
-                //DefaultOvershootManager overshootManager = (DefaultOvershootManager)factory.OvershootManager;
+                //DefaultOvershootManager overshootManager = (DefaultOvershootManager)factory.IOvershootManager;
                 //overshootManager.Overshoots = 4;
 
                 //factory.Nature.MinSteps = 1;
                 //factory.Nature.TimeToStepsDivider = 70;
-                factory.SpeedManager = manager;
+                factory.ISpeedManager = manager;
                 return factory;
             }
 

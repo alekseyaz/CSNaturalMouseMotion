@@ -6,20 +6,17 @@ namespace CSNaturalMouseMotion.Tests.TestUtils
 {
     public class MockSpeedManager : ISpeedManager
     {
+        private readonly long _time;
 
-        //Flow flow;
-        //double timePerPixel;
-
-        //public MockSpeedManager(Flow flow, double timePerPixel)
-        //{
-        //    this.flow = flow;
-        //    this.timePerPixel = timePerPixel;
-        //}
+        public MockSpeedManager(long time = 10L)
+        {
+            _time = time;
+        }
 
         public Pair<Flow, long> GetFlowWithTime(double distance)
         {
             double[] characteristics = { 100 };
-            return new Pair<Flow, long>(new Flow(characteristics), 10L);
+            return new Pair<Flow, long>(new Flow(characteristics), _time);
         }
     }
 
