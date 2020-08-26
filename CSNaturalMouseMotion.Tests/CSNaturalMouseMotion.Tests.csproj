@@ -69,6 +69,7 @@
     <Compile Include="TestUtils\MockSpeedManager.cs" />
     <Compile Include="TestUtils\MockSystemCalls.cs" />
     <Compile Include="Util\ArrayExtensions.cs" />
+    <Compile Include="Util\ArrayExtensionsTests.cs" />
     <Compile Include="Util\MathUtilTest.cs" />
   </ItemGroup>
   <ItemGroup>
