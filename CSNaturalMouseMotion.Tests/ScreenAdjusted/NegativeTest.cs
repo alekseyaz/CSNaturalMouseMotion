@@ -14,7 +14,7 @@ namespace CSNaturalMouseMotion.Tests.ScreenAdjusted
         internal MockMouse mouse;
 
         [SetUp]
-        public virtual void setup()
+        public virtual void Setup()
         {
             factory = new MouseMotionFactory();
             factory.Nature = new ScreenAdjustedNature(new Size(1800, 1500), new Point(-1000, -1000));
@@ -29,7 +29,7 @@ namespace CSNaturalMouseMotion.Tests.ScreenAdjusted
         }
 
         [Test]
-        public virtual void testOffsetAppliesToMouseMovement()
+        public virtual void TestOffsetAppliesToMouseMovement()
         {
             factory.Move(500, 100);
 
@@ -40,7 +40,7 @@ namespace CSNaturalMouseMotion.Tests.ScreenAdjusted
 
 
         [Test]
-        public virtual void testOffsetLimitScreenOnSmallSide()
+        public virtual void TestOffsetLimitScreenOnSmallSide()
         {
             // Try to move out of the specified screen
             factory.Move(-1, -1);

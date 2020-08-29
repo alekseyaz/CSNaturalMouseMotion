@@ -8,17 +8,17 @@ namespace CSNaturalMouseMotion.Tests.TestUtils
     /// </summary>
     public class MockRandom : Random
     {
-        private readonly double[] doubles;
+        private readonly double[] _doubles;
         private int i = 0;
 
         public MockRandom(double[] doubles)
         {
-            this.doubles = doubles;
+            _doubles = doubles;
         }
 
         public override double NextDouble()
         {
-            return doubles[i++ % doubles.Length];
+            return _doubles[i++ % _doubles.Length];
         }
     }
 

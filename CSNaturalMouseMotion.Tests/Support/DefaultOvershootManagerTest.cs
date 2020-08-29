@@ -10,7 +10,7 @@ namespace CSNaturalMouseMotion.Tests.Support
     public class DefaultOvershootManagerTest
     {
         [Test]
-        public virtual void returnsSetOvershootNumber()
+        public virtual void ReturnsSetOvershootNumber()
         {
             Random random = new MockRandom(new double[] { 0.1, 0.2, 0.3, 0.4, 0.5 });
             DefaultOvershootManager manager = new DefaultOvershootManager(random);
@@ -24,7 +24,7 @@ namespace CSNaturalMouseMotion.Tests.Support
         }
 
         [Test]
-        public virtual void overshootSizeDecreasesWithOvershootsRemaining()
+        public virtual void OvershootSizeDecreasesWithOvershootsRemaining()
         {
             Point overshoot1;
             Point overshoot2;
@@ -53,7 +53,7 @@ namespace CSNaturalMouseMotion.Tests.Support
         }
 
         [Test]
-        public virtual void nextMouseMovementTimeIsBasedOnCurrentMouseMovementMs()
+        public virtual void NextMouseMovementTimeIsBasedOnCurrentMouseMovementMs()
         {
             Random random = new MockRandom(new double[] { 0.1, 0.2, 0.3, 0.4, 0.5 });
             DefaultOvershootManager manager = new DefaultOvershootManager(random);
@@ -78,7 +78,7 @@ namespace CSNaturalMouseMotion.Tests.Support
         }
 
         [Test]
-        public virtual void nextMouseMovementTimeHasMinValue()
+        public virtual void NextMouseMovementTimeHasMinValue()
         {
             Random random = new MockRandom(new double[] { 0.1, 0.2, 0.3, 0.4, 0.5 });
             DefaultOvershootManager manager = new DefaultOvershootManager(random);

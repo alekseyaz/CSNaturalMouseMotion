@@ -12,12 +12,12 @@ namespace CSNaturalMouseMotion.Tests
 
 
         [Test]
-        public virtual void linearMotionNoOvershoots()
+        public virtual void LinearMotionNoOvershoots()
         {
-            assertMousePosition(0, 0);
+            AssertMousePosition(0, 0);
             ((DefaultOvershootManager)factory.IOvershootManager).Overshoots = 0;
             factory.Move(50, 50);
-            assertMousePosition(50, 50);
+            AssertMousePosition(50, 50);
 
             List<Point> points = mouse.MouseMovements;
             // The chosen 5 is 'good enough value' for 0,0 -> 50,50 for this test. we don't expect it to
@@ -38,9 +38,9 @@ namespace CSNaturalMouseMotion.Tests
 
 
         [Test]
-        public virtual void cantMoveOutOfScreenToNegative_noOverShoots()
+        public virtual void CantMoveOutOfScreenToNegative_noOverShoots()
         {
-            assertMousePosition(0, 0);
+            AssertMousePosition(0, 0);
             ((DefaultOvershootManager)factory.IOvershootManager).Overshoots = 0;
             factory.Move(-50, -50);
 
@@ -49,16 +49,16 @@ namespace CSNaturalMouseMotion.Tests
             {
                 Assert.True(p.X >= 0 && p.Y >= 0);
             }
-            assertMousePosition(0, 0);
+            AssertMousePosition(0, 0);
         }
 
         [Test]
-        public virtual void cantMoveUpToScreenWidth_noOvershoots()
+        public virtual void CantMoveUpToScreenWidth_noOvershoots()
         {
             // This helps to make sure that the test detects if used height instead of width or vice versa in implementation
             Assert.AreNotEqual(SCREEN_WIDTH, SCREEN_HEIGHT);
 
-            assertMousePosition(0, 0);
+            AssertMousePosition(0, 0);
             ((DefaultOvershootManager)factory.IOvershootManager).Overshoots = 0;
             factory.Move(SCREEN_WIDTH + 100, SCREEN_HEIGHT - 100);
 
@@ -67,16 +67,16 @@ namespace CSNaturalMouseMotion.Tests
             {
                 Assert.True(p.X < SCREEN_WIDTH);
             }
-            assertMousePosition(SCREEN_WIDTH - 1, SCREEN_HEIGHT - 100);
+            AssertMousePosition(SCREEN_WIDTH - 1, SCREEN_HEIGHT - 100);
         }
 
         [Test]
-        public virtual void cantMoveUpToScreenWidth_withOvershoots()
+        public virtual void CantMoveUpToScreenWidth_withOvershoots()
         {
             // This helps to make sure that the test detects if used height instead of width or vice versa in implementation
             Assert.AreNotEqual(SCREEN_WIDTH, SCREEN_HEIGHT);
 
-            assertMousePosition(0, 0);
+            AssertMousePosition(0, 0);
             ((DefaultOvershootManager)factory.IOvershootManager).Overshoots = 100;
             factory.Move(SCREEN_WIDTH - 1, SCREEN_HEIGHT - 100);
 
@@ -85,16 +85,16 @@ namespace CSNaturalMouseMotion.Tests
             {
                 Assert.True(p.X < SCREEN_WIDTH);
             }
-            assertMousePosition(SCREEN_WIDTH - 1, SCREEN_HEIGHT - 100);
+            AssertMousePosition(SCREEN_WIDTH - 1, SCREEN_HEIGHT - 100);
         }
 
         [Test]
-        public virtual void cantMoveUpToScreenHeight_noOvershoots()
+        public virtual void CantMoveUpToScreenHeight_noOvershoots()
         {
             // This helps to make sure that the test detects if used height instead of width or vice versa in implementation
             Assert.AreNotEqual(SCREEN_WIDTH, SCREEN_HEIGHT);
 
-            assertMousePosition(0, 0);
+            AssertMousePosition(0, 0);
             ((DefaultOvershootManager)factory.IOvershootManager).Overshoots = 0;
             factory.Move(SCREEN_WIDTH - 100, SCREEN_HEIGHT + 100);
 
@@ -103,16 +103,16 @@ namespace CSNaturalMouseMotion.Tests
             {
                 Assert.True(p.Y < SCREEN_HEIGHT);
             }
-            assertMousePosition(SCREEN_WIDTH - 100, SCREEN_HEIGHT - 1);
+            AssertMousePosition(SCREEN_WIDTH - 100, SCREEN_HEIGHT - 1);
         }
 
         [Test]
-        public virtual void cantMoveUpToScreenHeight_withOvershoots()
+        public virtual void CantMoveUpToScreenHeight_withOvershoots()
         {
             // This helps to make sure that the test detects if used height instead of width or vice versa in implementation
             Assert.AreNotEqual(SCREEN_WIDTH, SCREEN_HEIGHT);
 
-            assertMousePosition(0, 0);
+            AssertMousePosition(0, 0);
             ((DefaultOvershootManager)factory.IOvershootManager).Overshoots = 100;
             factory.Move(SCREEN_WIDTH - 100, SCREEN_HEIGHT - 1);
 
@@ -121,15 +121,15 @@ namespace CSNaturalMouseMotion.Tests
             {
                 Assert.True(p.Y < SCREEN_HEIGHT);
             }
-            assertMousePosition(SCREEN_WIDTH - 100, SCREEN_HEIGHT - 1);
+            AssertMousePosition(SCREEN_WIDTH - 100, SCREEN_HEIGHT - 1);
         }
 
         [Test]
-        public virtual void cantMoveOutOfScreenToNegative_withOverShoots()
+        public virtual void CantMoveOutOfScreenToNegative_withOverShoots()
         {
             // setup mouse to 50,50
-            mouse.mouseMove(50, 50);
-            assertMousePosition(50, 50);
+            mouse.MouseMove(50, 50);
+            AssertMousePosition(50, 50);
 
             // Moving mouse to 0,0 with large amount of overshoots, so it would be likely to hit negative if possible.
             ((DefaultOvershootManager)factory.IOvershootManager).Overshoots = 100;
@@ -140,7 +140,7 @@ namespace CSNaturalMouseMotion.Tests
             {
                 Assert.True(p.X >= 0 && p.Y >= 0);
             }
-            assertMousePosition(0, 0);
+            AssertMousePosition(0, 0);
         }
 
 

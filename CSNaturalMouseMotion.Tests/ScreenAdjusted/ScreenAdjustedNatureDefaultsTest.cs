@@ -21,7 +21,7 @@ namespace CSNaturalMouseMotion.Tests.ScreenAdjusted
         private MockMouse mouse;
 
         [SetUp]
-        public virtual void setup()
+        public virtual void Setup()
         {
             mouse = new MockMouse(60, 60);
             DefaultSystemCalls mockSystemCalls = new MockSystemCalls(mouse, 800, 500);
@@ -47,7 +47,7 @@ namespace CSNaturalMouseMotion.Tests.ScreenAdjusted
         }
 
         [Test]
-        public virtual void testOffsetAppliesToMouseMovement()
+        public virtual void TestOffsetAppliesToMouseMovement()
         {
             factory.Move(50, 50);
 
@@ -64,7 +64,7 @@ namespace CSNaturalMouseMotion.Tests.ScreenAdjusted
         }
 
         [Test]
-        public virtual void testDimensionsLimitScreenOnLargeSide()
+        public virtual void TestDimensionsLimitScreenOnLargeSide()
         {
             // Arbitrary large movement attempt: (60, 60) -> (1060, 1060)
             factory.Move(1000, 1000);
@@ -77,7 +77,7 @@ namespace CSNaturalMouseMotion.Tests.ScreenAdjusted
         }
 
         [Test]
-        public virtual void testOffsetLimitScreenOnSmallSide()
+        public virtual void TestOffsetLimitScreenOnSmallSide()
         {
             // Try to move out of the specified screen
             factory.Move(-1, -1);

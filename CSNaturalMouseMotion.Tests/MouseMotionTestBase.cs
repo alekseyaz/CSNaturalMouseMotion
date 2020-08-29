@@ -42,7 +42,7 @@ namespace CSNaturalMouseMotion.Tests
             factory.MouseInfo = mouse;
         }
 
-        protected internal virtual void assertMousePosition(int x, int y)
+        protected internal virtual void AssertMousePosition(int x, int y)
         {
             Point pos = mouse.MousePosition;
             Assert.AreEqual(Convert.ToDouble(x), Convert.ToDouble(pos.X), SMALL_DELTA);

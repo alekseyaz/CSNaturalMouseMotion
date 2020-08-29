@@ -14,7 +14,7 @@ namespace CSNaturalMouseMotion.Tests.ScreenAdjusted
         internal MockMouse mouse;
 
         [SetUp]
-        public virtual void setup()
+        public virtual void Setup()
         {
             factory = new MouseMotionFactory();
             factory.Nature = new ScreenAdjustedNature(new Size(1800, 1500), new Point(0, 0));
@@ -29,7 +29,7 @@ namespace CSNaturalMouseMotion.Tests.ScreenAdjusted
         }
 
         [Test]
-        public virtual void testScreenSizeIsExtended()
+        public virtual void TestScreenSizeIsExtended()
         {
             factory.Move(1800, 1500);
 

@@ -11,7 +11,7 @@ namespace CSNaturalMouseMotion.Tests
         private const double SMALL_DELTA = 10e-6;
 
         [Test]
-        public virtual void constantCharacteristicsGetNormalizedTo100()
+        public virtual void ConstantCharacteristicsGetNormalizedTo100()
         {
             double[] characteristics = new double[100];
             characteristics.Fill(500d);
@@ -29,7 +29,7 @@ namespace CSNaturalMouseMotion.Tests
         }
 
         [Test]
-        public virtual void constantCharacteristicsGetNormalizedTo100withLargeArray()
+        public virtual void ConstantCharacteristicsGetNormalizedTo100withLargeArray()
         {
             double[] characteristics = new double[1000];
             characteristics.Fill(500d);
@@ -47,7 +47,7 @@ namespace CSNaturalMouseMotion.Tests
         }
 
         [Test]
-        public virtual void constantCharacteristicsGetNormalizedTo100fromLowValues()
+        public virtual void ConstantCharacteristicsGetNormalizedTo100fromLowValues()
         {
             double[] characteristics = new double[100];
             characteristics.Fill(5);
@@ -65,7 +65,7 @@ namespace CSNaturalMouseMotion.Tests
         }
 
         [Test]
-        public virtual void characteristicsGetNormalizedToAverage100()
+        public virtual void CharacteristicsGetNormalizedToAverage100()
         {
             double[] characteristics = new double[] { 1, 2, 3, 4, 5 };
 
@@ -87,7 +87,7 @@ namespace CSNaturalMouseMotion.Tests
         }
 
         [Test]
-        public virtual void stepsAddUpToDistance_accelerating()
+        public virtual void StepsAddUpToDistance_accelerating()
         {
             double[] characteristics = new double[] { 1, 2, 3, 4, 5 };
             Flow flow = new Flow(characteristics);
@@ -101,7 +101,7 @@ namespace CSNaturalMouseMotion.Tests
         }
 
         [Test]
-        public virtual void stepsAddUpToDistance_decelerating()
+        public virtual void StepsAddUpToDistance_decelerating()
         {
             double[] characteristics = new double[] { 5, 4, 3, 2, 1 };
             Flow flow = new Flow(characteristics);
@@ -115,7 +115,7 @@ namespace CSNaturalMouseMotion.Tests
         }
 
         [Test]
-        public virtual void stepsAddUpToDistance_characteristics_not_dividable_by_steps_1()
+        public virtual void StepsAddUpToDistance_characteristics_not_dividable_by_steps_1()
         {
             double[] characteristics = new double[] { 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5 };
             Flow flow = new Flow(characteristics);
@@ -129,7 +129,7 @@ namespace CSNaturalMouseMotion.Tests
         }
 
         [Test]
-        public virtual void stepsAddUpToDistance_characteristics_not_dividable_by_steps_2()
+        public virtual void StepsAddUpToDistance_characteristics_not_dividable_by_steps_2()
         {
             double[] characteristics = new double[] { 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5, 6, 6, 6 };
             Flow flow = new Flow(characteristics);
@@ -143,7 +143,7 @@ namespace CSNaturalMouseMotion.Tests
         }
 
         [Test]
-        public virtual void stepsAddUpToDistance_characteristics_not_dividable_by_steps_3()
+        public virtual void StepsAddUpToDistance_characteristics_not_dividable_by_steps_3()
         {
             double[] characteristics = new double[] { 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5, 6, 6, 6, 7, 7 };
             Flow flow = new Flow(characteristics);
@@ -155,7 +155,7 @@ namespace CSNaturalMouseMotion.Tests
         }
 
         [Test]
-        public virtual void stepsAddUpToDistance_characteristics_array_smaller_than_steps_not_dividable()
+        public virtual void StepsAddUpToDistance_characteristics_array_smaller_than_steps_not_dividable()
         {
             double[] characteristics = new double[] { 1, 2, 3 };
             Flow flow = new Flow(characteristics);
@@ -169,7 +169,7 @@ namespace CSNaturalMouseMotion.Tests
         }
 
         [Test]
-        public virtual void stepsAddUpToDistance_constantFlow()
+        public virtual void StepsAddUpToDistance_constantFlow()
         {
             double[] characteristics = new double[] { 10, 10, 10, 10, 10 };
             Flow flow = new Flow(characteristics);
@@ -183,7 +183,7 @@ namespace CSNaturalMouseMotion.Tests
         }
 
         [Test]
-        public virtual void stepsAddUpToDistance_constantFlow_characteristics_to_steps_not_dividable()
+        public virtual void StepsAddUpToDistance_constantFlow_characteristics_to_steps_not_dividable()
         {
             double[] characteristics = new double[] { 10, 10, 10, 10, 10, 10 };
             Flow flow = new Flow(characteristics);

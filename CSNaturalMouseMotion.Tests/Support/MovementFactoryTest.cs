@@ -16,10 +16,10 @@ namespace CSNaturalMouseMotion.Tests.Support
         private const double SMALL_DELTA = 0.00000000001;
 
         [Test]
-        public virtual void testSingleMovement()
+        public virtual void TestSingleMovement()
         {
             ISpeedManager speedManager = new MockSpeedManager(100);
-            IOvershootManager overshootManager = createNoOvershootManager();
+            IOvershootManager overshootManager = CreateNoOvershootManager();
             MovementFactory factory = new MovementFactory(50, 51, speedManager, overshootManager, new Size(500, 500));
 
             LinkedList<Movement> movements = factory.CreateMovements(new Point(100, 100));
@@ -33,10 +33,10 @@ namespace CSNaturalMouseMotion.Tests.Support
         }
 
         [Test]
-        public virtual void testMultipleMovement()
+        public virtual void TestMultipleMovement()
         {
             ISpeedManager speedManager = new MockSpeedManager(100);
-            IOvershootManager overshootManager = createMultiOvershootManager();
+            IOvershootManager overshootManager = CreateMultiOvershootManager();
             MovementFactory factory = new MovementFactory(50, 150, speedManager, overshootManager, new Size(500, 500));
 
             LinkedList<Movement> movements = factory.CreateMovements(new Point(100, 100));
@@ -75,10 +75,10 @@ namespace CSNaturalMouseMotion.Tests.Support
         }
 
         [Test]
-        public virtual void testZeroOffsetOvershootsRemovedFromEnd()
+        public virtual void TestZeroOffsetOvershootsRemovedFromEnd()
         {
             ISpeedManager speedManager = new MockSpeedManager(64);
-            IOvershootManager overshootManager = createOvershootManagerWithZeroOffsets();
+            IOvershootManager overshootManager = CreateOvershootManagerWithZeroOffsets();
             MovementFactory factory = new MovementFactory(50, 150, speedManager, overshootManager, new Size(500, 500));
 
             LinkedList<Movement> movements = factory.CreateMovements(new Point(100, 100));
@@ -126,10 +126,10 @@ namespace CSNaturalMouseMotion.Tests.Support
         }
 
         [Test]
-        public virtual void testZeroOffsetOvershootsRemovedFromEndIfAllZero()
+        public virtual void TestZeroOffsetOvershootsRemovedFromEndIfAllZero()
         {
             ISpeedManager speedManager = new MockSpeedManager(100);
-            IOvershootManager overshootManager = createOvershootManagerWithAllZeroOffsets();
+            IOvershootManager overshootManager = CreateOvershootManagerWithAllZeroOffsets();
             MovementFactory factory = new MovementFactory(50, 150, speedManager, overshootManager, new Size(500, 500));
 
             LinkedList<Movement> movements = factory.CreateMovements(new Point(100, 100));
@@ -143,7 +143,7 @@ namespace CSNaturalMouseMotion.Tests.Support
             Assert.That(new double[] { 100 }, Is.EqualTo(movements.First.Value.flow.FlowCharacteristics).Within(SMALL_DELTA));
         }
 
-        private IOvershootManager createNoOvershootManager()
+        private IOvershootManager CreateNoOvershootManager()
         {
             return new OvershootManagerAnonymousInnerClass(this);
         }
@@ -173,7 +173,7 @@ namespace CSNaturalMouseMotion.Tests.Support
             }
         }
 
-        private IOvershootManager createMultiOvershootManager()
+        private IOvershootManager CreateMultiOvershootManager()
         {
             return new OvershootManagerAnonymousInnerClass2(this);
         }
@@ -213,7 +213,7 @@ namespace CSNaturalMouseMotion.Tests.Support
             }
         }
 
-        private IOvershootManager createOvershootManagerWithZeroOffsets()
+        private IOvershootManager CreateOvershootManagerWithZeroOffsets()
         {
             return new OvershootManagerAnonymousInnerClass3(this);
         }
@@ -256,7 +256,7 @@ namespace CSNaturalMouseMotion.Tests.Support
             }
         }
 
-        private IOvershootManager createOvershootManagerWithAllZeroOffsets()
+        private IOvershootManager CreateOvershootManagerWithAllZeroOffsets()
         {
             return new OvershootManagerAnonymousInnerClass4(this);
         }

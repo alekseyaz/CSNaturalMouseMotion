@@ -19,7 +19,7 @@ namespace CSNaturalMouseMotion.Tests.TestUtils
             mouseMovements.Add(new Point(posX, posY));
         }
 
-        public virtual void mouseMove(int x, int y)
+        public virtual void MouseMove(int x, int y)
         {
             lock (this)
             {

@@ -28,7 +28,7 @@ namespace CSNaturalMouseMotion.Tests.TestUtils
 
         public override void SetMousePosition(int x, int y)
         {
-            _mockMouse.mouseMove(x, y);
+            _mockMouse.MouseMove(x, y);
         }
     }
 }
