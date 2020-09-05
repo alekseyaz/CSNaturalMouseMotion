@@ -1,17 +1,9 @@
 ﻿using System.Collections.Generic;
 
-namespace CSNaturalMouseMotion
+namespace Zaac.CSNaturalMouseMotion.Extensions
 {
-    public static class Exception
+    public static class LinkedListExtensions
     {
-        public static void AddAll<T>(this ICollection<T> result, ICollection<T> fromSubTree)
-        {
-            foreach (T dict in fromSubTree)
-            {
-                result.Add(dict);
-            }
-        }
-
         public static IEnumerable<T> GetReverse<T>(this LinkedList<T> list)
         {
             var el = list.Last;

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CSNaturalMouseMotion.Tests.TestUtils
+namespace Zaac.CSNaturalMouseMotion.Tests.TestUtils
 {
 
     /// <summary>

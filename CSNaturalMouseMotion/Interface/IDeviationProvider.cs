@@ -1,6 +1,6 @@
-﻿using NaturalMouseMotion.Support;
+﻿using Zaac.CSNaturalMouseMotion.Support;
 
-namespace NaturalMouseMotion.Interface
+namespace Zaac.CSNaturalMouseMotion.Interface
 {
     /// <summary>
     /// Creates arcs or deviation into mouse movement.

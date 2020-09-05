@@ -1,10 +1,10 @@
-﻿using NaturalMouseMotion.Support;
+﻿using Zaac.CSNaturalMouseMotion.Support;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using NUnit.Framework;
 
-namespace CSNaturalMouseMotion.Tests
+namespace Zaac.CSNaturalMouseMotion.Tests
 {
     [TestFixture]
     public class MouseMotionTest : MouseMotionTestBase

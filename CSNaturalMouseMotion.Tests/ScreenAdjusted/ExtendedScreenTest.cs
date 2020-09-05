@@ -1,11 +1,11 @@
-﻿using CSNaturalMouseMotion.Tests.TestUtils;
-using NaturalMouseMotion;
-using NaturalMouseMotion.Support;
+﻿using Zaac.CSNaturalMouseMotion.Tests.TestUtils;
+using Zaac.CSNaturalMouseMotion;
+using Zaac.CSNaturalMouseMotion.Support;
 using NUnit.Framework;
 using System.Collections.Generic;
 using System.Drawing;
 
-namespace CSNaturalMouseMotion.Tests.ScreenAdjusted
+namespace Zaac.CSNaturalMouseMotion.Tests.ScreenAdjusted
 {
     [TestFixture]
     public class ExtendedScreenTest
@@ -23,7 +23,7 @@ namespace CSNaturalMouseMotion.Tests.ScreenAdjusted
             factory.SystemCalls = new MockSystemCalls(mouse, 800, 500);
             factory.NoiseProvider = new MockNoiseProvider();
             factory.DeviationProvider = new MockDeviationProvider();
-            factory.ISpeedManager = new MockSpeedManager();
+            factory.SpeedManager = new MockSpeedManager();
             factory.Random = new MockRandom(new double[] { 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1 });
             factory.MouseInfo = mouse;
         }

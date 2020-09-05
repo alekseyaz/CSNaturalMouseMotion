@@ -1,8 +1,8 @@
-﻿using NaturalMouseMotion.Interface;
-using NaturalMouseMotion.Support;
-using System;
+﻿using System;
+using Zaac.CSNaturalMouseMotion.Interface;
+using Zaac.CSNaturalMouseMotion.Support;
 
-namespace NaturalMouseMotion
+namespace Zaac.CSNaturalMouseMotion
 {
     /// <summary>
     /// This class should be used for creating new MouseMotion-s
@@ -10,8 +10,10 @@ namespace NaturalMouseMotion
     /// </summary>
     public class MouseMotionFactory
     {
+        private static MouseMotionFactory instance = null;
+        private static readonly object padlock = new object();
 
-        private MouseMotionNature _nature; //instance
+        private MouseMotionNature _nature;
         private Random _random = new Random();
 
         public MouseMotionFactory(MouseMotionNature nature)
@@ -22,6 +24,25 @@ namespace NaturalMouseMotion
         public MouseMotionFactory() : this(new DefaultMouseMotionNature())
         {
         }
+
+        public static MouseMotionFactory Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    lock (padlock)
+                    {
+                        if (instance == null)
+                        {
+                            instance = new MouseMotionFactory();
+                        }
+                    }
+                }
+                return instance;
+            }
+        }
+
 
         /// <summary>
         /// Builds the MouseMotion, which can be executed instantly or saved for later.
@@ -110,10 +131,10 @@ namespace NaturalMouseMotion
         /// see <seealso cref="MouseMotionNature.getSpeedManager()"/>
         /// </summary>
         /// <returns> the manager </returns>
-        public virtual ISpeedManager ISpeedManager
+        public virtual ISpeedManager SpeedManager
         {
-            get => _nature.ISpeedManager;
-            set => _nature.ISpeedManager = value;
+            get => _nature.SpeedManager;
+            set => _nature.SpeedManager = value;
         }
 
 

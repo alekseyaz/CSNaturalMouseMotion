@@ -1,4 +1,4 @@
-﻿namespace NaturalMouseMotion.Interface
+﻿namespace Zaac.CSNaturalMouseMotion.Interface
 {
     /// <summary>
     /// Use to observe mouse movement in MouseMotion

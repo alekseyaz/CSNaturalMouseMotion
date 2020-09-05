@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CSNaturalMouseMotion.Tests.Util
+namespace Zaac.CSNaturalMouseMotion.Tests.Util
 {
     public static class ArrayExtensions
     {

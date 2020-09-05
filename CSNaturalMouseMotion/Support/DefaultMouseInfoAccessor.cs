@@ -1,8 +1,8 @@
-﻿using NaturalMouseMotion.Interface;
-using System.Drawing;
+﻿using System.Drawing;
 using System.Runtime.InteropServices;
+using Zaac.CSNaturalMouseMotion.Interface;
 
-namespace NaturalMouseMotion.Support
+namespace Zaac.CSNaturalMouseMotion.Support
 {
     public class DefaultMouseInfoAccessor : IMouseInfoAccessor
     {

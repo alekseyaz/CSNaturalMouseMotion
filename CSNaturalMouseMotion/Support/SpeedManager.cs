@@ -1,8 +1,8 @@
-﻿using CSNaturalMouseMotion.Util;
-using NaturalMouseMotion.Interface;
-using NaturalMouseMotion.Support;
+﻿using Zaac.CSNaturalMouseMotion.Interface;
+using Zaac.CSNaturalMouseMotion.Support;
+using Zaac.CSNaturalMouseMotion.Util;
 
-namespace CSNaturalMouseMotion.TestUtils
+namespace Zaac.CSNaturalMouseMotion.TestUtils
 {
     public class SpeedManager : ISpeedManager
     {

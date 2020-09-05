@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{6A119D44-2E48-4575-AC31-C221F3C5C59E}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>NaturalMouseMotion.Tests</RootNamespace>
-    <AssemblyName>NaturalMouseMotion.Tests</AssemblyName>
+    <RootNamespace>Zaac.NaturalMouseMotion.Demo</RootNamespace>
+    <AssemblyName>Zaac.NaturalMouseMotion.Demo</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>

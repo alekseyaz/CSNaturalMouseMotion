@@ -1,18 +1,18 @@
-﻿using CSNaturalMouseMotion.Tests.TestUtils;
-using NaturalMouseMotion;
-using NaturalMouseMotion.Support;
+﻿using Zaac.CSNaturalMouseMotion.Tests.TestUtils;
+using Zaac.CSNaturalMouseMotion;
+using Zaac.CSNaturalMouseMotion.Support;
 using NUnit.Framework;
 using System.Collections.Generic;
 using System.Drawing;
 using Moq;
 
-namespace CSNaturalMouseMotion.Tests.ScreenAdjusted
+namespace Zaac.CSNaturalMouseMotion.Tests.ScreenAdjusted
 {
 
     /// <summary>
-    /// This should run same tests as ScreenAdjustedNatureTest with difference in setup.
-    /// These tests verify that the offsets and dimensions are properly set when user does not explicitly
-    /// set MouseInfoAccessor and SystemCalls, but rely on the default version in DefaultMouseMotionNature
+    /// Это должно запустить те же тесты, что и ScreenAdjustedNatureTest, но с разницей в настройке.
+    /// Эти тесты проверяют правильность установки смещений и размеров, когда пользователь явно не
+    /// устанавливает MouseInfoAccessor и SystemCalls, а полагается на версию по умолчанию в DefaultMouseMotionNature.
     /// </summary>
     [TestFixture]
     public class ScreenAdjustedNatureDefaultsTest
@@ -41,7 +41,7 @@ namespace CSNaturalMouseMotion.Tests.ScreenAdjusted
             ((DefaultOvershootManager)factory.IOvershootManager).Overshoots = 0;
             factory.NoiseProvider = new MockNoiseProvider();
             factory.DeviationProvider = new MockDeviationProvider();
-            factory.ISpeedManager = new MockSpeedManager();
+            factory.SpeedManager = new MockSpeedManager();
             factory.Random = new MockRandom(new double[] { 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1 });
 
         }
@@ -66,25 +66,25 @@ namespace CSNaturalMouseMotion.Tests.ScreenAdjusted
         [Test]
         public virtual void TestDimensionsLimitScreenOnLargeSide()
         {
-            // Arbitrary large movement attempt: (60, 60) -> (1060, 1060)
+            // Попытка произвольного большого движения: (60, 60) -> (1060, 1060)
             factory.Move(1000, 1000);
 
             List<Point> moves = mouse.MouseMovements;
             Assert.AreEqual(new Point(60, 60), moves[0]);
-            // Expect the screen size to be only 100x100px, so it gets capped on 150, 150.
-            // But NaturalMouseMotion allows to move to screen length - 1, so it's [149, 149]
+            // Ожидайте, что размер экрана будет всего 100x100 пикселей, поэтому он будет ограничен 150, 150.
+            // Но Zaac.CSNaturalMouseMotion позволяет перейти к длине экрана - 1, так что это [149, 149]
             Assert.AreEqual(new Point(149, 149), moves[moves.Count - 1]);
         }
 
         [Test]
         public virtual void TestOffsetLimitScreenOnSmallSide()
         {
-            // Try to move out of the specified screen
+            // Попробуйте выйти за пределы указанного экрана
             factory.Move(-1, -1);
 
             List<Point> moves = mouse.MouseMovements;
             Assert.AreEqual(new Point(60, 60), moves[0]);
-            // Expect the offset to limit the mouse movement to 50, 50
+            // Ожидайте, что смещение ограничит движение мыши до 50, 50
             Assert.AreEqual(new Point(50, 50), moves[moves.Count - 1]);
         }
 

@@ -1,7 +1,7 @@
-﻿using NaturalMouseMotion.Support;
+﻿using Zaac.CSNaturalMouseMotion.Support;
 using System;
 
-namespace NaturalMouseMotion.Interface
+namespace Zaac.CSNaturalMouseMotion.Interface
 {
     /// <summary>
     /// Provides noise or mistakes in the mouse movement

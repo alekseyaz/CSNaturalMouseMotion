@@ -1,7 +1,7 @@
-﻿using CSNaturalMouseMotion.Util;
+﻿using Zaac.CSNaturalMouseMotion.Util;
 using NUnit.Framework;
 
-namespace CSNaturalMouseMotion.Tests.Util
+namespace Zaac.CSNaturalMouseMotion.Tests.Util
 {
     [TestFixture]
     public class MathUtilTest

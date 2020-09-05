@@ -1,9 +1,9 @@
-﻿using CSNaturalMouseMotion.Util;
-using NaturalMouseMotion.Interface;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using Zaac.CSNaturalMouseMotion.Interface;
+using Zaac.CSNaturalMouseMotion.Util;
 
-namespace NaturalMouseMotion.Support
+namespace Zaac.CSNaturalMouseMotion.Support
 {
     public class DefaultSpeedManager : ISpeedManager
     {
@@ -13,7 +13,7 @@ namespace NaturalMouseMotion.Support
 
         public DefaultSpeedManager(ICollection<Flow> flows)
         {
-            this._flows.AddRange(flows);
+            _flows.AddRange(flows);
         }
 
         public DefaultSpeedManager()
@@ -50,10 +50,7 @@ namespace NaturalMouseMotion.Support
 
         public virtual long MouseMovementBaseTimeMs
         {
-            set
-            {
-                this.mouseMovementTimeMs = value;
-            }
+            set => mouseMovementTimeMs = value;
         }
     }
 }

@@ -1,10 +1,9 @@
-﻿using NaturalMouseMotion.Interface;
-using NaturalMouseMotion.Support;
-using System;
-using System.Drawing;
+﻿using System.Drawing;
 using System.Threading;
+using Zaac.CSNaturalMouseMotion.Interface;
+using Zaac.CSNaturalMouseMotion.Support;
 
-namespace NaturalMouseMotion.Tools
+namespace Zaac.CSNaturalMouseMotion.Tools
 {
     public class SystemDiagnosis
     {
@@ -18,16 +17,7 @@ namespace NaturalMouseMotion.Tools
         /// </summary>
         public static void ValidateMouseMovement()
         {
-            try
-            {
-                ValidateMouseMovement(new DefaultSystemCalls(), new DefaultMouseInfoAccessor());
-            }
-            catch (Exception e)
-            {
-                if (e.Source != null)
-                    Console.WriteLine("Exception source: {0}", e.Source);
-                throw;
-            }
+            ValidateMouseMovement(new DefaultSystemCalls(), new DefaultMouseInfoAccessor());
         }
 
         /// <summary>
@@ -62,7 +52,7 @@ namespace NaturalMouseMotion.Tools
                             + "). Actually moved to (" + p.X
                             + ", " + p.Y
                             + ")"
-                            + "This means NaturalMouseMotion is not able to work optimally on this system as the cursor move "
+                            + "This means Zaac.CSNaturalMouseMotion is not able to work optimally on this system as the cursor move "
                             + "calls may miss the target pixels on the screen.");
                     }
                 }

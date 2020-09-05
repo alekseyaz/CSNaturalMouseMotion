@@ -1,12 +1,13 @@
-﻿using CSNaturalMouseMotion;
-using CSNaturalMouseMotion.Util;
-using NaturalMouseMotion.Interface;
+﻿using Zaac.CSNaturalMouseMotion;
+using Zaac.CSNaturalMouseMotion.Util;
+using Zaac.CSNaturalMouseMotion.Interface;
 using NLog;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using Zaac.CSNaturalMouseMotion.Extensions;
 
-namespace NaturalMouseMotion.Support.Mousemotion
+namespace Zaac.CSNaturalMouseMotion.Support.Mousemotion
 {
     public class MovementFactory
     {

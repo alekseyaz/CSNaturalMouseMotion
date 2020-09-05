@@ -1,6 +1,6 @@
 ﻿using System.Drawing;
 
-namespace NaturalMouseMotion.Interface
+namespace Zaac.CSNaturalMouseMotion.Interface
 {
     /// <summary>
     /// Abstracts ordinary static System calls away
@@ -8,10 +8,8 @@ namespace NaturalMouseMotion.Interface
     public interface ISystemCalls
     {
         long CurrentTimeMillis { get; }
-
         void Sleep(long time);
         Size ScreenSize { get; }
-
         void SetMousePosition(int x, int y);
     }
 }

@@ -1,8 +1,8 @@
-﻿using NaturalMouseMotion.Support;
+﻿using Zaac.CSNaturalMouseMotion.Support;
 using System.Collections.Generic;
 using System.Drawing;
 
-namespace CSNaturalMouseMotion.Tests.TestUtils
+namespace Zaac.CSNaturalMouseMotion.Tests.TestUtils
 {
 
     public class MockMouse : DefaultMouseInfoAccessor

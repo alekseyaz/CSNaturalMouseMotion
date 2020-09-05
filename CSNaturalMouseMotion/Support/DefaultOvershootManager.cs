@@ -1,8 +1,8 @@
-﻿using NaturalMouseMotion.Interface;
-using System;
+﻿using System;
 using System.Drawing;
+using Zaac.CSNaturalMouseMotion.Interface;
 
-namespace NaturalMouseMotion.Support
+namespace Zaac.CSNaturalMouseMotion.Support
 {
     public class DefaultOvershootManager : IOvershootManager
     {

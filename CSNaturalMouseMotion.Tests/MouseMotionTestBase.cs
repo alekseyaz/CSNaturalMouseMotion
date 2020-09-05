@@ -1,11 +1,11 @@
-﻿using CSNaturalMouseMotion.Tests.TestUtils;
-using NaturalMouseMotion;
-using NaturalMouseMotion.Interface;
+﻿using Zaac.CSNaturalMouseMotion.Tests.TestUtils;
+using Zaac.CSNaturalMouseMotion;
+using Zaac.CSNaturalMouseMotion.Interface;
 using System;
 using System.Drawing;
 using NUnit.Framework;
 
-namespace CSNaturalMouseMotion.Tests
+namespace Zaac.CSNaturalMouseMotion.Tests
 {
 
     [TestFixture]
@@ -36,7 +36,7 @@ namespace CSNaturalMouseMotion.Tests
             factory.SystemCalls = systemCalls;
             factory.DeviationProvider = deviationProvider;
             factory.NoiseProvider = noiseProvider;
-            factory.ISpeedManager = speedManager;
+            factory.SpeedManager = speedManager;
             factory.Random = random;
 
             factory.MouseInfo = mouse;

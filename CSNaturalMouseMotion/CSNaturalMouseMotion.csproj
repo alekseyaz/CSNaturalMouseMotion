@@ -7,8 +7,8 @@
     <ProjectGuid>{C5D20D50-D15D-4AFB-B682-2DEF380D86CD}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CSNaturalMouseMotion</RootNamespace>
-    <AssemblyName>CSNaturalMouseMotion</AssemblyName>
+    <RootNamespace>Zaac.CSNaturalMouseMotion</RootNamespace>
+    <AssemblyName>Zaac.CSNaturalMouseMotion</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -53,9 +53,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DateTimeHelper.cs" />
-    <Compile Include="Exception.cs" />
-    <Compile Include="GlobalRandom.cs" />
+    <Compile Include="Util\DateTimeHelper.cs" />
+    <Compile Include="Extensions\Extensions.cs" />
+    <Compile Include="Util\GlobalRandom.cs" />
     <Compile Include="Interface\IDeviationProvider.cs" />
     <Compile Include="Interface\IMouseInfoAccessor.cs" />
     <Compile Include="Interface\IMouseMotionObserver.cs" />

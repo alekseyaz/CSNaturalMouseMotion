@@ -1,7 +1,7 @@
-﻿using NaturalMouseMotion.Support;
+﻿using Zaac.CSNaturalMouseMotion.Support;
 using System.Drawing;
 
-namespace CSNaturalMouseMotion.Tests.TestUtils
+namespace Zaac.CSNaturalMouseMotion.Tests.TestUtils
 {
 
     public class MockSystemCalls : DefaultSystemCalls

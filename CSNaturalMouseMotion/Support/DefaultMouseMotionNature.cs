@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace NaturalMouseMotion.Support
+namespace Zaac.CSNaturalMouseMotion.Support
 {
     public class DefaultMouseMotionNature : MouseMotionNature
     {
@@ -13,20 +13,11 @@ namespace NaturalMouseMotion.Support
 
         public DefaultMouseMotionNature()
         {
-            try
-            {
-                SystemCalls = new DefaultSystemCalls();
-            }
-            catch (Exception e)
-            {
-                if (e.Source != null)
-                    Console.WriteLine("Exception source: {0}", e.Source);
-                throw;
-            }
 
+            SystemCalls = new DefaultSystemCalls();
             DeviationProvider = new SinusoidalDeviationProvider(SinusoidalDeviationProvider.DEFAULT_SLOPE_DIVIDER);
             NoiseProvider = new DefaultNoiseProvider(DefaultNoiseProvider.DEFAULT_NOISINESS_DIVIDER);
-            ISpeedManager = new DefaultSpeedManager();
+            SpeedManager = new DefaultSpeedManager();
             IOvershootManager = new DefaultOvershootManager(new Random());
             EffectFadeSteps = EFFECT_FADE_STEPS;
             MinSteps = MIN_STEPS;

@@ -1,13 +1,13 @@
-﻿using CSNaturalMouseMotion.Util;
-using NaturalMouseMotion.Interface;
-using NaturalMouseMotion.Support;
-using NaturalMouseMotion.Support.Mousemotion;
-using NLog;
+﻿using NLog;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using Zaac.CSNaturalMouseMotion.Interface;
+using Zaac.CSNaturalMouseMotion.Support;
+using Zaac.CSNaturalMouseMotion.Support.Mousemotion;
+using Zaac.CSNaturalMouseMotion.Util;
 
-namespace NaturalMouseMotion
+namespace Zaac.CSNaturalMouseMotion
 {
     /// <summary>
     /// Contains instructions to move cursor smoothly to the destination coordinates from where ever the cursor
@@ -49,7 +49,7 @@ namespace NaturalMouseMotion
             _yDest = LimitByScreenHeight(yDest);
             _random = random;
             mouseInfo = nature.MouseInfo;
-            speedManager = nature.ISpeedManager;
+            speedManager = nature.SpeedManager;
             timeToStepsDivider = nature.TimeToStepsDivider;
             minSteps = nature.MinSteps;
             effectFadeSteps = nature.EffectFadeSteps;

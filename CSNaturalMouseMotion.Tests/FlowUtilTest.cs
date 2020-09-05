@@ -1,9 +1,9 @@
-﻿using CSNaturalMouseMotion.Util;
+﻿using Zaac.CSNaturalMouseMotion.Util;
 using NUnit.Framework;
 using System;
 using System.Linq;
 
-namespace CSNaturalMouseMotion.Tests
+namespace Zaac.CSNaturalMouseMotion.Tests
 {
     [TestFixture]
     public class FlowUtilTest

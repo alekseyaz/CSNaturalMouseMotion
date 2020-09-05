@@ -1,4 +1,4 @@
-﻿namespace CSNaturalMouseMotion.Util
+﻿namespace Zaac.CSNaturalMouseMotion.Util
 {
     public class Pair<X, Y>
     {

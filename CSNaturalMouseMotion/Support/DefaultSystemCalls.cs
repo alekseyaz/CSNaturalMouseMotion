@@ -1,11 +1,12 @@
-﻿using NaturalMouseMotion.Interface;
-using System;
+﻿using System;
 using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows;
+using Zaac.CSNaturalMouseMotion.Interface;
+using Zaac.CSNaturalMouseMotion.Util;
 
-namespace NaturalMouseMotion.Support
+namespace Zaac.CSNaturalMouseMotion.Support
 {
     public class DefaultSystemCalls : ISystemCalls
     {

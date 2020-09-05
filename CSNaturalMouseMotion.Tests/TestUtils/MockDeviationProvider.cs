@@ -1,7 +1,7 @@
-﻿using NaturalMouseMotion.Interface;
-using NaturalMouseMotion.Support;
+﻿using Zaac.CSNaturalMouseMotion.Interface;
+using Zaac.CSNaturalMouseMotion.Support;
 
-namespace CSNaturalMouseMotion.Tests.TestUtils
+namespace Zaac.CSNaturalMouseMotion.Tests.TestUtils
 {
     public class MockDeviationProvider : IDeviationProvider
     {

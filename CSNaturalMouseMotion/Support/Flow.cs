@@ -1,4 +1,4 @@
-﻿namespace NaturalMouseMotion.Support
+﻿namespace Zaac.CSNaturalMouseMotion.Support
 {
     /// <summary>
     /// Flow for the mouse movement
@@ -62,13 +62,7 @@
             return buckets;
         }
 
-        public virtual double[] FlowCharacteristics
-        {
-            get
-            {
-                return buckets;
-            }
-        }
+        public virtual double[] FlowCharacteristics => buckets;
 
         /// <summary>
         /// This returns step size for a single axis.

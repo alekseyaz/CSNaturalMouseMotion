@@ -1,6 +1,6 @@
 ﻿using System.Drawing;
 
-namespace NaturalMouseMotion.Interface
+namespace Zaac.CSNaturalMouseMotion.Interface
 {
     /// <summary>
     /// Abstraction for getting mouse position.

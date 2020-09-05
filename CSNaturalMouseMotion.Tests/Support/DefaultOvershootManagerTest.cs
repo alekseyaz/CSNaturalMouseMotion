@@ -1,10 +1,10 @@
-﻿using CSNaturalMouseMotion.Tests.TestUtils;
-using NaturalMouseMotion.Support;
+﻿using Zaac.CSNaturalMouseMotion.Tests.TestUtils;
+using Zaac.CSNaturalMouseMotion.Support;
 using NUnit.Framework;
 using System;
 using System.Drawing;
 
-namespace CSNaturalMouseMotion.Tests.Support
+namespace Zaac.CSNaturalMouseMotion.Tests.Support
 {
     [TestFixture]
     public class DefaultOvershootManagerTest

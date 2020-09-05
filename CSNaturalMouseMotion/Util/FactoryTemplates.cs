@@ -1,11 +1,10 @@
-﻿using CSNaturalMouseMotion.TestUtils;
-using NaturalMouseMotion;
-using NaturalMouseMotion.Interface;
-using NaturalMouseMotion.Support;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Zaac.CSNaturalMouseMotion.Interface;
+using Zaac.CSNaturalMouseMotion.Support;
+using Zaac.CSNaturalMouseMotion.TestUtils;
 
 
-namespace CSNaturalMouseMotion.Util
+namespace Zaac.CSNaturalMouseMotion.Util
 {
     public class FactoryTemplates
     {
@@ -50,7 +49,7 @@ namespace CSNaturalMouseMotion.Util
 
             factory.Nature.TimeToStepsDivider = DefaultMouseMotionNature.TIME_TO_STEPS_DIVIDER - 2;
             manager.MouseMovementBaseTimeMs = 1000;
-            factory.ISpeedManager = manager;
+            factory.SpeedManager = manager;
             return factory;
         }
 
@@ -84,7 +83,7 @@ namespace CSNaturalMouseMotion.Util
             DefaultOvershootManager overshootManager = (DefaultOvershootManager)factory.IOvershootManager;
             overshootManager.Overshoots = 0;
 
-            factory.ISpeedManager = manager;
+            factory.SpeedManager = manager;
             return factory;
         }
 
@@ -122,7 +121,7 @@ namespace CSNaturalMouseMotion.Util
             DefaultOvershootManager overshootManager = (DefaultOvershootManager)factory.IOvershootManager;
             overshootManager.Overshoots = 4;
 
-            factory.ISpeedManager = manager;
+            factory.SpeedManager = manager;
             return factory;
         }
         /// <summary>
@@ -162,7 +161,7 @@ namespace CSNaturalMouseMotion.Util
             DefaultOvershootManager overshootManager = (DefaultOvershootManager)factory.IOvershootManager;
             overshootManager.Overshoots = 4;
 
-            factory.ISpeedManager = manager;
+            factory.SpeedManager = manager;
             return factory;
         }
     }

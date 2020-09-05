@@ -1,4 +1,4 @@
-﻿namespace NaturalMouseMotion.Support.Mousemotion
+﻿namespace Zaac.CSNaturalMouseMotion.Support.Mousemotion
 {
 
     public class Movement

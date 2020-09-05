@@ -1,4 +1,4 @@
-﻿namespace NaturalMouseMotion.Support
+﻿namespace Zaac.CSNaturalMouseMotion.Support
 {
     public class DoublePoint
     {

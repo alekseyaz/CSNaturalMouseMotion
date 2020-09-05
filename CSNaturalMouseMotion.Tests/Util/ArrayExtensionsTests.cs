@@ -2,7 +2,7 @@
 using System;
 using System.Linq;
 
-namespace CSNaturalMouseMotion.Tests.Util
+namespace Zaac.CSNaturalMouseMotion.Tests.Util
 {
     [TestFixture]
     public class ArrayExtensionsTests

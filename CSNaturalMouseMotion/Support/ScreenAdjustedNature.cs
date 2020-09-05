@@ -1,7 +1,7 @@
-﻿using NaturalMouseMotion.Interface;
-using System.Drawing;
+﻿using System.Drawing;
+using Zaac.CSNaturalMouseMotion.Interface;
 
-namespace NaturalMouseMotion.Support
+namespace Zaac.CSNaturalMouseMotion.Support
 {
     /// <summary>
     /// This nature translates mouse coordinates to specified offset and screen dimension.

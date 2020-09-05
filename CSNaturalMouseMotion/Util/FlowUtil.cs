@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace CSNaturalMouseMotion.Util
+namespace Zaac.CSNaturalMouseMotion.Util
 {
     public class FlowUtil
     {

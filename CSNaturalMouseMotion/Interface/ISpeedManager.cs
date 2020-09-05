@@ -1,7 +1,7 @@
-﻿using CSNaturalMouseMotion.Util;
-using NaturalMouseMotion.Support;
+﻿using Zaac.CSNaturalMouseMotion.Util;
+using Zaac.CSNaturalMouseMotion.Support;
 
-namespace NaturalMouseMotion.Interface
+namespace Zaac.CSNaturalMouseMotion.Interface
 {
     /// <summary>
     /// ISpeedManager controls how long does it take to complete a mouse movement and within that

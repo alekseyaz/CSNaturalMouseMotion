@@ -1,14 +1,14 @@
-﻿using CSNaturalMouseMotion.Tests.TestUtils;
-using NaturalMouseMotion.Interface;
-using NaturalMouseMotion.Support;
-using NaturalMouseMotion.Support.Mousemotion;
+﻿using Zaac.CSNaturalMouseMotion.Tests.TestUtils;
+using Zaac.CSNaturalMouseMotion.Interface;
+using Zaac.CSNaturalMouseMotion.Support;
+using Zaac.CSNaturalMouseMotion.Support.Mousemotion;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 
-namespace CSNaturalMouseMotion.Tests.Support
+namespace Zaac.CSNaturalMouseMotion.Tests.Support
 {
     [TestFixture]
     public class MovementFactoryTest

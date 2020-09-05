@@ -1,6 +1,6 @@
-﻿using NaturalMouseMotion.Interface;
+﻿using Zaac.CSNaturalMouseMotion.Interface;
 
-namespace NaturalMouseMotion.Support
+namespace Zaac.CSNaturalMouseMotion.Support
 {
     public class MouseMotionNature
     {
@@ -18,7 +18,7 @@ namespace NaturalMouseMotion.Support
         private ISpeedManager speedManager;
 
         /// <summary>
-        /// Time to steps is how NaturalMouseMotion calculates how many locations need to be visited between
+        /// Time to steps is how Zaac.CSNaturalMouseMotion calculates how many locations need to be visited between
         /// start and end point. More steps means more smooth movement. Thus increasing this divider means less
         /// steps and decreasing means more steps. </summary>
         /// <returns> the divider which is used to get amount of steps from the planned movement time </returns>
@@ -122,7 +122,7 @@ namespace NaturalMouseMotion.Support
         /// Get the speed manager. ISpeedManager controls how long does it take to complete a movement and within that
         /// time how slow or fast the cursor is moving at a particular moment, the flow of movement. </summary>
         /// <returns> the ISpeedManager </returns>
-        public virtual ISpeedManager ISpeedManager
+        public virtual ISpeedManager SpeedManager
         {
             get => speedManager;
             set => speedManager = value;

@@ -1,7 +1,7 @@
-﻿using NaturalMouseMotion.Support;
+﻿using Zaac.CSNaturalMouseMotion.Support;
 using System.Drawing;
 
-namespace NaturalMouseMotion.Interface
+namespace Zaac.CSNaturalMouseMotion.Interface
 {
     /// <summary>
     ///  Overshoots provide a realistic way to simulate user trying to reach the destination with mouse, but miss.

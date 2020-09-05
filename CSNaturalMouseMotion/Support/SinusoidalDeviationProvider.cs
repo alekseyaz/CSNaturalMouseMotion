@@ -1,7 +1,7 @@
-﻿using NaturalMouseMotion.Interface;
-using System;
+﻿using System;
+using Zaac.CSNaturalMouseMotion.Interface;
 
-namespace NaturalMouseMotion.Support
+namespace Zaac.CSNaturalMouseMotion.Support
 {
     public class SinusoidalDeviationProvider : IDeviationProvider
     {
