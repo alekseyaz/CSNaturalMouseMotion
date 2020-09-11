@@ -53,6 +53,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Support\MouseMotionObserver.cs" />
     <Compile Include="Util\DateTimeHelper.cs" />
     <Compile Include="Extensions\Extensions.cs" />
     <Compile Include="Util\GlobalRandom.cs" />

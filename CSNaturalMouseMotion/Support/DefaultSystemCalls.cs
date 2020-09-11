@@ -39,7 +39,15 @@ namespace Zaac.CSNaturalMouseMotion.Support
         /// <param name="y"> the y-coordinate </param>
         public virtual void SetMousePosition(int x, int y)
         {
-            SetCursorPos(x, y);
+            try
+            {
+                SetCursorPos(x, y);
+            }
+            catch (EntryPointNotFoundException e)
+            {
+                Console.WriteLine("{0}:\n   {1}", e.GetType().Name,
+                                  e.Message);
+            }
         }
 
 

@@ -62,18 +62,19 @@ namespace Zaac.CSNaturalMouseMotion
         /// Blocking call, starts to move the cursor to the specified location from where it currently is.
         /// </summary>
         /// <exception cref="InterruptedException"> when interrupted </exception>
-        //public virtual void move()
-        //{
-        //	//move((x, y) => {});
-        //	move();
-        //}
+        public virtual void Move()
+        {
+            //TODO: переделать на события
+            var observer = new MouseMotionObserver();
+            Move(observer);
+        }
 
         /// <summary>
         /// Blocking call, starts to move the cursor to the specified location from where it currently is.
         /// </summary>
         /// <param name="observer"> Provide observer if you are interested receiving the location of mouse on every step </param>
         /// <exception cref="InterruptedException"> when interrupted </exception>
-        public virtual void Move()
+        public virtual void Move(IMouseMotionObserver observer)
         {
             UpdateMouseInfo();
             log.Info("Starting to move mouse to ({}, {}), current position: ({}, {})", _xDest, _yDest, mousePosition.X, mousePosition.Y);
@@ -167,7 +168,7 @@ namespace Zaac.CSNaturalMouseMotion
                     systemCalls.SetMousePosition(mousePosX, mousePosY);
 
                     // Allow other action to take place or just observe, we'll later compensate by sleeping less.
-                    //observer.observe(mousePosX, mousePosY);
+                    observer.Observe(mousePosX, mousePosY);
 
                     long timeLeft = endTime - systemCalls.CurrentTimeMillis;
                     SleepAround(Math.Max(timeLeft, 0), 0);
@@ -180,12 +181,8 @@ namespace Zaac.CSNaturalMouseMotion
                     // Let's start next step from pre-calculated location to prevent errors from accumulating.
                     // But print warning as this is not expected behavior.
                     log.Warn("Mouse off from step endpoint (adjustment was done) "
-                        + "x: (" + mousePosition.X
-                        + " -> " + movement.destX
-                        + ") "
-                        + "y: (" + mousePosition.Y
-                        + " -> " + movement.destY
-                        + ") ");
+                        + "x: (" + mousePosition.X + " -> " + movement.destX + ") "
+                        + "y: (" + mousePosition.Y + " -> " + movement.destY + ") ");
                     systemCalls.SetMousePosition(movement.destX, movement.destY);
                     // Let's wait a bit before getting mouse info.
                     SleepAround(SLEEP_AFTER_ADJUSTMENT_MS, 0);

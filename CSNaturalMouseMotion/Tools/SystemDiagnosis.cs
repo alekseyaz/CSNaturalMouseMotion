@@ -34,7 +34,6 @@ namespace Zaac.CSNaturalMouseMotion.Tools
                 for (int x = 0; x < dimension.Width; x += 50)
                 {
                     system.SetMousePosition(x, y);
-
                     try
                     {
                         Thread.Sleep(1);
